@@ -45,7 +45,7 @@
         <input type="hidden" name="user[id]" value="{{$user->id}}"/>
         <input type="hidden" name="user[name]" value="{{$user->name}}"/>
         <input type="hidden" name="Id" value="{{$model->Id}}"/>
-        <input type="hidden" name="vendorId" value="{{$model->Id}}"/>
+
 
         {{csrf_field()}}
 

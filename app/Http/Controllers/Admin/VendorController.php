@@ -49,6 +49,7 @@ class VendorController extends Controller
 
         $additional = VendorAdditional::where('VendorId',$vendor->Id)->first();
 
+        return dd($additional->VendorId);
         if($additional==null) {
             $additional = new VendorAdditional();
             $additional->VendorId = $vendor->Id;
@@ -72,14 +73,16 @@ class VendorController extends Controller
     
     public function save_mobile(Request $request)
     {
+
         return $this->save($request, $mobile=true);
     }
 
     public function save(Request $request, $mobile=false)
     {
 
+        return dd('$vendorAdditional');
         $validator = Validator::make($request->all(), [
-            'Name' => 'required|unique:vendors|max:255',
+            'Name' => 'required|unique:users|max:255',
             'CompanyName' => 'required|max:255',
             'Contact' => 'required|max:255',
             'RepresentativeName'=> 'max:255',
@@ -96,8 +99,10 @@ class VendorController extends Controller
         if($request->Id>0)
         {
             $vendor = Vendor::find($request->Id);
-            $vendorAdditional = Vendor::find($request->Id)->vendor_additional();
+            $vendorAdditional = VendorAdditional::find('VendorId', $request->Id);
         }
+
+
 
 
         $vendor->UserId = $request->UserId;
