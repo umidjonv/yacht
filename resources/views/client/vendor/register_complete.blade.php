@@ -1,4 +1,4 @@
-@extends('Client.layouts.layout')
+@extends('client.layouts.layout')
 
 @section('content')
     <div class="row">

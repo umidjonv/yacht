@@ -76,7 +76,7 @@ class YachtController extends Controller
             $activity->StartTime = $request->input('activity.StartTime');
             $activity->EndTime = $request->input('activity.EndTime');
             $activity->Regularity = $request->input('activity.Regularity');
-
+            $activity->YachtId = $yacht->Id;
             $activity->save();
 
             if($request->IsSchedule) {
@@ -88,16 +88,17 @@ class YachtController extends Controller
                 ]);
 
                 $schedule = new  Schedule();
-                $schedule->IsActive = $request->schedule->IsActive;
-                $schedule->StartDate = $request->schedule->StartDate;
-                $schedule->EndDate = $request->schedule->EndDate;
+                $schedule->IsActive = input('schedule.IsActive');
+                $schedule->StartDate = input('schedule.StartDate');
+                $schedule->EndDate = input('schedule.EndDate');
+                $schedule->YachtId = $yacht->Id;
 
                 $schedule->save();
             }
 
         }
 
-        return redirect()->action('index');
+        return redirect('admin/yacht');
     }
 
     public function update(YachtRequest $request){

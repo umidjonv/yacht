@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use App\User;
+
 class Vendor extends BaseModel
 {
     protected $table = 'vendors';
@@ -18,5 +20,11 @@ class Vendor extends BaseModel
     {
         return $this->hasMany(VendorAdditional::class)->first();
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 
 }

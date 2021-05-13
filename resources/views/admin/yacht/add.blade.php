@@ -30,6 +30,7 @@
 
 
 @section('content')
+
     <div class="row bg-light">
         <div class="col-6">
             <h2>Yacht information</h2>

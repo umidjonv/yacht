@@ -15,7 +15,7 @@ class VendorNewColumns extends Migration
     {
 
         Schema::table('vendors', function (Blueprint $table) {
-            $table->string('Area');
+            $table->string('Area')->nullable();
             $table->string('Address')->nullable();
         });
     }

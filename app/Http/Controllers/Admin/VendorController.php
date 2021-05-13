@@ -20,8 +20,10 @@ class VendorController extends Controller
 {
 
     public function index(){
-        $data = Vendor::all();
-        return view('admin.vendor.index')->with('data', $data);
+        $data = Vendor::with('user')->get();
+        $users = User::all();
+
+        return view('admin.vendor.index')->with(['data'=> $data, 'users'=>$users]);
     }
 
     public function activate($id){

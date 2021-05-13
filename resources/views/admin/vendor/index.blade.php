@@ -4,6 +4,8 @@
 
     <div class="row">
         <div class="col">
+
+            <h2>Yacht owners</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>

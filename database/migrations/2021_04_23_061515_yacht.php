@@ -16,7 +16,7 @@ class Yacht extends Migration
         Schema::create('yachts', function (Blueprint $table) {
             $table->bigIncrements('Id');
             $table->string('Name');
-            $table->string('Area');
+            $table->string('Area')->nullable();
             $table->string('Address');
             $table->unsignedBigInteger('VendorId');
             $table->float('Capacity')->nullable();
