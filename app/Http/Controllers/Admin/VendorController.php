@@ -98,15 +98,16 @@ class VendorController extends Controller
         if($request->Id>0)
         {
             $vendor = Vendor::find($request->Id);
-            $vendorAdditional = Vendor::find($request->Id)->vendor_additional();
+            $vendorAdditional = VendorAdditional::where('VendorId', $request->Id)->first();
         }
 
 
         $vendor->UserId = $request->UserId;
-        $vendor->Name = $request->Name;
+        $vendor->RepresentativeName = $request->RepresentativeName;
         $vendor->CompanyName =$request->CompanyName;
         $vendor->Contact = $request->Contact;
         $vendor->Email = $request->Email;
+        $vendor->UserId = $request->input('user.id');
         $vendor->save();
 
         if($vendorAdditional!=null)
