@@ -13,7 +13,7 @@ class Vendor extends BaseModel
 
     public function yachts()
     {
-        return $this->hasMany(Yacht::class);
+        return $this->hasMany(Yacht::class, 'VendorId');
     }
 
     public function vendor_additional()

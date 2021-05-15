@@ -21,13 +21,17 @@ class YachtController extends Controller
 
     public function index(){
         $data = Yacht::all();
+
+
         return view('admin.yacht.index')->with('data', $data);
     }
 
     public function by_vendor($vendorId){
 
 
-        $data = Yacht::where('VendorId', $vendorId)->get();
+        $data = Yacht::where('VendorId', $vendorId)->with('vendor')->get();
+
+        //return dd($data);
 
 
         return view('admin.yacht.index')->with('data', $data);

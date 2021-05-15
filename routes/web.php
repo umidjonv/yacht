@@ -38,7 +38,8 @@ Route::get('/', function () {
 //});
 //yacht methods
 Route::namespace('Admin')->group(function(){
-    Route::prefix('admin')->group(function () {
+    Route::prefix('admin')->middleware(['auth'])->group(function () {
+
         Route::get('/', 'AdminController@index')->name('admin.index');
 
         Route::get('/yacht', 'YachtController@index')->name('admin.yacht');
@@ -52,6 +53,14 @@ Route::namespace('Admin')->group(function(){
         Route::get('/vendor/activate/{id}', 'VendorController@activate')->name('admin.vendor.activate');
 
         Route::get('/vendor/yachts/{vendorId}', 'YachtController@by_vendor')->name('admin.vendor.yachts');
+
+
+        Route::get  ('/product',                'ProductController@index')->name('admin.product');
+        Route::get  ('/product/add',            'ProductController@add')->name('admin.product.add');
+        Route::get  ('/product/edit/{id}',      'ProductController@edit')->name('admin.product.edit');
+        Route::post ('/product/save',           'ProductController@save')->name('admin.product.save');
+        Route::get  ('/product/yachts',      'ProductController@get_yachts')->name('admin.product.get_yachts');
+
     });
 
 });
