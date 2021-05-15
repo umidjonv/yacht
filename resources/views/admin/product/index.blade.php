@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{$item->Id}}</td>
                             <td>{{$item->Name}}</td>
-                            <td>{{$item->Division}}</td>
+                            <td>{{(new \App\Common\Enums\YachtDivision())->Name($item->Division)}}</td>
                             <td>{{$item->Displayed}}</td>
                             <td>{{$item->CapacityAdult}} / {{$item->CapacityChild}}</td>
                             <td>{{$item->PriceAdult}}</td>

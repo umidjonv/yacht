@@ -1,6 +1,8 @@
 @extends('admin.index')
 
 @section('content')
+
+
     <div class="row">
         <div class="col">
             <h2>Yachts </h2>
@@ -22,7 +24,7 @@
                 @foreach($data as $item)
                     <tr>
                         <td>{{$item->Id}}</td>
-                        <td>{{$item->user->name}}</td>
+                        <td>{{$item->vendor()->first()->CompanyName}}</td>
                         <td>{{$item->Area}} {{$item->Address}}</td>
                         <td>{{$item->Capacity}}</td>
                         <td><a href="{{route('admin.yacht.change', ['id'=>$item->Id])}}" class="btn btn-warning"><span class="fa fa-edit"></span></a> </td>

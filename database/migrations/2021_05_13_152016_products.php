@@ -20,10 +20,10 @@ class Products extends Migration
             $table->boolean('IsDisplayed')->default(true);
             $table->integer('CapacityAdult');
             $table->integer('CapacityChild');
-            $table->integer('Description')->nullable();
+            $table->integer('Introduction')->nullable();
             $table->float('PriceAdult');
             $table->float('PriceChild');
-            $table->integer('Location')->nullable();
+            $table->string('Location')->nullable();
 
             $table->bigInteger('YachtId')->unsigned();
 

@@ -14,7 +14,7 @@ class Yacht extends BaseModel
 
     public function vendor()
     {
-        return $this->belongsTo(Vendor::class);
+        return $this->belongsTo(Vendor::class, 'VendorId');
     }
 
 }

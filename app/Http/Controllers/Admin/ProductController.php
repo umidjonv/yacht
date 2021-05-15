@@ -4,21 +4,45 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Common\JsonData;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\Vendor;
 use App\Models\Yacht;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Validator;
 
-class ProductController extends Controller
+class ProductController extends BaseController
 {
-    private function get_yachts()
+    public function get_yachts()
     {
-        return Yacht::all();
+        $user = Auth::user();
+        if($user==null)
+            return response()->json([
+                'message' => "user is not auhenticated"], 500);
+
+
+        $vendor = Vendor::where('UserId', $user->id)->with('yachts')->first();
+
+
+
+        if($vendor==null)
+            return response()->json([
+                'message' => "cannot find vendor"], 500);
+
+        $yachts = $vendor->yachts();//Yacht::where('VendorId', $vendor->Id)->get();
+
+
+        $data = $yachts->get(['Id', 'Name'])->toJson();
+
+        return response()->json($data);
     }
 
     public function index()
     {
+        $yachtd = new \App\Common\Enums\YachtDivision();
+
         $products = Product::all();
 
         return view('admin.product.index')->with(['model'=>$products]);
@@ -40,20 +64,33 @@ class ProductController extends Controller
             return abort(404);
         }
 
-        return view('admin.product.edit')->with(['model'=>$product, 'yachts'=>$this->get_yachts()]);
+        return view('admin.product.add')->with(['model'=>$product, 'yachts'=>$this->get_yachts()]);
     }
 
+    /**
+     * @param Request $request
+     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function save(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        //return dd($request->all());
+
+        $validator = \Validator::make($request->all(), [
             'Name' => 'required|max:255',
             'Division' => 'required',
-            'IsDisplayed' => 'required|boolean',
+            'IsDisplayed' => 'required',
             'CapacityAdult'=> 'integer',
             'CapacityChild' => 'integer',
             'PriceAdult'=> 'required',
             'PriceChild'=> 'required',
         ]);
+
+        if ($validator->fails()) {
+            return redirect()
+                ->route('admin.product.add')
+                ->withErrors($validator)
+                ->withInput();
+        }
 
         $product = new Product();
 
@@ -72,6 +109,8 @@ class ProductController extends Controller
         $product->PriceChild = $request->input('PriceChild');
         $product->Location = $request->input('Location');
         $product->YachtId = $request->input('YachtId');
+
+
 
 
 

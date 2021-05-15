@@ -80,7 +80,7 @@ class VendorController extends Controller
     public function save(Request $request, $mobile=false)
     {
 
-        $validator = Validator::make($request->all(), [
+        $validator = $request->validate([
             'Name' => 'required|unique:vendors|max:255',
             'CompanyName' => 'required|max:255',
             'Contact' => 'required|max:255',
@@ -89,6 +89,8 @@ class VendorController extends Controller
             'Address'=> 'required|max:255',
             'Area'=> 'required|max:255',
         ]);
+
+
 
         $vendor = new Vendor();
         $vendorAdditional = new VendorAdditional();
