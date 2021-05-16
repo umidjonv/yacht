@@ -22,10 +22,7 @@ class ProductController extends BaseController
             return response()->json([
                 'message' => "user is not auhenticated"], 500);
 
-
         $vendor = Vendor::where('UserId', $user->id)->with('yachts')->first();
-
-
 
         if($vendor==null)
             return response()->json([
