@@ -40,7 +40,7 @@ class VendorController extends Controller
         $userId = DB::table('users')->insertGetId(
             [
                 'name' => $name,
-                'email' => $request->Email,
+                'email' => $request->email,
                 'password' => bcrypt($request->Password),
             ]
         );

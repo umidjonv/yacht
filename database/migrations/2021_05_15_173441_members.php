@@ -25,7 +25,7 @@ class Members extends Migration
             $table->dateTime('UpdatedAt')->nullable();
             $table->dateTime('CreatedAt')->nullable();
 
-            $table->bigInteger('MembershipId')->unsigned();
+            $table->bigInteger('MembershipId')->unsigned()->nullable();
             $table->integer('UserId')->unsigned();
 
             $table->foreign('UserId')->references('id')->on('users');

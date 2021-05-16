@@ -1,25 +1,17 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Cassandra\Session;
-use Validator;
+use Illuminate\Validation\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
 
-
-
+/**
+ * Class LoginController
+ * @package App\Http\Controllers\Admin
+ */
 class LoginController extends BaseController
 {
-
-//    use AuthenticatesUsers;
-//
-//    protected $redirectTo = '/admin/mobile/login';
-//
-//    public function __construct()
-//    {
-//        $this->middleware('guest')->except('logout');
-//    }
 
     public function index()
     {
@@ -30,8 +22,6 @@ class LoginController extends BaseController
     public function logout()
     {
         Auth::logout();
-
-
 
         return redirect()->route('admin.mobile.login.index');
     }

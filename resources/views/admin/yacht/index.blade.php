@@ -12,6 +12,7 @@
                 <tr>
                     <th>#</th>
                     <th>Name</th>
+                    <th>Company name</th>
                     <th>Address</th>
                     <th>Capacity</th>
 
@@ -24,6 +25,7 @@
                 @foreach($data as $item)
                     <tr>
                         <td>{{$item->Id}}</td>
+                        <td>{{$item->Name}}</td>
                         <td>{{$item->vendor()->first()->CompanyName}}</td>
                         <td>{{$item->Area}} {{$item->Address}}</td>
                         <td>{{$item->Capacity}}</td>

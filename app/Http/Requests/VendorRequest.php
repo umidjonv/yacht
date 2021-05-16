@@ -34,7 +34,7 @@ class VendorRequest extends FormRequest
             'name' => ['required','unique:users','max:255',new Whitespace()],
             'CompanyName' => 'required|max:255',
             'Contact' => 'required|max:255',
-            'Email' => 'required|email|max:255|unique:vendors',
+            'email' => 'required|email|max:255|unique:users',
             'Password' => 'required|alphaNum|min:6',
             'Repassword' => 'required|same:Password',
         ];
