@@ -18,3 +18,24 @@ Route::namespace('Admin')->group(function(){
     });
 
 });
+
+Route::namespace('Client')->group(function(){
+    Route::group(['prefix' => 'client', 'middleware' => ['redirectIfNotAuthenticated']], function(){
+        Route::prefix('mobile')->group(function () {
+            Route::get('/', 'HomeController@mobile_index')->name('client.mobile.index');
+            Route::post('/attempt', 'LoginController@attempt')->name('client.mobile.login.attempt');
+            Route::get('/logout', 'LoginController@logout')->name('client.mobile.login.logout');
+
+
+        });
+    });
+    Route::group(['prefix' => 'client'], function(){
+        Route::prefix('mobile')->group(function () {
+            Route::get('/login', 'LoginController@index')->name('client.mobile.login');
+            Route::get('/register1', 'LoginController@register1')->name('client.mobile.register1');
+            Route::get('/register2', 'LoginController@register2')->name('client.mobile.register2');
+            Route::post('/register2', 'LoginController@register2_complete')->name('client.mobile.register2_complete');
+            Route::get('/register3', 'LoginController@register1')->name('client.mobile.register3');
+        });
+    });
+});

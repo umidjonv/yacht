@@ -35,7 +35,7 @@
                     <div class="col-6">
                         <div class="form-group">
                             <label class="form-control-plaintext"><span class="text-danger">*</span> Email</label>
-                            <input class="form-control" type="email" name="Email" value="{{old('Email')}}"/>
+                            <input class="form-control" type="email" name="email" value="{{old('email')}}"/>
                         </div>
                         <div class="form-group">
                             <label class="form-control-plaintext"><span class="text-danger">*</span> Contact</label>

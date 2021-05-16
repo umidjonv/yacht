@@ -17,12 +17,8 @@ class HomeController extends Controller
         return view('client.index');
     }
 
-    public function register(){
-        return view('client.register');
-    }
-
-    public function login(){
-        return view('client.login');
+    public function mobile_index(){
+        return view('client.mobile.index');
     }
 
     public function vendor_login(){

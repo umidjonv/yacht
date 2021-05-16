@@ -51,15 +51,19 @@ Route::namespace('Admin')->group(function(){
         Route::get('/vendor', 'VendorController@index')->name('admin.vendor');
         Route::get('/vendor/edit/{id}', 'VendorController@edit')->name('admin.vendor.edit');
         Route::get('/vendor/activate/{id}', 'VendorController@activate')->name('admin.vendor.activate');
-
         Route::get('/vendor/yachts/{vendorId}', 'YachtController@by_vendor')->name('admin.vendor.yachts');
-
 
         Route::get  ('/product',                'ProductController@index')->name('admin.product');
         Route::get  ('/product/add',            'ProductController@add')->name('admin.product.add');
         Route::get  ('/product/edit/{id}',      'ProductController@edit')->name('admin.product.edit');
         Route::post ('/product/save',           'ProductController@save')->name('admin.product.save');
         Route::get  ('/product/yachts',      'ProductController@get_yachts')->name('admin.product.get_yachts');
+
+        Route::get  ('/member',      'MemberController@index')->name('admin.member');
+        Route::get  ('/member/{id}',      'MemberController@view')->name('admin.member.view');
+
+
+
 
     });
 
