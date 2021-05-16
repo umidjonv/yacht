@@ -62,6 +62,9 @@ Route::namespace('Admin')->group(function(){
         Route::get  ('/member',      'MemberController@index')->name('admin.member');
         Route::get  ('/member/{id}',      'MemberController@view')->name('admin.member.view');
 
+        Route::get  ('/reservation',                'ReservationController@index')->name('admin.reservation');
+        Route::get  ('/reservation/{id}',                'ReservationController@view')->name('admin.reservation.view');
+
 
 
 

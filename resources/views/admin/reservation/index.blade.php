@@ -1,26 +1,24 @@
 @extends('admin.index')
 
 @section('content')
-    <div class="row">
-        <div class="col">
-            <a href="{{route('admin.product.add')}}" class="btn btn-primary">Add</a>
-        </div>
-    </div>
+
     <div class="row">
         <div class="col">
 
-            <h2>Product management</h2>
+            <h2>Reservation list</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Division</th>
-                        <th>Displayed</th>
-                        <th>Capacity adult/child</th>
-                        <th>Description</th>
-                        <th>Price adult</th>
-                        <th>Price child</th>
+                        <th>Reservation name</th>
+                        <th>Time</th>
+                        <th>Adults</th>
+                        <th>Childs</th>
+                        <th>Payment Amount</th>
+                        <th>Total Payment</th>
+                        <th>Payed or not</th>
+                        <th>Request date</th>
+                        <th></th>
 
                     </tr>
                 </thead>
@@ -28,15 +26,16 @@
                     @foreach($model as $item)
                         <tr>
                             <td>{{$item->Id}}</td>
-                            <td>{{$item->Name}}</td>
-                            <td>{{(new \App\Common\Enums\YachtDivision())->Name($item->Division)}}</td>
-                            <td>{{$item->Displayed}}</td>
-                            <td>{{$item->CapacityAdult}} / {{$item->CapacityChild}}</td>
-                            <td>{{$item->PriceAdult}}</td>
-                            <td>{{$item->PriceChild}}</td>
-                            <td>{{$item->PriceAdult}}</td>
+                            <td>{{$item->ReservationName}}</td>
+                            <td>{{$item->ReservationTime}}</td>
+                            <td>{{$item->Adults}}</td>
+                            <td>{{$item->Childs}}</td>
+                            <td>{{$item->PaymentAmount}}</td>
+                            <td>{{$item->TotalAmount}}</td>
+                            <td>{{$item->IsPayed?"Payed":"Not payed"}}</td>
+                            <td>{{$item->RequestDate}}</td>
 
-                            <td><a href="{{route('admin.product.edit',['Id'=>$item->Id])}}" class="btn btn-warning"><span class="fa fa-edit"></span> </a> </td>
+                            <td><a href="{{route('admin.reservation.view',['Id'=>$item->Id])}}" class="btn btn-info"><span class="fa fa-eye"></span> </a> </td>
                         </tr>
                     @endforeach
                 </tbody>
