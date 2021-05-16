@@ -101,7 +101,7 @@ class ProductController extends BaseController
         $product->IsDisplayed = $request->input('IsDisplayed');
         $product->CapacityAdult = $request->input('CapacityAdult');
         $product->CapacityChild = $request->input('CapacityChild');
-        $product->Description = $request->input('Description');
+        $product->Introduction = $request->input('Description');
         $product->PriceAdult = $request->input('PriceAdult');
         $product->PriceChild = $request->input('PriceChild');
         $product->Location = $request->input('Location');
