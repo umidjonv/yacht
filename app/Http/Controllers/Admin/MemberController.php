@@ -18,6 +18,7 @@ class MemberController extends Controller
     }
 
     public function view($id){
+        return abort(404);
         $member = Member::find($id)->with('user')->get();
 
         return view('admin.member.view')->with(['model'=> $member]);

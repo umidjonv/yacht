@@ -19,6 +19,13 @@ class LoginController extends BaseController
 
     }
 
+    public function logout_admin()
+    {
+        Auth::logout();
+
+        return redirect()->route('admin.index');
+    }
+
     public function logout()
     {
         Auth::logout();
