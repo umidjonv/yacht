@@ -41,7 +41,7 @@ Route::namespace('Admin')->group(function(){
     Route::prefix('admin')->middleware(['auth'])->group(function () {
 
         Route::get('/', 'AdminController@index')->name('admin.index');
-        Route::get('/logout', 'AdminController@logout_admin')->name('admin.logout');
+        Route::get('/logout', 'LoginController@logout_admin')->name('admin.logout');
 
         Route::get('/yacht', 'YachtController@index')->name('admin.yacht');
         Route::get('/yacht/add', 'YachtController@add')->name('admin.yacht.add');
