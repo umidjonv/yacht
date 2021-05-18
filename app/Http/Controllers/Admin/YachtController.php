@@ -10,10 +10,12 @@ use App\Models\Schedule;
 use App\Models\Vendor;
 use App\Models\Yacht;
 
+use App\Models\YachtImage;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Validation\Validator;
 use phpDocumentor\Reflection\Types\Integer;
+use Illuminate\Support\Str;
 
 class YachtController extends Controller
 {
@@ -61,7 +63,7 @@ class YachtController extends Controller
     }
 
     public function store(YachtRequest $request){
-
+//        dd($request);
         $validated = $request->validated();
 
         $yacht = new Yacht();
@@ -72,6 +74,16 @@ class YachtController extends Controller
         $yacht->Capacity = $request->Capacity;
 
         $yacht->save();
+
+        foreach ($request->file('image') as $image) {
+            $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
+            $image->storeAs('yachts', $f_name);
+
+            YachtImage::create([
+                'Name' => $f_name,
+                'YachtId' => $yacht->Id
+            ]);
+        }
 
 
         if($yacht->Id>0)

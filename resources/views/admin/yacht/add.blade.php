@@ -35,7 +35,7 @@
         <div class="col-6">
             <h2>Yacht information</h2>
 
-            <form action="{{ $id == 0 ? route('admin.yacht.store') : route('admin.yacht.update', ['id'=>$id]) }}" method="post" >
+            <form action="{{ $id == 0 ? route('admin.yacht.store') : route('admin.yacht.update', ['id'=>$id]) }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" value="{{ is_null($model) ? '0' : $model->Id }}" name="Id" />
                 <div class="p-2 bg-white">
@@ -191,7 +191,12 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="form-group">
+                <div class="custom-file">
+                    <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">
+                    <label class="custom-file-label" for="customFile">Choose file</label>
+                </div>
+                </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save"/>
                 </div>
