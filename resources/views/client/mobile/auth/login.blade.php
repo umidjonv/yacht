@@ -25,7 +25,7 @@
             <!-- input -->
             <fieldset class="login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:43px; padding:0 5px; height:15px;">ID</legend>
-                <input class="w_100 js_input00" name="name" placeholder="" type="text" style="font-size:1.30rem;">
+                <input class="w_100 js_input00" name="name" placeholder="" type="text" style="font-size:1.30rem;" value="{{old('name')}}">
             </fieldset>
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:53px; padding:0 5px; height:15px;">password</legend>
@@ -33,16 +33,18 @@
             </fieldset>
             <div style="height:30px;">
                 @if ($errors->any())
+                    @foreach($errors->all() as $error)
                     <div class="mgn_t10 jm_tsss1 jcr_ylw j_bold">
-                        ID or password is incorrect.
+                        {{$error}}
                     </div>
+                    @endforeach
                 @endif
             </div>
             <!-- // input -->
             <!-- button -->
-            <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="padding:19px 0; border-radius:0px;" onclick="javascript:this.form.submit();">
+            <button class="w-100 jbg_ylw jm_tss1 jcr_wht j_bold" style="padding:19px 0; border-radius:0px;" type="submit" >
                 login
-            </div>
+            </button>
             <!--// button -->
         </div>
         <!--// outermost_margin designation -->

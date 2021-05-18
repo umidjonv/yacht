@@ -59,7 +59,7 @@ class LoginController extends BaseController
             [
                 'name' => $request->name,
                 'email' => $request->name,
-                'password' => bcrypt($request->Password),
+                'password' => bcrypt($request->password),
             ]
         );
 
@@ -109,23 +109,43 @@ class LoginController extends BaseController
 
         if (str_contains($request->name, '@')) {
             $validator = Validator::make($request->all(), [
-                'name' => 'unique:users,email|email|required',
+                'name' => 'email|required',
                 'password' => 'required'
             ]);
+
+            if($validator->fails())
+            {
+
+
+                return redirect('/client/mobile/login')->withInput()->withErrors($validator);
+
+            }
+
+
 
             $returned = $this->authenticateEmail($request->name, $request->password);
 
         }else{
+
+
+
             $validator = Validator::make($request->all(), [
-                'name' => 'unique:users,name|required',
+                'name' => 'required',
                 'password' => 'required'
             ]);
+
+            if($validator->fails())
+            {
+                return redirect('/client/mobile/login')->withInput()-> withErrors($validator);
+
+            }
 
             $name = strtolower($request->name);
 
             $returned = $this->authenticateName($name, $request->password);
 
         }
+
 
         //return dd($request->name);
 
@@ -134,17 +154,11 @@ class LoginController extends BaseController
             return redirect()->route('client.mobile.index');
         }
 
-        if($validator->fails())
-        {
-            return redirect('/client/mobile/login')->withErrors($validator);
-
-        }
-
         $messages = [
             'name' => 'Login or password is incorrect',
         ];
 
-        return redirect('/client/mobile/login')->withErrors($messages);
+        return redirect('/client/mobile/login')->withInput()->withErrors($messages);
 
 
 
@@ -162,6 +176,7 @@ class LoginController extends BaseController
             // Authentication passed...
             return true;
         }
+
         return false;
     }
 
