@@ -49,7 +49,7 @@ class VendorController extends Controller
         $vendor->UserId = $userId;
         $vendor->CompanyName =$request->CompanyName;
         $vendor->Contact = $request->Contact;
-        $vendor->Email = $request->Email;
+
         $vendor->save();
 
         return view("client.vendor.register_complete");

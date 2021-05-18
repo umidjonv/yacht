@@ -31,7 +31,7 @@
 
     <script>
         setTimeout(function () {
-            window.location = "{{route('client.mobile')}}";
+            window.location = "{{route('client.mobile.index')}}";
 
         }, 3000)
     </script>

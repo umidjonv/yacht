@@ -18,7 +18,6 @@ class Vendors extends Migration
             $table->string('CompanyName');
             $table->string('RepresentativeName')->nullable();
             $table->string('Contact');
-            $table->string('Email');
             $table->string('BusinessNumber')->nullable();
             $table->dateTime('UpdatedAt')->nullable();
             $table->dateTime('CreatedAt')->nullable();

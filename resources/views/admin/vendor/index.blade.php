@@ -23,10 +23,10 @@
                     @foreach($data as $item)
                         <tr>
                             <td>{{$item->Id}}</td>
-                            <td>{{$item->Name}}</td>
+                            <td>{{$item->user()->first()->name}}</td>
                             <td>{{$item->CompanyName}}</td>
                             <td>{{$item->Contact}}</td>
-                            <td>{{$item->Email}}</td>
+                            <td>{{$item->user()->first()->name}}</td>
                             @if(!($item->IsActive))
                                 <td><a href="javascript:void(0);" class="btn btn-outline-info" onclick="activateConfirm({{$item->Id}});">Activate</a></td>
                             @else

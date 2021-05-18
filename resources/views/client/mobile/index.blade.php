@@ -159,10 +159,10 @@
 
     <!-- 하단 TAB 버튼 -->
     <div class="jbg_grey01 btm_bt_wrap flx_side" style="position: fixed;bottom: 0;left: 0;">
-        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='index.html'">
+        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.index')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/home_on.svg')}}" alt="홈">
         </div>
-        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='booking.html'">
+        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.yacht.list')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/list.svg')}}" alt="예약내역">
         </div>
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='sale.html'">

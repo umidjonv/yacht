@@ -26,6 +26,8 @@ Route::namespace('Client')->group(function(){
             Route::post('/attempt', 'LoginController@attempt')->name('client.mobile.login.attempt');
             Route::get('/logout', 'LoginController@logout')->name('client.mobile.login.logout');
 
+            Route::get('/yacht/list', 'YachtController@list')->name('client.mobile.yacht.list');
+
 
         });
     });
@@ -35,7 +37,7 @@ Route::namespace('Client')->group(function(){
             Route::get('/register1', 'LoginController@register1')->name('client.mobile.register1');
             Route::get('/register2', 'LoginController@register2')->name('client.mobile.register2');
             Route::post('/register2', 'LoginController@register2_complete')->name('client.mobile.register2_complete');
-            Route::get('/register3', 'LoginController@register1')->name('client.mobile.register3');
+            Route::get('/register3', 'LoginController@register3')->name('client.mobile.register3');
         });
     });
 });
