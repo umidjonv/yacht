@@ -17,4 +17,8 @@ class Yacht extends BaseModel
         return $this->belongsTo(Vendor::class, 'VendorId');
     }
 
+    public function images() {
+        return $this->hasMany(YachtImage::class, 'YachtId', 'Id');
+    }
+
 }
