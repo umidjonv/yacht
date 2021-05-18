@@ -69,6 +69,7 @@ class YachtController extends Controller
         $yacht = new Yacht();
         $yacht->VendorId = $request->VendorId;
         $yacht->Name = $request->Name;
+        $yacht->Length = $request->Length;
         $yacht->Area = $request->Area;
         $yacht->Address = $request->Address;
         $yacht->Capacity = $request->Capacity;

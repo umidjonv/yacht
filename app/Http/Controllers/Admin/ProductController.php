@@ -75,6 +75,7 @@ class ProductController extends BaseController
         $validator = \Validator::make($request->all(), [
             'Name' => 'required|max:255',
             'Division' => 'required',
+            'Area' => 'required',
             'IsDisplayed' => 'required',
             'CapacityAdult'=> 'integer',
             'CapacityChild' => 'integer',
@@ -99,6 +100,7 @@ class ProductController extends BaseController
         $product->Name = $request->input('Name');
         $product->Division = $request->input('Division');
         $product->IsDisplayed = $request->input('IsDisplayed');
+        $product->Area = $request->input('Area');
         $product->CapacityAdult = $request->input('CapacityAdult');
         $product->CapacityChild = $request->input('CapacityChild');
         $product->Introduction = $request->input('Description');

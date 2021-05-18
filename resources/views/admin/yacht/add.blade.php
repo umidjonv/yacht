@@ -41,7 +41,7 @@
                 <div class="p-2 bg-white">
                     <div class="form-group">
                         <label class="form-control-plaintext"><span class="text-danger">*</span> Company name</label>
-                        <select class="form-control" name="VendorId" value="{{$model->VendorId}}">
+                        <select class="form-control" name="VendorId" value="{{old('VendorId', $model->VendorId)}}">
                             <option value="0">Select...</option>
                             @foreach($vendors as $vendor)
                                 @if($model->VendorId == $vendor->Id)
@@ -54,14 +54,14 @@
                     </div>
                     <div class="form-group">
                         <label class="form-control-plaintext"><span class="text-danger">*</span> Yacht Name</label>
-                        <input type="text" class="form-control" name="Name" value="{{$model->Name}}"/>
+                        <input type="text" class="form-control" name="Name" value="{{old('Name', $model->Name)}}"/>
                     </div>
 
                     <div class="form-group">
                         <label class="form-control-plaintext" ><span class="text-danger">*</span> Address</label>
 
                         <div class="input-group mb-3">
-                            <input class="form-control" name="Area" id="Area" value="{{$model->Area}}">
+                            <input class="form-control" name="Area" id="Area" value="{{old('Area', $model->Area)}}">
                             <div class="input-group-append">
                                 <a href="javascript:void(0)" class="btn btn-primary" id="SearchAddress" ><i class="fa fa-search"></i> </a>
                             </div>
@@ -69,11 +69,16 @@
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="Address" id="Address" value="{{$model->Address}}"/>
+                        <input type="text" class="form-control" name="Address" id="Address" value="{{old('Address', $model->Address)}}"/>
                     </div>
                     <div class="form-group">
                         <label class="form-control-plaintext">Capacity</label>
-                        <input type="number" class="form-control" name="Capacity" value="{{ is_null($model->Capacity) ? '': $model->Capacity}}"/>
+                        <input type="number" class="form-control" name="Capacity" value="{{ old('Capacity', $model->Capacity) }}"/>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-control-plaintext">Length</label>
+                        <input type="number" class="form-control" name="Length" value="{{ old('Length', $model->Length) }}"/>
                     </div>
                 </div>
 

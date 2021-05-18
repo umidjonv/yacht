@@ -102,12 +102,20 @@
                         <textarea class="form-control" name="Introduction">{{old('Introduction', $model->Introduction)}}</textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label class="form-control-plaintext" ><span class="text-danger">*</span> Area</label>
+                        <select class="form-control" name="Area">
+                            @foreach(\App\Common\Arrays\Area::get() as $key=>$area)
+                                <option value="{{$key}}" {{$key == $model->Area?"selected":""}}>{{$area}}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
                     <div class="form-group">
                         <label class="form-control-plaintext" ><span class="text-danger">*</span> Location</label>
 
                         <div class="input-group mb-3">
-                            <input class="form-control" name="Location" id="Area" value="{{old('Location', $model->Location)}}">
+                            <input class="form-control" name="Location" id="Location" value="{{old('Location', $model->Location)}}">
                             <div class="input-group-append">
                                 <a href="javascript:void(0)" class="btn btn-primary" id="SearchAddress" ><i class="fa fa-search"></i> </a>
                             </div>
@@ -313,19 +321,19 @@
                                 extraAddr = ' (' + extraAddr + ')';
                             }
                             // 조합된 참고항목을 해당 필드에 넣는다.
-                            $('#Area').val(extraAddr);
+                            $('#Location').val(extraAddr);
                             //document.getElementById("addr1").value = extraAddr;
                             //document.getElementById("addr2").value = '';
 
                         } else {
-                            $('#Area').val('');
+                            $('#Location').val('');
                             //document.getElementById("addr1").value = '';
                             //document.getElementById("addr2").value = '';
                         }
 
                         // 우편번호와 주소 정보를 해당 필드에 넣는다.
                         //document.getElementById('sample3_postcode').value = data.zonecode;
-                        $('#Area').val(addr);
+                        $('#Location').val(addr);
                         $('#Address').focus();
 
                         //document.getElementById("addr1").value = addr;

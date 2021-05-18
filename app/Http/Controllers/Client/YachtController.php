@@ -17,11 +17,21 @@ class YachtController extends Controller
 
     public function list()
     {
+
         return view('client.mobile.yacht.list');
     }
+
+    public function reserved()
+    {
+        return view('client.mobile.yacht.reserved');
+
+    }
+
 
     public function sell_list()
     {
         return view('client.mobile.yacht.sell');
     }
+
+
 }
