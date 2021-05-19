@@ -58,13 +58,13 @@
     <!-- shot info -->
     <div class="pdg_s15 pdg_tb20">
         <div class="jcr_grey2 jm_tss1 j_bold pdg_b12">
-            Dolphin Ecotourism Tour
+            {{$model->Name}}
         </div>
         <div class="jcr_grey9 jm_tsss2 pdg_b08 lh_15">
-            A yacht where you can see the vast sea of ​​Jeju Island and Jeju dolphins A yacht where you can see the vast sea of ​​Jeju Island and Jeju dolphins A yacht where you can see Jeju Island's vast sea and Jeju dolphins
+            {{$model->Introduction}}
         </div>
         <div class="jcr_grey9 jm_tsss2 pdg_b12">
-            40 feet / 22 seats
+            {{isset($model->Length)?$model->Length." feet":""}} / {{$model->CapacityAdult+$model->CapacityChild}} seats
         </div>
         <div class="flx_side_b">
             <div class="flx_lft_b">
