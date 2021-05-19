@@ -98,6 +98,7 @@
 <script type="text/javascript" src="{{ asset('libs/gijgo/js/gijgo.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/image-uploader.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/image-uploader.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/jquery.mask.min.js') }}"></script>
 
 
 

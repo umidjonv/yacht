@@ -99,7 +99,7 @@
                     <div class="form-group row">
                         <div class="col-sm-3">
                             <label class="form-control-plaintext"><span class="text-danger">*</span> Start activity</label>
-                            <input type="text" class="form-control" name="activity[StartTime]" id="startTime" value="{{ is_null($activity) ? '': $activity->StartTime}}"/>
+                            <input type="text" class="form-control" name="activity[StartTime]" id="startTime" value="{{ old('activity.StartTime',$activity->StartTime)}}"/>
                         </div>
                         <div class="col-sm-3">
                             <label class="form-control-plaintext" ><span class="text-danger">*</span> End activity</label>
@@ -262,13 +262,16 @@
 
         })
 
-        $('#startTime').click(function(){
-            $startTime.open();
-        });
+        $('#startTime').mask('99:99');
+        $('#endTime').mask('99:99');
 
-        $('#endTime').click(function(){
-            $endTime.open();
-        });
+        // $('#startTime').click(function(){
+        //     $startTime.open();
+        // });
+        //
+        // $('#endTime').click(function(){
+        //     $endTime.open();
+        // });
 
         $('#startDate').click(function(){
             $startDate.open();
