@@ -69,23 +69,23 @@
                 <!-- 2nd line -->
                 <div class="w_100 flx_side jbg_wht mgn_t08" style="border-radius:30px;">
                     <div>
-                        <div class="tab_menu flx_c bt_r30 pdg_s05 on">
-                            <a href="#sort_01">Popularity</a>
+                        <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::popularity?"on":""}}">
+                            <a href="{{route('client.mobile.yacht.list', \App\Common\Enums\UI\SortOrder::popularity)}}">Popularity</a>
                         </div>
                     </div>
                     <div>
-                        <div class="tab_menu flx_c bt_r30 pdg_s05">
-                            <a href="#sort_02">Registration order</a>
+                        <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::registration?"on":""}}">
+                            <a href="{{route('client.mobile.yacht.list', \App\Common\Enums\UI\SortOrder::registration)}}">Registration order</a>
                         </div>
                     </div>
                     <div>
-                        <div class="tab_menu flx_c bt_r30 pdg_s05">
-                            <a href="#sort_03">Low price order</a>
+                        <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::low_price?"on":""}}">
+                            <a href="{{route('client.mobile.yacht.list', \App\Common\Enums\UI\SortOrder::low_price)}}">Low price order</a>
                         </div>
                     </div>
                     <div>
-                        <div class="tab_menu flx_c bt_r30 pdg_s05">
-                            <a href="#sort_04">In order of high price</a>
+                        <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::high_price?"on":""}}">
+                            <a href="{{route('client.mobile.yacht.list', \App\Common\Enums\UI\SortOrder::high_price)}}">In order of high price</a>
                         </div>
                     </div>
                 </div>
@@ -98,79 +98,244 @@
 
         <!-- outermost_margin designation -->
         <div class="inner-t">
-            <div id="sort_01" class="tab_con jbg_wht pdg_s15 pdg_b15 on">
 
+            <div class="tab_con jbg_wht pdg_s15 pdg_b15 {{$sort == \App\Common\Enums\UI\SortOrder::popularity?"on":""}}">
+                @if($sort == \App\Common\Enums\UI\SortOrder::popularity)
+
+                    @foreach($model as $item)
                 <!-- list_cell -->
-                <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
-                    <!-- thumbnail -->
-                    <div style="width:112px;">
-                        <div class="thumb_01 flx_c">
-                            <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='product_view.html'" />
-                            <!-- pick -->
-                            <div class="up_bt02_wrap">
-                                <div class="up_bt02 js_btn_toggle on">
+                    <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
+                        <!-- thumbnail -->
+                        <div style="width:112px;">
+                            <div class="thumb_01 flx_c">
+                                <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='product_view.html'" />
+                                <!-- pick -->
+                                <div class="up_bt02_wrap">
+                                    <div class="up_bt02 js_btn_toggle on">
+                                    </div>
+                                </div>
+                                <!-- // pick -->
+                            </div>
+                        </div>
+                        <!-- // thumbnail -->
+                        <!-- info -->
+                        <div class="pdg_l10 w_100" style="height:120px; display:flex; flex-direction:column; justify-content:space-between; margin:-4px 0;">
+                            <div style="height:85px;">
+                                <div class="cut_1 jcr_grey2 jm_tss1 j_bold pdg_b08" onclick="location.href='product_view.html'">
+                                    {{$item->Name}}
+                                </div>
+                                <div class="cut_2 jcr_grey9 jm_tsss2 lh_15" style="height:36px; overflow:hidden;">
+                                    {{$item->Introduction}}
+                                </div>
+                                <div class="jcr_grey9 jm_tsss2 pdg_t05">
+                                    feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityChild}}(childs)
                                 </div>
                             </div>
-                            <!-- // pick -->
+                            <div class="flx_side_m">
+                                <div class="flx_lft_b">
+                                    <div class="star_icon on">
+                                    </div>
+                                    <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
+                                        4.2
+                                    </div>
+                                    <div class="comment">
+                                    </div>
+                                    <div class="jcr_grey2 jm_tsss2 j_bold">
+                                        999
+                                    </div>
+                                </div>
+                                <div class="js_money02">
+                                    {{$item->Price}}
+                                </div>
+                            </div>
                         </div>
+                        <!-- // info -->
                     </div>
-                    <!-- // thumbnail -->
-                    <!-- info -->
-                    <div class="pdg_l10 w_100" style="height:120px; display:flex; flex-direction:column; justify-content:space-between; margin:-4px 0;">
-                        <div style="height:85px;">
-                            <div class="cut_1 jcr_grey2 jm_tss1 j_bold pdg_b08" onclick="location.href='product_view.html'">
-                                {{$item-Name}}
+                    <!-- // list_cell -->
+                @endforeach
+                    @endif
+            </div>
+
+            <!-- outermost_margin designation -->
+            <div class="tab_con jbg_wht pdg_s15 pdg_b15 {{$sort == \App\Common\Enums\UI\SortOrder::registration?"on":""}}">
+
+            @if($sort == \App\Common\Enums\UI\SortOrder::registration)
+
+                @foreach($model as $item)
+                    <!-- list_cell -->
+                        <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
+                            <!-- thumbnail -->
+                            <div style="width:112px;">
+                                <div class="thumb_01 flx_c">
+                                    <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='product_view.html'" />
+                                    <!-- pick -->
+                                    <div class="up_bt02_wrap">
+                                        <div class="up_bt02 js_btn_toggle on">
+                                        </div>
+                                    </div>
+                                    <!-- // pick -->
+                                </div>
                             </div>
-                            <div class="cut_2 jcr_grey9 jm_tsss2 lh_15" style="height:36px; overflow:hidden;">
-                                {{$item->Introduction}}
+                            <!-- // thumbnail -->
+                            <!-- info -->
+                            <div class="pdg_l10 w_100" style="height:120px; display:flex; flex-direction:column; justify-content:space-between; margin:-4px 0;">
+                                <div style="height:85px;">
+                                    <div class="cut_1 jcr_grey2 jm_tss1 j_bold pdg_b08" onclick="location.href='product_view.html'">
+                                        {{$item->Name}}
+                                    </div>
+                                    <div class="cut_2 jcr_grey9 jm_tsss2 lh_15" style="height:36px; overflow:hidden;">
+                                        {{$item->Introduction}}
+                                    </div>
+                                    <div class="jcr_grey9 jm_tsss2 pdg_t05">
+                                        feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityChild}}(childs)
+                                    </div>
+                                </div>
+                                <div class="flx_side_m">
+                                    <div class="flx_lft_b">
+                                        <div class="star_icon on">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
+                                            4.2
+                                        </div>
+                                        <div class="comment">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold">
+                                            999
+                                        </div>
+                                    </div>
+                                    <div class="js_money02">
+                                        {{$item->Price}}
+                                    </div>
+                                </div>
                             </div>
-                            <div class="jcr_grey9 jm_tsss2 pdg_t05">
-                                feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityAdult}}(childs)
-                            </div>
+                            <!-- // info -->
                         </div>
-                        <div class="flx_side_m">
-                            <div class="flx_lft_b">
-                                <div class="star_icon on">
-                                </div>
-                                <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
-                                    4.2
-                                </div>
-                                <div class="comment">
-                                </div>
-                                <div class="jcr_grey2 jm_tsss2 j_bold">
-                                    999
+                        <!-- // list_cell -->
+                    @endforeach
+                @endif
+            </div>
+            <!-- outermost_margin designation -->
+
+            <!-- outermost_margin designation -->
+            <div class="tab_con jbg_wht pdg_s15 pdg_b15 {{$sort == \App\Common\Enums\UI\SortOrder::low_price?"on":""}}">
+
+            @if($sort == \App\Common\Enums\UI\SortOrder::low_price)
+
+                @foreach($model as $item)
+                    <!-- list_cell -->
+                        <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
+                            <!-- thumbnail -->
+                            <div style="width:112px;">
+                                <div class="thumb_01 flx_c">
+                                    <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='product_view.html'" />
+                                    <!-- pick -->
+                                    <div class="up_bt02_wrap">
+                                        <div class="up_bt02 js_btn_toggle on">
+                                        </div>
+                                    </div>
+                                    <!-- // pick -->
                                 </div>
                             </div>
-                            <div class="js_money02">
-                                {{$item->Price}}
+                            <!-- // thumbnail -->
+                            <!-- info -->
+                            <div class="pdg_l10 w_100" style="height:120px; display:flex; flex-direction:column; justify-content:space-between; margin:-4px 0;">
+                                <div style="height:85px;">
+                                    <div class="cut_1 jcr_grey2 jm_tss1 j_bold pdg_b08" onclick="location.href='product_view.html'">
+                                        {{$item->Name}}
+                                    </div>
+                                    <div class="cut_2 jcr_grey9 jm_tsss2 lh_15" style="height:36px; overflow:hidden;">
+                                        {{$item->Introduction}}
+                                    </div>
+                                    <div class="jcr_grey9 jm_tsss2 pdg_t05">
+                                        feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityChild}}(childs)
+                                    </div>
+                                </div>
+                                <div class="flx_side_m">
+                                    <div class="flx_lft_b">
+                                        <div class="star_icon on">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
+                                            4.2
+                                        </div>
+                                        <div class="comment">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold">
+                                            999
+                                        </div>
+                                    </div>
+                                    <div class="js_money02">
+                                        {{$item->Price}}
+                                    </div>
+                                </div>
                             </div>
+                            <!-- // info -->
                         </div>
-                    </div>
-                    <!-- // info -->
-                </div>
-                <!-- // list_cell -->
+                        <!-- // list_cell -->
+                    @endforeach
+                @endif
             </div>
             <!-- outermost_margin designation -->
 
             <!-- outermost_margin designation -->
-            <div id="sort_02" class="tab_con jbg_wht pdg_s15 pdg_b15">
+            <div class="tab_con jbg_wht pdg_s15 pdg_b15 {{$sort == \App\Common\Enums\UI\SortOrder::high_price?"on":""}}">
 
-                Same as list
+            @if($sort == \App\Common\Enums\UI\SortOrder::high_price)
+
+                @foreach($model as $item)
+                    <!-- list_cell -->
+                        <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
+                            <!-- thumbnail -->
+                            <div style="width:112px;">
+                                <div class="thumb_01 flx_c">
+                                    <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='product_view.html'" />
+                                    <!-- pick -->
+                                    <div class="up_bt02_wrap">
+                                        <div class="up_bt02 js_btn_toggle on">
+                                        </div>
+                                    </div>
+                                    <!-- // pick -->
+                                </div>
+                            </div>
+                            <!-- // thumbnail -->
+                            <!-- info -->
+                            <div class="pdg_l10 w_100" style="height:120px; display:flex; flex-direction:column; justify-content:space-between; margin:-4px 0;">
+                                <div style="height:85px;">
+                                    <div class="cut_1 jcr_grey2 jm_tss1 j_bold pdg_b08" onclick="location.href='product_view.html'">
+                                        {{$item->Name}}
+                                    </div>
+                                    <div class="cut_2 jcr_grey9 jm_tsss2 lh_15" style="height:36px; overflow:hidden;">
+                                        {{$item->Introduction}}
+                                    </div>
+                                    <div class="jcr_grey9 jm_tsss2 pdg_t05">
+                                        feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityChild}}(childs)
+                                    </div>
+                                </div>
+                                <div class="flx_side_m">
+                                    <div class="flx_lft_b">
+                                        <div class="star_icon on">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
+                                            4.2
+                                        </div>
+                                        <div class="comment">
+                                        </div>
+                                        <div class="jcr_grey2 jm_tsss2 j_bold">
+                                            999
+                                        </div>
+                                    </div>
+                                    <div class="js_money02">
+                                        {{$item->Price}}
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- // info -->
+                        </div>
+                        <!-- // list_cell -->
+                    @endforeach
+                @endif
             </div>
-            <!-- outermost_margin designation -->
 
-            <!-- outermost_margin designation -->
-            <div id="sort_03" class="tab_con jbg_wht pdg_s15 pdg_b15">
 
-                Same as list
-            </div>
-            <!-- outermost_margin designation -->
-
-            <!-- outermost_margin designation -->
-            <div id="sort_04" class="tab_con jbg_wht pdg_s15 pdg_b15">
-
-                Same as list
-            </div>
             <!-- outermost_margin designation -->
         </div>
     </div>

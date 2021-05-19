@@ -12,9 +12,9 @@ class Product extends BaseModel
      */
 
 
-    public function vendor()
+    public function yacht()
     {
-        return $this->belongsTo(Yacht::class);
+        return $this->belongsTo(Yacht::class, 'YachtId');
     }
 
 }

@@ -49,7 +49,7 @@
     <!-- map -->
     <div class="jbg_wht pdg_tb10 w_100 flx_lft_rowh">
         <div class="w_25"><!-- 인천 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1010'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile')}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_01.svg')}}" />
             </div>
         </div>
@@ -95,7 +95,7 @@
         </div>
         <div class="w_25"><!-- 속초 -->
             <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1090'">
-                <img src="../resources/images/SVG_map/map_10.svg" />
+                <img src="{{asset('mobile/client/images/SVG_map/map_10.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 제주 -->

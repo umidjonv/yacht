@@ -26,7 +26,7 @@ Route::namespace('Client')->group(function(){
             Route::post('/attempt', 'LoginController@attempt')->name('client.mobile.login.attempt');
             Route::get('/logout', 'LoginController@logout')->name('client.mobile.login.logout');
 
-            Route::get('/yacht/list', 'YachtController@list')->name('client.mobile.yacht.list');
+            Route::get('/yacht/list/{sort}', 'YachtController@list')->name('client.mobile.yacht.list');
             Route::get('/yacht/reserved', 'YachtController@list')->name('client.mobile.yacht.reserved');
 
 
