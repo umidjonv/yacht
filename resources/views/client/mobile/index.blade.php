@@ -49,12 +49,12 @@
     <!-- map -->
     <div class="jbg_wht pdg_tb10 w_100 flx_lft_rowh">
         <div class="w_25"><!-- 인천 -->
-            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile')}}'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>0, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_01.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 화성 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1020'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>1, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_02.svg')}}" />
             </div>
         </div>
@@ -162,7 +162,7 @@
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.index')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/home_on.svg')}}" alt="홈">
         </div>
-        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.yacht.list')}}'">
+        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.product.my')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/list.svg')}}" alt="예약내역">
         </div>
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='sale.html'">
