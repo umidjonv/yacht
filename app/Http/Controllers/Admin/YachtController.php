@@ -76,7 +76,7 @@ class YachtController extends Controller
 
         $yacht->save();
 
-        foreach ($request->file('image') as $image) {
+        foreach ((array) $request->file('image') as $image) {
             $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
             $image->storeAs('yachts', $f_name);
 
@@ -130,6 +130,15 @@ class YachtController extends Controller
         $yacht->Capacity = $request->Capacity;
 
         $yacht->save();
+        foreach ((array) $request->file('image') as $image) {
+            $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
+            $image->storeAs('yachts', $f_name);
+
+            YachtImage::create([
+                'Name' => $f_name,
+                'YachtId' => $yacht->Id
+            ]);
+        }
 
         if($yacht!=null && $yacht->Id>0)
         {

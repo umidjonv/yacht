@@ -10,7 +10,8 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('libs/gijgo/css/gijgo.min.css') }}" rel="stylesheet">
-
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
 
     <title>Administrator management page</title>
 
@@ -95,6 +96,8 @@
 <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('libs/gijgo/js/gijgo.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/image-uploader.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/image-uploader.min.js') }}"></script>
 
 
 
