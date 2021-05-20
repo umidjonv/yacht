@@ -12,20 +12,21 @@
     <link href="{{asset("mobile/client/css/jquery-ui.min.css")}}" rel="stylesheet" type="text/css" />
     <link href="{{asset("mobile/client/css/ripple2.min.css")}}" rel="stylesheet" type="text/css" />
     <link href="{{asset("mobile/client/css/swiper.min4.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("mobile/client/css/datepicker/default.css")}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset("mobile/client/css/datepicker/default.date.css")}}" rel="stylesheet" type="text/css" />
+
     <link href="{{asset("mobile/client/css/yacht_m_style.css")}}" rel="stylesheet" type="text/css" />
     <style>
         * {font-size: 0.625rem;}
     </style>
 
+    @yield('header_styles')
     <!-- js -->
     <script src="{{asset("js/jquery.min.js")}}"></script>
     <script src="{{asset("js/jquery.mask.min.js")}}"></script>
     <script src="{{asset("mobile/client/js/swiper.min4.js")}}"></script>
-    <script src="{{asset("mobile/client/js/datepicker/picker.js")}}"></script>
-    <script src="{{asset("mobile/client/js/datepicker/picker.date.js")}}"></script>
+
     <script src="{{asset("mobile/client/js/script.js")}}"></script>
+
+    <script src="{{asset("js/bootstrap.min.js")}}"></script>
 </head>
 
 <body>

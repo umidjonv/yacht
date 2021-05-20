@@ -930,7 +930,7 @@
     <!-- fixed Bottom Button -->
     <div class="btm_bt_wrap02" style="position: fixed;bottom: 0;left: 0; padding:12px 15px 12px;">
         <!-- button -->
-        <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F;padding:19px 0; border-radius:0px;" onclick="location.href='product_booking.html'">
+        <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F;padding:19px 0; border-radius:0px;" onclick="location.href='{{route('client.mobile.reservation.prepare', ['id'=>$model->Id])}}'">
             Make a reservation
         </div>
         <!--// button -->

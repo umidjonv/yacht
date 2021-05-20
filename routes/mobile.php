@@ -31,6 +31,8 @@ Route::namespace('Client')->group(function(){
             Route::get('/product/my', 'ProductController@my')->name('client.mobile.product.my');
             Route::get('/product/reserved', 'ProductController@list')->name('client.mobile.product.reserved');
 
+            Route::get('/reservation/prepare/{id}', 'ReservationController@prepare')->name('client.mobile.reservation.prepare');
+
         });
     });
     Route::group(['prefix' => 'client'], function(){
