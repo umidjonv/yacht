@@ -63,7 +63,6 @@ class YachtController extends Controller
     }
 
     public function store(YachtRequest $request){
-//        dd($request);
         $validated = $request->validated();
 
         $yacht = new Yacht();
@@ -75,11 +74,10 @@ class YachtController extends Controller
         $yacht->Capacity = $request->Capacity;
 
         $yacht->save();
+        foreach ((array) $request->file('images') as $image) {
+            $f_name = 'IMG_'.date('Y-m-d H-i-s', rand(0, 999)).'.'.Str::lower($image->getClientOriginalExtension());
 
-        foreach ((array) $request->file('image') as $image) {
-            $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
             $image->storeAs('yachts', $f_name);
-
             YachtImage::create([
                 'Name' => $f_name,
                 'YachtId' => $yacht->Id
@@ -118,7 +116,7 @@ class YachtController extends Controller
         return redirect('admin/yacht');
     }
 
-    public function update(YachtRequest $request){
+    public function update(YachtRequest $request, $id){
 
         $validated = $request->validated();
 
@@ -130,7 +128,9 @@ class YachtController extends Controller
         $yacht->Capacity = $request->Capacity;
 
         $yacht->save();
-        foreach ((array) $request->file('image') as $image) {
+
+        YachtImage::where('YachtId', $id)->delete();
+        foreach ((array) $request->file('images') as $image) {
             $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
             $image->storeAs('yachts', $f_name);
 
