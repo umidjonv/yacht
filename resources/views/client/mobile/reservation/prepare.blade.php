@@ -65,12 +65,16 @@
     <!-- // calendar -->
 
 
-    <form>
+    <form action="{{route('client.mobile.reservation.save')}}" method="post">
         <input type="hidden" id="selectedDate" name="RequestDate" />
         <input type="hidden" name="RequestDate" />
+        <input type="hidden" name="PriceChild" value="{{$model->PriceChild}}"/>
+        <input type="hidden" name="PriceAdult" value="{{$model->PriceAdult}}"/>
 
-        <button  type="button" class="btn btn-warning form-control border-" data-toggle="modal" data-target="#exampleModal" id="time_btn">OK</button>
+        <div class="p-4">
+            <button  type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#exampleModal" id="time_btn">select a time</button>
 
+        </div>
         <div class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="exampleModal">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" >
 
@@ -121,12 +125,12 @@
                 <div class="pdg_s15">
 
                     <div class="jbg_grey01 pdg_s10">
-                        <div class="flx_side_m pdg_tb15 pdg_s05 line_bt01" style="border-color: #ccc">
-                            <div class="flx_lft_m">
-                                <span class="jm_tsss2 j_bold">Interpersonal</span>
-                                <span class="pdg_l05 jm_tsss2 jcr_grey9">Middle school students and above</span>
+                        <div class="flx_side_m pdg_tb15 pdg_s05 line_bt01 " style="border-color: #ccc">
+                            <div class="flx_lft_m row">
+                                <span class="jm_tsss2 j_bold col-sm-5">Adults</span>
+                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-7">Middle school students <br/>and above</span>
                             </div>
-                            <div class="flx_side_m count">
+                            <div class="flx_side_m count ml-1">
                                 <input type="text" class="crt_num" value="1" name="Adults">
                                 <div class="flx_side count_btn">
                                     <input type="button" class="button_count" disabled>
@@ -135,11 +139,11 @@
                             </div>
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb15 pdg_s05 line_bt01" style="border-color: #ccc">
-                            <div class="flx_lft_m">
-                                <span class="jm_tsss2 j_bold">postmark</span>
-                                <span class="pdg_l05 jm_tsss2 jcr_grey9">Over 36 months to elementary school students</span>
+                            <div class="flx_lft_m row">
+                                <span class="jm_tsss2 j_bold col-sm-4">Kids</span><br/>
+                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-6">Over 36 months to elementary <br/>school students</span>
                             </div>
-                            <div class="flx_side_m count">
+                            <div class="flx_side_m count ml-1">
                                 <input type="text" class="crt_num" value="1" name="Childs">
                                 <div class="flx_side count_btn">
                                     <input type="button" class="button_count" disabled>
@@ -151,25 +155,26 @@
                         <div class="flx_side_m jbg_grey01 pdg_tb15 pdg_s05">
                             <div class="jm_tsss2 j_bold">Total</div>
                             <div class="js_money">
-                                70,000
+                                <label id="calculatedPrice">{{$model->Price}}</label>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </fieldset>
-    </form>
+
 
 
     <!-- fixed Bottom Button -->
     <div class="btm_bt_wrap02 btm_bt_fix" style=" padding:12px 15px 12px;">
         <!-- button -->
-        <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" onclick="location.href='product_booking_pay.html'">
-            next
-        </div>
+        <button class="btn btn-warning form-control" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" type="submit" >
+            payment
+        </button>
         <!--// button -->
     </div>
     <!-- // fixed Bottom Button -->
+    </form>
 
 </div>
 
@@ -200,6 +205,15 @@
             $(this).prop("checked", true);
             $('#exampleModal').modal('hide');
 
+        });
+
+        $.ajax({
+            method:'get',
+            data:{'date':$('#datepicker').datepicker('getFormattedDate') },
+            url:{{route('client.mobile.reservation.get_times')}},
+            success:function(data){
+                //$[]
+            }
         });
 
     </script>

@@ -32,6 +32,8 @@ Route::namespace('Client')->group(function(){
             Route::get('/product/reserved', 'ProductController@list')->name('client.mobile.product.reserved');
 
             Route::get('/reservation/prepare/{id}', 'ReservationController@prepare')->name('client.mobile.reservation.prepare');
+            Route::post('/reservation/save', 'ReservationController@save')->name('client.mobile.reservation.save');
+            Route::get('/reservation/times', 'ReservationController@get_times')->name('client.mobile.reservation.get_times');
 
         });
     });

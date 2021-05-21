@@ -19,9 +19,20 @@ class ReservationController extends Controller
 
     public function prepare($id)
     {
+        $product = Product::find($id);
+
+        return view('client.mobile.reservation.prepare')->with(['model'=>$product]);
+    }
 
 
-        return view('client.mobile.reservation.prepare');
+    public function get_times()
+    {
+        return response()->json('OK');
+    }
+
+    public function save(Request $request)
+    {
+
     }
 
 
