@@ -18,7 +18,7 @@
         <div class="jbg_wht flx_side" style="border-bottom:0px solid #ccc;">
             <div class="flx_lft_m" style="width:65px; height:60px;">
                 <div class=" pdg_l15" onclick="location.href='javascript:history.go(-1);'">
-                    <img src="{{asset('client/mobile/images/icon/arrow_back.png')}}" height="20px" alt="" />
+                    <img src="{{asset('mobile/client/images/icon/arrow_back.png')}}" height="20px" alt="" />
                 </div>
             </div>
             <div class="flx_c" style="height:60px;">
@@ -53,20 +53,20 @@
                     <div class="pdg_l10" style="width:calc(100%-112px); height:110px;">
                         <div style="height:93px;">
                             <div class="jcr_grey2 jm_tss1 j_bold pdg_b08">
-                                {{$item->product()->Name}}
+                                {{$model->product()->first()->Name}}
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2 pdg_b03">
-                                Reservation date <span class="jm_tsss2 pdg_l10">{{$item->ReservationDate}}</span>
+                                Reservation date <span class="jm_tsss2 pdg_l10">{{$model->ReservationDate}}</span>
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2 pdg_b03">
-                                Reservation time <span class="jm_tsss2 pdg_l10">{{$item->ReservationTime}}</span>
+                                Reservation time <span class="jm_tsss2 pdg_l10">{{$model->ReservationTime}}</span>
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2">
-                                Reservations <span class="jm_tsss2 pdg_l10">{{$item->Adults}} adults/ {{$item->Childs}} childs</span>
+                                Reservations <span class="jm_tsss2 pdg_l10">{{$model->Adults}} adults/ {{$model->Childs}} childs</span>
                             </div>
                         </div>
                         <div class="js_money02">
-                            {{$item->TotalAmount}}
+                            {{$model->TotalAmount}}
                         </div>
                     </div>
                     <!-- // info -->

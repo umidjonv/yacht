@@ -67,7 +67,8 @@
 
     <form action="{{route('client.mobile.reservation.save')}}" method="post">
         {{csrf_field()}}
-        <input type="hidden" id="selectedDate" name="RequestDate" />
+        <input type="hidden" name="ProductId" value="{{old('ProductId', $model->Id)}}"/>
+        <input type="hidden" id="selectedDate" name="ReservationDate" value="{{old('ReservationDate')}}" />
         <input type="hidden" name="RequestDate" />
         <input type="hidden" name="PriceChild" value="{{old('PriceChild', $model->PriceChild)}}"/>
         <input type="hidden" name="PriceAdult" value="{{old('Price', $model->PriceAdult)}}"/>
@@ -111,6 +112,8 @@
 
                         @endfor
 
+
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -121,6 +124,16 @@
         </div>
         </div>
         <fieldset>
+
+            <div class="pdg_b20">
+                @if ($errors->any())
+                    @foreach($errors->all() as $error)
+                        <div class="mgn_t10 jm_tsss1 jcr_ylw j_bold">
+                            {{$error}}
+                        </div>
+                    @endforeach
+                @endif
+            </div>
 
 
             <div class="pdg_b20">
@@ -188,6 +201,7 @@
 
     <script>
         $('#datepicker').datepicker({
+            format: 'yyyy-mm-dd',
             //language: 'ko'
         });
         $('#selectedDate').val($.now());
@@ -197,6 +211,23 @@
                 $('#datepicker').datepicker('getFormattedDate')
             );
         });
+
+        $('#datepicker').datepicker('setDate', '{{old('ReservationDate')}}');
+
+        @if(old('time', 0) != 0)
+            $('[name="time"]').each(function(index, element){
+                if($(element).val() == '{{old('time')}}')
+                {
+                    $(element).prop('checked', true);
+
+                }
+            });
+
+        $('#time_btn').text('{{old('time')}}');
+
+
+        @endif
+
 
         $('#time_btn').click(function(){
             $('#exampleModal').modal('show');
@@ -209,6 +240,8 @@
             $('#exampleModal').modal('hide');
 
         });
+
+
 
         $.ajax({
             method:'get',

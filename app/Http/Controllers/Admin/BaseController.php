@@ -10,4 +10,5 @@ use Illuminate\Auth\Middleware\Authenticate;
 class BaseController extends Controller
 {
 
+
 }

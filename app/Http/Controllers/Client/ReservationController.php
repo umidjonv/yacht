@@ -33,8 +33,8 @@ class ReservationController extends Controller
 
     public function save(Request $request)
     {
-        $validation = Validator::make($request->all(), [
-            'ReservationTime'=>'required',
+        $validation = \Validator::make($request->all(), [
+            'time'=>'required',
             'ReservationDate'=>'required',
             'Adults'=>'required',
             'Childs'=>'required',
@@ -42,18 +42,45 @@ class ReservationController extends Controller
 
         ]);
 
-        if($validation->fail())
+        if($validation->fails())
         {
+            //return dd($request->all());
+
+            return redirect()
+                ->route('client.mobile.reservation.prepare', ['id'=>$request->input('ProductId')])
+                ->withErrors($validation)
+                ->withInput();
 
         }
 
         $reservation = new Reservation();
 
         $reservation->ReservationTime =  $request->input('time');
+        $reservation->ReservationDate =  $request->input('ReservationDate');
+        $reservation->Adults =  $request->input('Adults');
+        $reservation->Childs =  $request->input('Childs');
+        $reservation->TotalAmount =  $request->input('TotalAmount');
+        $reservation->ProductId =  $request->input('ProductId');
+
+        $reservation->save();
 
 
-        return dd($request->all());
 
+        return redirect()->route('client.mobile.reservation.payment',['id'=>$reservation->Id]);//view('client.mobile.reservation.payment')->with(['model'=>$reservation]);
+
+    }
+
+    public function payment($id)
+    {
+        $reservation = Reservation::where('Id', $id)->with('product')->first();
+
+        if($reservation==null)
+            abort(404);
+
+//        if($reservation->IsPayed)
+//            return view('client.mobile.reservation.view')->with(['model'=>$reservation]);
+
+        return view('client.mobile.reservation.payment')->with(['model'=>$reservation]);
     }
 
 
