@@ -8,6 +8,7 @@ use App\Common\Enums\UI\SortOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\Product;
+use App\Models\Reservation;
 use App\Models\Vendor;
 use App\User;
 use \Illuminate\Http\Request;
@@ -32,6 +33,25 @@ class ReservationController extends Controller
 
     public function save(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            'ReservationTime'=>'required',
+            'ReservationDate'=>'required',
+            'Adults'=>'required',
+            'Childs'=>'required',
+            'TotalAmount'=>'required'
+
+        ]);
+
+        if($validation->fail())
+        {
+
+        }
+
+        $reservation = new Reservation();
+
+        $reservation->ReservationTime =  $request->input('time');
+
+
         return dd($request->all());
 
     }

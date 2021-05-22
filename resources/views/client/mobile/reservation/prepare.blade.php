@@ -69,10 +69,10 @@
         {{csrf_field()}}
         <input type="hidden" id="selectedDate" name="RequestDate" />
         <input type="hidden" name="RequestDate" />
-        <input type="hidden" name="PriceChild" value="{{$model->PriceChild}}"/>
-        <input type="hidden" name="PriceAdult" value="{{$model->PriceAdult}}"/>
-        <input type="hidden" name="Price" value="{{$model->Price}}"/>
-        <input type="hidden" name="TotalAmount" />
+        <input type="hidden" name="PriceChild" value="{{old('PriceChild', $model->PriceChild)}}"/>
+        <input type="hidden" name="PriceAdult" value="{{old('Price', $model->PriceAdult)}}"/>
+        <input type="hidden" name="Price" value="{{old('Price', $model->Price)}}"/>
+        <input type="hidden" name="TotalAmount" value="{{old('TotalAmount')}}" />
 
         <div class="p-4">
             <button  type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#exampleModal" id="time_btn">select a time</button>
@@ -134,7 +134,7 @@
                                 <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-7">Middle school students <br/>and above</span>
                             </div>
                             <div class="flx_side_m count ml-1">
-                                <input type="text" class="" name="Adults"/>
+                                <input type="text" name="Adults" value="{{old('Adults')}}"/>
                                 <div class="flx_side count_btn">
                                     <input type="button" class="button_count" name="minus" target="Adults">
                                     <input type="button" class="button_count" name="plus" target="Adults">
@@ -147,7 +147,7 @@
                                 <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-6">Over 36 months to elementary <br/>school students</span>
                             </div>
                             <div class="flx_side_m count ml-1">
-                                <input type="text" class="" name="Childs"/>
+                                <input type="text" class="" name="Childs" value="{{old('Childs')}}"/>
                                 <div class="flx_side count_btn">
                                     <input type="button" class="button_count" name="minus" target="Childs" >
                                     <input type="button" class="button_count" name="plus" target="Childs">
@@ -158,7 +158,7 @@
                         <div class="flx_side_m jbg_grey01 pdg_tb15 pdg_s05">
                             <div class="jm_tsss2 j_bold">Total</div>
                             <div class="js_money">
-                                <label id="calculatedPrice">0</label>
+                                <label id="calculatedPrice">{{old('TotalAmount', 0)}}</label>
                             </div>
                         </div>
                     </div>
