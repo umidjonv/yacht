@@ -32,6 +32,7 @@ class ReservationController extends Controller
 
     public function save(Request $request)
     {
+        return dd($request->all());
 
     }
 

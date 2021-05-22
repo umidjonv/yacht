@@ -81,6 +81,7 @@ class ProductController extends BaseController
             'CapacityChild' => 'integer',
             'PriceAdult'=> 'required',
             'PriceChild'=> 'required',
+            'Price'=> 'required',
         ]);
 
         if ($validator->fails()) {
@@ -103,11 +104,13 @@ class ProductController extends BaseController
         $product->Area = $request->input('Area');
         $product->CapacityAdult = $request->input('CapacityAdult');
         $product->CapacityChild = $request->input('CapacityChild');
-        $product->Introduction = $request->input('Description');
+        $product->Introduction = $request->input('Introduction');
         $product->PriceAdult = $request->input('PriceAdult');
         $product->PriceChild = $request->input('PriceChild');
         $product->Location = $request->input('Location');
+        $product->Price = $request->input('Price');
         $product->YachtId = $request->input('YachtId');
+
 
 
 

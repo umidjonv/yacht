@@ -96,6 +96,10 @@
                             <input type="text" class="form-control" name="PriceChild" value="{{old('PriceChild', $model->PriceChild)}}"/>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> Price</label>
+                        <input type="text" class="form-control" name="Price" id="Price"  value="{{old('Price', $model->Price)}}" />
+                    </div>
 
                     <div class="form-group">
                         <label class="form-control-plaintext"><span class="text-danger">*</span> Brief introduction </label>
@@ -256,6 +260,7 @@
                     $(this).val(0);
                 }
             });
+
 
             $.ajax({
                 method:'get',

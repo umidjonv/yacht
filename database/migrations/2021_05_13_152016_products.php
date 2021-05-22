@@ -20,7 +20,7 @@ class Products extends Migration
             $table->boolean('IsDisplayed')->default(true);
             $table->integer('CapacityAdult');
             $table->integer('CapacityChild');
-            $table->integer('Introduction')->nullable();
+            $table->string('Introduction')->nullable();
             $table->float('PriceAdult');
             $table->float('PriceChild');
             $table->string('Location')->nullable();
