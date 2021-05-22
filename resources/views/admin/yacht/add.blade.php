@@ -56,11 +56,15 @@
                         <label class="form-control-plaintext"><span class="text-danger">*</span> Yacht Name</label>
                         <input type="text" class="form-control" name="Name" value="{{old('Name', $model->Name)}}"/>
                     </div>
-
                     <div class="form-group">
                         <label class="form-control-plaintext"><span class="text-danger">*</span> Load images</label>
                         <div class="input-images">
                             <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">
+                        @foreach($model->images as $image)
+                            <div class="uploaded-image" data-preloaded="true">
+                                <img src="{{asset('/storage/yacht/'.$image->Name)}}" alt="">
+                            </div>
+                        @endforeach
                         </div>
                     </div>
 
