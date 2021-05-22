@@ -66,10 +66,13 @@
 
 
     <form action="{{route('client.mobile.reservation.save')}}" method="post">
+        {{csrf_field()}}
         <input type="hidden" id="selectedDate" name="RequestDate" />
         <input type="hidden" name="RequestDate" />
         <input type="hidden" name="PriceChild" value="{{$model->PriceChild}}"/>
         <input type="hidden" name="PriceAdult" value="{{$model->PriceAdult}}"/>
+        <input type="hidden" name="Price" value="{{$model->Price}}"/>
+        <input type="hidden" name="TotalAmount" />
 
         <div class="p-4">
             <button  type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#exampleModal" id="time_btn">select a time</button>
@@ -131,10 +134,10 @@
                                 <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-7">Middle school students <br/>and above</span>
                             </div>
                             <div class="flx_side_m count ml-1">
-                                <input type="text" class="crt_num" value="1" name="Adults">
+                                <input type="text" class="" name="Adults"/>
                                 <div class="flx_side count_btn">
-                                    <input type="button" class="button_count" disabled>
-                                    <input type="button" class="button_count">
+                                    <input type="button" class="button_count" name="minus" target="Adults">
+                                    <input type="button" class="button_count" name="plus" target="Adults">
                                 </div>
                             </div>
                         </div>
@@ -144,10 +147,10 @@
                                 <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-6">Over 36 months to elementary <br/>school students</span>
                             </div>
                             <div class="flx_side_m count ml-1">
-                                <input type="text" class="crt_num" value="1" name="Childs">
+                                <input type="text" class="" name="Childs"/>
                                 <div class="flx_side count_btn">
-                                    <input type="button" class="button_count" disabled>
-                                    <input type="button" class="button_count">
+                                    <input type="button" class="button_count" name="minus" target="Childs" >
+                                    <input type="button" class="button_count" name="plus" target="Childs">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +158,7 @@
                         <div class="flx_side_m jbg_grey01 pdg_tb15 pdg_s05">
                             <div class="jm_tsss2 j_bold">Total</div>
                             <div class="js_money">
-                                <label id="calculatedPrice">{{$model->Price}}</label>
+                                <label id="calculatedPrice">0</label>
                             </div>
                         </div>
                     </div>
@@ -210,11 +213,77 @@
         $.ajax({
             method:'get',
             data:{'date':$('#datepicker').datepicker('getFormattedDate') },
-            url:{{route('client.mobile.reservation.get_times')}},
+            url:"{{route('client.mobile.reservation.get_times')}}",
             success:function(data){
                 //$[]
             }
         });
+
+        $('[name="Adults"]').val(1);
+        $('[name="Childs"]').val(1);
+
+        var price = $('[name="Price"]').val();
+        var adultprice = $('[name="PriceAdult"]').val();
+        var childprice = $('[name="PriceChild"]').val();
+        var adultcount = $('[name="Adults"]').val();
+        var childcount = $('[name="Childs"]').val();
+        CalculateTotal();
+
+        // $('[name="Adults"]').change(function(){
+        //    adultcount = $(this).val();
+        //
+        //     CalculateTotal();
+        // });
+        //
+        // $('[name="Childs"]').change(function(){
+        //     childcount = $(this).val();
+        //     CalculateTotal();
+        //
+        // });
+
+        $('[name="plus"]').click(function(){
+            var target = $(this).attr('target');
+            var selector = '[name="'+target+'"]';
+            var val = $(selector).val();
+            $(selector).val(++val);
+
+            if(target == "Adults")
+            {
+                adultcount = $(selector).val();
+            }else
+            {
+                childcount = $(selector).val();
+            }
+            CalculateTotal();
+
+        });
+
+        $('[name="minus"]').click(function(){
+            var target = $(this).attr('target');
+            var selector = '[name="'+target+'"]';
+            var val = $(selector).val();
+            $(selector).val(--val);
+
+            if(target == "Adults")
+            {
+                adultcount = $(selector).val();
+            }else
+            {
+                childcount = $(selector).val();
+            }
+            CalculateTotal();
+
+        });
+
+        function CalculateTotal()
+        {
+            var total = parseFloat(adultprice*adultcount) + parseFloat(childcount*childprice) + parseFloat(price);
+
+            $('[name="TotalAmount"]').val(total);
+            $('#calculatedPrice').text(total);
+
+        }
+
 
     </script>
 
