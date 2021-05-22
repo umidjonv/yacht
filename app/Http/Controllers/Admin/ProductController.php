@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 
-class ProductController extends BaseController
+class  ProductController extends BaseController
 {
     public function get_yachts()
     {
