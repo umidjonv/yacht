@@ -10,14 +10,15 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Reservation name</th>
+                        <th>Product name</th>
+                        <th>Date</th>
                         <th>Time</th>
                         <th>Adults</th>
                         <th>Childs</th>
                         <th>Payment Amount</th>
-                        <th>Total Payment</th>
+                        <th>Total Amount</th>
                         <th>Payed or not</th>
-                        <th>Request date</th>
+
                         <th></th>
 
                     </tr>
@@ -26,14 +27,15 @@
                     @foreach($model as $item)
                         <tr>
                             <td>{{$item->Id}}</td>
-                            <td>{{$item->ReservationName}}</td>
+                            <td>{{$item->product()->first()->Name}}</td>
+                            <td>{{$item->ReservationDate}}</td>
                             <td>{{$item->ReservationTime}}</td>
                             <td>{{$item->Adults}}</td>
                             <td>{{$item->Childs}}</td>
                             <td>{{$item->PaymentAmount}}</td>
                             <td>{{$item->TotalAmount}}</td>
                             <td>{{$item->IsPayed?"Payed":"Not payed"}}</td>
-                            <td>{{$item->RequestDate}}</td>
+
 
                             <td><a href="{{route('admin.reservation.view',['Id'=>$item->Id])}}" class="btn btn-info"><span class="fa fa-eye"></span> </a> </td>
                         </tr>
