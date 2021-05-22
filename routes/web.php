@@ -66,6 +66,13 @@ Route::namespace('Admin')->group(function(){
         Route::get  ('/reservation',                'ReservationController@index')->name('admin.reservation');
         Route::get  ('/reservation/{id}',                'ReservationController@view')->name('admin.reservation.view');
 
+        //Events
+        Route::get('/event',                  'EventController@index')->name('admin.event');
+        Route::get('/event/create',           'EventController@create')->name('admin.event.create');
+        Route::get('/event/edit/{event}',     'EventController@edit')->name('admin.event.edit');
+        Route::post('/event/store',           'EventController@store')->name('admin.event.store');
+        Route::post('/event/update/{event}',  'EventController@update')->name('admin.event.update');
+
 
 
 
