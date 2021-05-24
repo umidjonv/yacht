@@ -38,19 +38,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.vendor')}}">
                             <span class="fa fa-user-shield"></span>
-                            Owner management
+                            {{ __("admin.owner_management") }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.yacht') }}">
                             <span class="fa fa-ship"></span>
-                            Yacht Management
+                            {{ __("admin.yacht_management") }}
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.product') }}">
                             <span class="fa fa-shopping-cart"></span>
-                            Product Management
+                            {{ __("admin.product_management") }}
                         </a>
                     </li>
                 </ul>
