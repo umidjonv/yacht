@@ -75,9 +75,9 @@ class YachtController extends Controller
 
         $yacht->save();
         foreach ((array) $request->file('images') as $image) {
-            $f_name = 'IMG_'.date('Y-m-d H-i-s', rand(0, 999)).'.'.Str::lower($image->getClientOriginalExtension());
+            $f_name = $this->get_image_name($image->getClientOriginalExtension());
 
-            $image->storeAs('yachts', $f_name);
+            $image->storeAs('public/yachts', $f_name);
             YachtImage::create([
                 'Name' => $f_name,
                 'YachtId' => $yacht->Id
@@ -116,8 +116,39 @@ class YachtController extends Controller
         return redirect('admin/yacht');
     }
 
+    private function image_differences($fromModel, $fromView)
+    {
+        $deleteimage = array();
+
+        foreach ($fromModel as $image)
+        {
+            if($fromView == null||!in_array($image->Id,  $fromView))
+            {
+                $deleteimage[] = $image->Id;
+            }
+        }
+
+        return $deleteimage;
+
+    }
+
+    private function get_image_name($ext)
+    {
+        return 'IMG_'.date('Y-m-d H-i-s', time()).'.'.rand(0,999).'.'.Str::lower($ext);
+    }
+
+    private function delete_images($images)
+    {
+        foreach ($images as $image)
+        {
+            YachtImage::where('Id', $image)->delete();
+        }
+
+    }
+
     public function update(YachtRequest $request, $id){
 
+        //return dd($request->all());
         $validated = $request->validated();
 
         $yacht = Yacht::find($request->Id);
@@ -129,10 +160,21 @@ class YachtController extends Controller
 
         $yacht->save();
 
-        YachtImage::where('YachtId', $id)->delete();
+
+        $oldImages = YachtImage::where('YachtId', $yacht->Id)->select('Id')->get();
+
+        $deleteImages = $this->image_differences($oldImages, $request->preloaded);
+
+
+        //return dd($deleteImages);
+
+        $this->delete_images($deleteImages);
+
+
+
         foreach ((array) $request->file('images') as $image) {
-            $f_name = 'IMG_'.date('Y-m-d H-i-s', time()).'.'.Str::lower($image->getClientOriginalExtension());
-            $image->storeAs('yachts', $f_name);
+            $f_name = $this->get_image_name($image->getClientOriginalExtension());
+            $image->storeAs('public/yachts', $f_name);
 
             YachtImage::create([
                 'Name' => $f_name,
