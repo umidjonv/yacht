@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Favourite;
 use App\Models\Vendor;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -31,6 +32,11 @@ class User extends Authenticatable
     public function vendor()
     {
         return $this->hasMany(Vendor::class)->first();
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(Favourite::class, 'UserId');
     }
 
 }

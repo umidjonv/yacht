@@ -17,4 +17,5 @@ class Product extends BaseModel
         return $this->belongsTo(Yacht::class, 'YachtId');
     }
 
+
 }

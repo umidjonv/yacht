@@ -7,10 +7,12 @@ namespace App\Http\Controllers\Client;
 use App\Common\Enums\UI\SortOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
+use App\Models\Favourite;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\User;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Validator;
 
@@ -80,6 +82,48 @@ class ProductController extends Controller
     {
         return view('client.mobile.product.sell');
     }
+
+    public function set_favourite($id)
+    {
+        $product = Product::find($id);
+
+        $user  = Auth::user();
+
+        $favour = Favourite::where([
+            ['ProductId', $product->Id],
+            ['UserId', $user->id]
+        ])->get();
+
+        if($favour==null)
+        {
+            $favour = new Favourite();
+            $favour->UserId = $user->id;
+            $favour->ProductId = $product->Id;
+
+            $favour->save();
+
+        }
+
+        return response()->json("success");
+
+
+    }
+
+    public function remove_favourite($id)
+    {
+        $product = Product::find($id);
+
+        $user  = Auth::user();
+
+        Favourite::where([
+            ['ProductId', $product->Id],
+            ['UserId', $user->id]
+        ])->delete();
+
+        return response()->json("success");
+
+    }
+
 
 
 }
