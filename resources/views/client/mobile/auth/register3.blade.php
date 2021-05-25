@@ -18,7 +18,7 @@
 
             </div>
             <div class="mgn_t05 jcr_grey02 jm_tss1 j_bold">
-                Welcome to Yopple :) Please sign in
+                @lang('client.register_welcome_sign_up')
             </div>
         </div>
 

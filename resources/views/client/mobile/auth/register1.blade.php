@@ -16,7 +16,7 @@
             </div>
             <div class="flx_c" style="height:60px;">
                 <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
-                    약관동의
+                    @lang('client.agree_with')
                 </div>
             </div>
             <div class="flx_rgt_m" style="width:65px; height:60px;">
@@ -35,7 +35,7 @@
             <div style="padding:15px 15px 0;">
                 <div class="flx_side">
                     <div class="jm_tss1 jcr_grey2">
-                        이용약관
+                        @lang('client.register_terms')
                     </div>
                     <div>
                         <div style="width:20px;">
@@ -66,7 +66,7 @@
             <div style="padding:20px 15px 0;">
                 <div class="flx_side">
                     <div class="jm_tss1 jcr_grey2">
-                        개인정보 취급방침
+                        @lang('client.register_privacy_statement')
                     </div>
                     <div>
                         <div style="width:20px;">
@@ -94,7 +94,7 @@
             <div style="padding:20px 15px 0;">
                 <div class="flx_side">
                     <div class="jm_tss1 jcr_grey2 j_bold">
-                        전체 동의
+                        @lang('client.register_full_agreement')
                     </div>
                     <div>
                         <div style="width:20px;">
@@ -111,7 +111,7 @@
             <div class="btm_bt_wrap02" style="padding:12px 15px 12px;">
                 <!-- 버튼 -->
 
-                    <a class="js_btn flx_c jbg_grey02 jm_tss1 jcr_wht j_bold" href="{{route('client.mobile.register2')}}" style="padding:19px 0; border-radius:0px;">다음</a>
+                    <a class="js_btn flx_c jbg_grey02 jm_tss1 jcr_wht j_bold" href="{{route('client.mobile.register2')}}" style="padding:19px 0; border-radius:0px;">@lang('client.register_next')</a>
 
                 <!--// 버튼 -->
             </div>

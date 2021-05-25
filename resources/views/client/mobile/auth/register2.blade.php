@@ -16,7 +16,7 @@
             </div>
             <div class="flx_c" style="height:60px;">
                 <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
-                    회원가입
+                    @lang('client.register_title')
                 </div>
             </div>
             <div class="flx_rgt_m" style="width:65px; height:60px;">
@@ -33,7 +33,7 @@
             <!-- input -->
             <div style="height:60px;  display: flex; align-items: flex-end;">
                 <fieldset class="w_100 login_border">
-                    <legend class="jm_tsss0 jcr_grey9" style="width:43px; padding:0 5px; height:15px;">아이디</legend>
+                    <legend class="jm_tsss0 jcr_grey9" style="width:60px; padding:0 5px; height:15px;">@lang('client.register_id')</legend>
                     <input class="w_100 js_input00" name="name" placeholder="" value="{{old('name')}}" type="text" style="font-size:1.30rem;">
                 </fieldset>
 
@@ -47,7 +47,7 @@
             </div>
             <div style="height:60px;  display: flex; align-items: flex-end;">
                 <fieldset class="w_100 login_border">
-                    <legend class="jm_tsss0 jcr_grey9" style="width:53px; padding:0 5px; height:15px;">비밀번호</legend>
+                    <legend class="jm_tsss0 jcr_grey9" style="width:auto; padding:0 5px; height:15px;">@lang('client.password')</legend>
                     <input class="w_100 js_input_pw" name="password" placeholder="" value="{{old('password')}}" type="password">
                 </fieldset>
             </div>
@@ -61,7 +61,7 @@
             <div style="height:60px; display: flex; flex-direction:column; justify-content:flex-end;">
                 <div>
                     <fieldset class="w_100 login_border">
-                        <legend class="jm_tsss0 jcr_grey9" style="width:73px; padding:0 5px; height:15px;">비밀번호 확인</legend>
+                        <legend class="jm_tsss0 jcr_grey9" style="width:auto; padding:0 5px; height:15px;">@lang('client.register_retry_password')</legend>
                         <input class="w_100 js_input_pw" name="repassword" placeholder="" value="{{old('repassword')}}" type="password">
                     </fieldset>
                 </div>
@@ -76,7 +76,7 @@
             <div class="flx_side_b" style="height:60px; display: flex; align-items: flex-end;">
                 <div class="pdg_r10" style="width:calc(100% - 80px);">
                     <fieldset class="login_border">
-                        <legend class="jm_tsss0 jcr_grey9 " style="width:50px; padding:0 5px; height:15px;">연락처
+                        <legend class="jm_tsss0 jcr_grey9 " style="width:auto; padding:0 5px; height:15px;">@lang('client.register_contact')
                         </legend>
                         <div class="js_align_c">
                             <input class="w_75 js_input00 js_align_c" id="phone" name="phone" placeholder="" type="text" value="{{old('phone')}}"
@@ -88,7 +88,7 @@
                 <div style="width:80px;">
                     <!-- 버튼 -->
                     <div class="flx_c jbg_wht jm_tsss2 jcr_ylw j_bold" style="padding:13px 0; border:1px solid #ccc;">
-                        인증받기
+                        @lang('client.register_contact_activation')
                     </div>
                     <!--// 버튼 -->
                 </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div style="height:20px; display: flex; align-items: flex-end;">
                     <div class="jm_tsss1 jcr_ylw j_bold">
-                        인증번호가 일치하지 않습니다.
+                        @lang('client.register_code_not_match')
                     </div>
                 </div>
             </div>
@@ -128,7 +128,7 @@
         <div class="btm_bt_wrap02" style="padding:12px 15px 12px;">
             <!-- 버튼 -->
             <button class="w-100 flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="padding:19px 0; border-radius:0px;" type="submit" >
-                가입하기
+                @lang('client.register_sign_up')
             </button>
             <!--// 버튼 -->
         </div>

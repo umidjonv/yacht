@@ -46,7 +46,7 @@ class LoginController extends BaseController
 
         if($validator->fails())
         {
-            return dd($validator->errors());
+            //return dd($validator->errors());
 
             return redirect()
                 ->route('client.mobile.register2')

@@ -24,7 +24,7 @@
                     {{$item->Introduction}}
                 </div>
                 <div class="jcr_grey9 jm_tsss2 pdg_t05">
-                    feet: {{$item->yacht()->first()->Length}}  / seats: {{$item->CapacityAdult}}(adults)-{{$item->CapacityChild}}(childs)
+                    @lang('component.product_feet'): {{$item->yacht()->first()->Length}}  / @lang('component.product_seats'): {{$item->CapacityAdult}}(@lang('component.product_adults'))-{{$item->CapacityChild}}(@lang('component.product_childs'))
                 </div>
             </div>
             <div class="flx_side_m">

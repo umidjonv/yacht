@@ -33,10 +33,10 @@
         <div class="inner-t2">
             <div class="sub_tab01_wrap flx_lft">
                 <div class="w_50 flx_c sub_tab01 tab_menu on">
-                    <a href="#resv_now">Current reservation</a>
+                    <a href="#resv_now">@lang('client.product_list_cur_reservation')</a>
                 </div>
                 <div class="w_50 flx_c sub_tab01 tab_menu">
-                    <a href="#resv_pass">Last reservation</a>
+                    <a href="#resv_pass">@lang('client.product_list_last_reservation')</a>
                 </div>
             </div>
             <!-- // tab -->
@@ -62,14 +62,14 @@
                             </div>
                             <div class="jcr_grey9 lh_15">
                                 <div class="cut_2 jm_tsss2 pdg_b03">
-                                    must display reserved
-                                    Reservation date <span class="jm_tsss2 pdg_l10">Sat, November 14, 2020</span>
+
+                                    @lang('client.product_list_reservation_date') <span class="jm_tsss2 pdg_l10">{{$item->ReservationDate}}</span>
                                 </div>
                                 <div class="cut_2 jm_tsss2 pdg_b03">
-                                    Reservation time <span class="jm_tsss2 pdg_l10">17:00</span>
+                                    @lang('client.product_list_reservation_time') <span class="jm_tsss2 pdg_l10">{{$item->ReservationTime}}</span>
                                 </div>
                                 <div class="cut_2 jm_tsss2">
-                                    Reservations <span class="jm_tsss2 pdg_l10">2 adults</span>
+                                    @lang('client.product_list_reservation_places') <span class="jm_tsss2 pdg_l10">{{$item->Adults.'/ '.$item->Childs}}</span>
                                 </div>
                             </div>
                         </div>

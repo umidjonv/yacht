@@ -10,12 +10,18 @@
         <!-- contents -->
         <div class="jbg_wht pdg_s15" style="position:fixed; width:100%; height:auto; bottom:0;">
             <!-- List of cities in the region (province) -->
-            <div class="line_bt01 flx_c" style="height:48px;">
-                <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">Jeju City</div>
-            </div>
-            <div class="line_bt01 flx_c" style="height:48px;">
-                <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">Seogwipo City</div>
-            </div>
+            @foreach(\App\Common\Arrays\Area::get() as $key => $value)
+                <div class="line_bt01 flx_c" style="height:48px;" value="{{$key}}">
+                    <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">{{$value}}</div>
+                </div>
+            @endforeach
+{{--            --}}
+{{--            <div class="line_bt01 flx_c" style="height:48px;">--}}
+{{--                <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">Jeju City</div>--}}
+{{--            </div>--}}
+{{--            <div class="line_bt01 flx_c" style="height:48px;">--}}
+{{--                <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">Seogwipo City</div>--}}
+{{--            </div>--}}
         </div>
         <!-- // contents -->
     </div>
@@ -32,7 +38,7 @@
                 </div>
                 <div class="flx_c" style="height:60px;">
                     <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
-                        Jeju
+                        {{\App\Common\Arrays\Area::name($area)}}
                     </div>
                 </div>
                 <div class="flx_rgt_m" style="width:65px; height:60px;">
@@ -50,14 +56,14 @@
                 <div class="flx_side">
                     <div class="w_50 pdg_r05">
                         <fieldset class="input_border">
-                            <input class="js_input_loca w_100 js_pop_open" name="" placeholder="State/Province" type="text">
+                            <input class="js_input_loca w_100 js_pop_open" name="" placeholder="@lang('client.area_list_state_province')" type="text">
                         </fieldset>
                     </div>
                     <div class="w_50 pdg_l05">
                         <fieldset class="input_border">
                             <!-- 1. Entering the day of the week in the input value, please modify js
                             2. Change in the order of month and year shown in the calendar year and month. -->
-                            <input class="js_input_date on w_100 datepicker" name="" placeholder="reservation date" type="text">
+                            <input class="js_input_date on w_100 datepicker" name="" placeholder="@lang('client.area_list_reservation_date')" type="text">
                         </fieldset>
                     </div>
                 </div>
@@ -70,22 +76,22 @@
                 <div class="w_100 flx_side jbg_wht mgn_t08" style="border-radius:30px;">
                     <div>
                         <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::popularity?"on":""}}">
-                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}">Popularity</a>
+                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}">@lang('client.area_list_popularity')</a>
                         </div>
                     </div>
                     <div>
                         <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::registration?"on":""}}">
-                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::registration])}}">Registration order</a>
+                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::registration])}}">@lang('client.area_list_registration_order')</a>
                         </div>
                     </div>
                     <div>
                         <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::low_price?"on":""}}">
-                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::low_price])}}">Low price order</a>
+                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::low_price])}}">@lang('client.area_list_low_price')</a>
                         </div>
                     </div>
                     <div>
                         <div class=" flx_c bt_r30 pdg_s05 {{$sort == \App\Common\Enums\UI\SortOrder::high_price?"on":""}}">
-                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::high_price])}}">In order of high price</a>
+                            <a href="{{route('client.mobile.product.list', ['area'=>$area, 'sort'=>\App\Common\Enums\UI\SortOrder::high_price])}}">@lang('client.area_list_high_price')</a>
                         </div>
                     </div>
                 </div>
