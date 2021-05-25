@@ -7,11 +7,13 @@ namespace App\Http\Controllers\Client;
 use App\Common\Enums\UI\SortOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
+use App\Models\Member;
 use App\Models\Product;
 use App\Models\Reservation;
 use App\Models\Vendor;
 use App\User;
 use \Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Validation\Validator;
 
@@ -33,6 +35,11 @@ class ReservationController extends Controller
 
     public function save(Request $request)
     {
+        if(!Auth::check())
+        {
+            return redirect()->route('client.mobile.login');
+        }
+
         $validation = \Validator::make($request->all(), [
             'time'=>'required',
             'ReservationDate'=>'required',
@@ -61,6 +68,7 @@ class ReservationController extends Controller
         $reservation->Childs =  $request->input('Childs');
         $reservation->TotalAmount =  $request->input('TotalAmount');
         $reservation->ProductId =  $request->input('ProductId');
+        $reservation->UserId =  $request->input('UserId');
 
         $reservation->save();
 
@@ -73,6 +81,9 @@ class ReservationController extends Controller
     public function payment($id)
     {
         $reservation = Reservation::where('Id', $id)->with('product')->first();
+        $member = Member::where('UserId', $reservation->UserId)->first();
+        $product = $reservation->product()->first();
+
 
         if($reservation==null)
             abort(404);
@@ -80,7 +91,12 @@ class ReservationController extends Controller
 //        if($reservation->IsPayed)
 //            return view('client.mobile.reservation.view')->with(['model'=>$reservation]);
 
-        return view('client.mobile.reservation.payment')->with(['model'=>$reservation]);
+        return view('client.mobile.reservation.payment')->with(['model'=>$reservation, 'member'=>$member, 'product'=>$product]);
+    }
+
+    public function do_payment(Request $request)
+    {
+        dd($request->all());
     }
 
 

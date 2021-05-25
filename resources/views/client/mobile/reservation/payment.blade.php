@@ -23,7 +23,7 @@
             </div>
             <div class="flx_c" style="height:60px;">
                 <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
-                    Make a reservation
+                     @lang('client.reservation_payment_make')
                 </div>
             </div>
             <div class="flx_rgt_m" style="width:65px; height:60px;">
@@ -39,7 +39,7 @@
 
 
         <div class="pdg_b20">
-            <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Reservation information</span></div>
+            <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.reservation_payment_info')</span></div>
             <div class="pdg_s15">
                 <div class="w_100 flx_side">
                     <!-- thumbnail -->
@@ -56,13 +56,13 @@
                                 {{$model->product()->first()->Name}}
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2 pdg_b03">
-                                Reservation date <span class="jm_tsss2 pdg_l10">{{$model->ReservationDate}}</span>
+                                @lang('client.reservation_reservation_date') <span class="jm_tsss2 pdg_l10">{{$model->ReservationDate}}</span>
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2 pdg_b03">
-                                Reservation time <span class="jm_tsss2 pdg_l10">{{$model->ReservationTime}}</span>
+                                @lang('client.reservation_reservation_time') <span class="jm_tsss2 pdg_l10">{{$model->ReservationTime}}</span>
                             </div>
                             <div class="cut_2 jcr_grey9 jm_tsss2">
-                                Reservations <span class="jm_tsss2 pdg_l10">{{$model->Adults}} adults/ {{$model->Childs}} childs</span>
+                                @lang('client.reservation_reservation_places') <span class="jm_tsss2 pdg_l10">{{$model->Adults}} / {{$model->Childs}} </span>
                             </div>
                         </div>
                         <div class="js_money02">
@@ -76,15 +76,21 @@
 
 
         <form>
-            <div class="pdg_b20">
-                <div class="hd_tit js_align_c"><span class="jcr_grey9 jm_tsss0">Booker name</span></div>
-                <div class="pdg_s15" style="height:60px; display: flex; align-items: flex-end;">
-                    <fieldset class="w_100 login_border">
-                        <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                        <input class="w_100 js_input00" name="" placeholder="name" type="text" style="font-size:1.30rem;">
-                    </fieldset>
-                </div>
-            </div>
+            <input type="hidden" name="UsedPoints" />
+            <input type="hidden" name="TotalAmount" value="{{$model->TotalAmount}}"  />
+            <input type="hidden" name="PaymentAmount" />
+            <input type="hidden" name="BalancePoints" />
+            <input type="hidden" name="AccumulatedPoint" value="{{$member->AccumulatedPoint}}" />
+
+{{--            <div class="pdg_b20">--}}
+{{--                <div class="hd_tit js_align_c"><span class="jcr_grey9 jm_tsss0">Booker</span></div>--}}
+{{--                <div class="pdg_s15" style="height:60px; display: flex; align-items: flex-end;">--}}
+{{--                    <fieldset class="w_100 login_border">--}}
+{{--                        <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>--}}
+{{--                        <input class="w_100 js_input00" name="" placeholder="name" type="text" style="font-size:1.30rem;">--}}
+{{--                    </fieldset>--}}
+{{--                </div>--}}
+{{--            </div>--}}
 
             <div class="pdg_b20">
                 <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Use points</span></div>
@@ -92,22 +98,16 @@
                 <div class="pdg_s15">
                     <div class="flx_side">
                         <div class="jm_tsss2 jcr_grey9">
-                            Retained points<span class="js_point02">3000</span>
+                            Retained points<span class="js_point02">{{$member->AccumulatedPoint}}</span>
                         </div>
-                        <div>
-                            <div style="width:80px;">
-                                <input type="checkbox" id="img_checkbox_01">
-                                <label for="img_checkbox_01">
-                                    <span></span><em>Full use</em>
-                                </label>
-                            </div>
-                        </div>
+
                     </div>
                     <div class="pdg_r10">
                         <fieldset class="login_border">
                             <legend class="jm_tsss0 jcr_grey9 "style="width:0px; padding:0 0; height:15px;"></legend>
                             <div class="js_align_r">
-                                <input class="w_25 js_input00 js_align_r" name="" placeholder="0" type="text" style="font-size:1.60rem; display:inline;">
+                                <input class="w_25 js_input00 js_align_r" name="" placeholder="0" type="text" style="font-size:1.60rem; display:inline;" {{$member->AccumulatedPoint==0?"disabled":""}} id="points">
+
                                 <font class="jm_ts1 pdg_s05"> P </font>
                             </div>
                         </fieldset>
@@ -136,19 +136,19 @@
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
                             <div class="jm_tsss2 j_bold">Product amount</div>
                             <div class="js_money02" style="font-weight: normal;">
-                                33,000
+                                {{$model->TotalAmount}}
                             </div>
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
-                            <div class="jm_tsss2 j_bold">Product amount</div>
-                            <div class="js_money02" style="font-weight: normal;">
-                                - 0
+                            <div class="jm_tsss2 j_bold">With points amount</div>
+                            <div class="js_money02" style="font-weight: normal;" >
+                                - <label id="usedPoints"  style="font-size: 14px;">0</label>
                             </div>
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
                             <div class="jm_tsss2 j_bold">Total payment amount</div>
                             <div class="js_money">
-                                33,000
+                                <label id="totalPayment" style="font-size: 14px;">{{$model->TotalAmount}}</label>
                             </div>
                         </div>
                     </div>
@@ -180,5 +180,24 @@
 
 @section('scripts')
 
+    <script>
+        $('#points').keyup(function(){
+            $('#usedPoints').text($(this).val());
+
+            var accumulatedPoints = $('[name="AccumulatedPoint"]').val();
+            var usedPoints = $(this).val();
+
+            var balanced = accumulatedPoints - usedPoints;
+
+            $('[name="BalancePoints"]').val(balanced);
+
+            var totalAmount = $('[name="TotalAmount"]').val();
+            var paymentAmount = totalAmount - usedPoints;
+
+            $('[name="PaymentAmount"]').val(paymentAmount);
+            $('#totalPayment').text(paymentAmount);
+
+        });
+    </script>
 
 @endsection

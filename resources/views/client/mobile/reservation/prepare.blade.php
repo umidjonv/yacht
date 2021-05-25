@@ -68,6 +68,7 @@
     <form action="{{route('client.mobile.reservation.save')}}" method="post">
         {{csrf_field()}}
         <input type="hidden" name="ProductId" value="{{old('ProductId', $model->Id)}}"/>
+        <input type="hidden" name="UserId" value="{{old('UserId', \Illuminate\Support\Facades\Auth::user()->id)}}"/>
         <input type="hidden" id="selectedDate" name="ReservationDate" value="{{old('ReservationDate')}}" />
         <input type="hidden" name="RequestDate" />
         <input type="hidden" name="PriceChild" value="{{old('PriceChild', $model->PriceChild)}}"/>

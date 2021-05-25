@@ -54,8 +54,16 @@ return [
     'product_list_reservation_time' => 'Reservation time',
     'product_list_reservation_date' => 'Reservation date',
     'product_list_reservation_places' => 'Places',
-    //
 
+
+    //reservation.payment
+    'reservation_payment_make' => 'Make a reservation',
+    'reservation_payment_info' => 'Information',
+    'reservation_cur_reservation' => 'Current reservation',
+    'reservation_last_reservation' => 'Last reservation',
+    'reservation_reservation_time' => 'Reservation time',
+    'reservation_reservation_date' => 'Reservation date',
+    'reservation_reservation_places' => 'Places',
 
 
 
