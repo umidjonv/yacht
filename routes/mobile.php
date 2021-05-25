@@ -35,6 +35,8 @@ Route::namespace('Client')->group(function(){
             Route::post('/reservation/save', 'ReservationController@save')->name('client.mobile.reservation.save');
             Route::get('/reservation/times', 'ReservationController@get_times')->name('client.mobile.reservation.get_times');
             Route::get('/reservation/payment/{id}', 'ReservationController@payment')->name('client.mobile.reservation.payment');
+            Route::get('/product/favourite/{id}', 'ProductController@set_favourite')->name('client.mobile.product.set_favourite');
+            Route::get('/product/favourite/remove/{id}', 'ProductController@remove_favourite')->name('client.mobile.product.remove_favourite');
 
         });
     });

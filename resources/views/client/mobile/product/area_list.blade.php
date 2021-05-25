@@ -68,8 +68,8 @@
                     </div>
                 </div>
                 <script>
-                    $('.datepicker').pickadate({
-                    });
+                    // $('.datepicker').pickadate({
+                    // });
                 </script>
                 <!-- // 1st line -->
                 <!-- 2nd line -->

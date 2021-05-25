@@ -41,9 +41,9 @@ return [
     'register_welcome_sign_up' => 'Welcome to Yopple :) Please sign in',
 
     //product.area_list
-    'area_list_high_price' => 'In order of high price',
-    'area_list_low_price' => 'Low price order',
-    'area_list_registration_order' => 'Registration order',
+    'area_list_high_price' => 'High/price',
+    'area_list_low_price' => 'Low/price',
+    'area_list_registration_order' => 'Registration',
     'area_list_popularity' => 'Popularity',
     'area_list_state_province' => 'State/Province',
     'area_list_reservation_date' => 'Reservation date',

@@ -11,6 +11,7 @@ use App\Models\Favourite;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\User;
+use http\Exception;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -89,6 +90,11 @@ class ProductController extends Controller
 
         $user  = Auth::user();
 
+        if(Auth::check())
+        {
+            throw new \Exception("not authenticated");
+        }
+
         $favour = Favourite::where([
             ['ProductId', $product->Id],
             ['UserId', $user->id]
@@ -104,7 +110,8 @@ class ProductController extends Controller
 
         }
 
-        return response()->json("success");
+
+        return response()->json($favour);
 
 
     }

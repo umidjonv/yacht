@@ -7,7 +7,7 @@
                 <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='{{route('client.mobile.product.view', ['Id' => $item->Id])}}'" />
                 <!-- pick -->
                 <div class="up_bt02_wrap">
-                    <div class="up_bt02 js_btn_toggle on">
+                    <div class="up_bt02 js_btn_toggle " name="favour" data-id="{{$item->Id}}">
                     </div>
                 </div>
                 <!-- // pick -->
@@ -49,3 +49,32 @@
     </div>
     <!-- // list_cell -->
 @endforeach
+
+<script>
+    $('[name="favour"]').click(function(){
+
+       var classValue = $(this).attr('class');
+       var elementId = $(this).attr("data-id");
+
+       var urlAjax = "{{url('client/mobile/product/favourite')}}/"+elementId;
+
+       if(classValue === "up_bt02 js_btn_toggle on")
+       {
+           urlAjax = "{{url('client/mobile/product/favourite/remove')}}/"+elementId;
+       }
+
+       $.ajax({
+           url:urlAjax,
+           success:function(data){
+               console.log(JSON.parse(data));
+           },
+           error:function(error){
+
+
+               console.log(JSON.parse(error));
+           }
+
+       });
+    });
+
+</script>
