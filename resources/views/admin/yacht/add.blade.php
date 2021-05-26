@@ -33,16 +33,16 @@
 
     <div class="row bg-light">
         <div class="col-6">
-            <h2>Yacht information</h2>
+            <h2>@lang('admin.yacht_info')</h2>
 
             <form action="{{ $id == 0 ? route('admin.yacht.store') : route('admin.yacht.update', ['id'=>$id]) }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" value="{{ is_null($model) ? '0' : $model->Id }}" name="Id" />
                 <div class="p-2 bg-white">
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Company name</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_company')</label>
                         <select class="form-control" name="VendorId" value="{{old('VendorId', $model->VendorId)}}">
-                            <option value="0">Select...</option>
+                            <option value="0">@lang('admin.yacht_select')</option>
                             @foreach($vendors as $vendor)
                                 @if($model->VendorId == $vendor->Id)
                                     <option selected value="{{ $vendor->Id }}">{{ $vendor->CompanyName }}</option>
@@ -53,11 +53,11 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Yacht Name</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_name')</label>
                         <input type="text" class="form-control" name="Name" value="{{old('Name', $model->Name)}}"/>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Load images</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_load_images')</label>
                         <div class="input-images">
 {{--                            <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">--}}
 {{--                        @foreach($model->images as $image)--}}
@@ -71,7 +71,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext" ><span class="text-danger">*</span> Address</label>
+                        <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.yacht_address')</label>
 
                         <div class="input-group mb-3">
                             <input class="form-control" name="Area" id="Area" value="{{old('Area', $model->Area)}}">
@@ -85,48 +85,48 @@
                         <input type="text" class="form-control" name="Address" id="Address" value="{{old('Address', $model->Address)}}"/>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext">Capacity</label>
+                        <label class="form-control-plaintext">@lang('admin.yacht_capacity')</label>
                         <input type="number" class="form-control" name="Capacity" value="{{ old('Capacity', $model->Capacity) }}"/>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext">Length</label>
+                        <label class="form-control-plaintext">@lang('admin.yacht_length')</label>
                         <input type="number" class="form-control" name="Length" value="{{ old('Length', $model->Length) }}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="blockTitle">
-                        <label  class="form-control-plaintext ">Activity</label>
+                        <label  class="form-control-plaintext ">@lang('admin.yacht_activity')</label>
                     </div>
                 </div>
                 <div class="p-2 bg-white">
 
                     <div class="form-group row">
                         <div class="col-sm-3">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> Start activity</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_start_activity')</label>
                             <input type="text" class="form-control" name="activity[StartTime]" id="startTime" value="{{ old('activity.StartTime',$activity->StartTime)}}"/>
                         </div>
                         <div class="col-sm-3">
-                            <label class="form-control-plaintext" ><span class="text-danger">*</span> End activity</label>
+                            <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.yacht_end_activity')</label>
                             <input type="text" class="form-control" name="activity[EndTime]" id="endTime" value="{{ is_null($activity) ? '': $activity->EndTime}}"/>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-check-inline allDay">
                                 <input type="checkbox" class="form-check-input" name="activity[IsAllDay]" id="activity[IsAllDay]" >
-                                <label class="form-check-label" for="activity[IsAllDay]">All day</label>
+                                <label class="form-check-label" for="activity[IsAllDay]">@lang('admin.yacht_allday')</label>
                             </div>
                         </div>
 
                     </div>
                     <div class="form-group row">
                     <div class="col-sm-4">
-                        <label class="form-control-plaintext"  for="activity[Regularity]"><span class="text-danger">*</span> Regularity</label>
+                        <label class="form-control-plaintext"  for="activity[Regularity]"><span class="text-danger">*</span> @lang('admin.yacht_regularity')</label>
                         <select class="form-control"  id="regularity" name="activity[Regularity]" value="{{ is_null($activity) ? '': $activity->Regularity}}">
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Regular }}">Regular</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekdays }}">Weekdays</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekends }}">Weekends</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::ByDay }}">By days</option>
+                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Regular }}">@lang('admin.yacht_regular')</option>
+                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekdays }}">@lang('admin.yacht_weekdays')</option>
+                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekends }}">@lang('admin.yacht_weekends')</option>
+                            <option value="{{ \App\Common\Enums\ScheduleFrequency::ByDay }}">@lang('admin.yacht_bydays')</option>
                         </select>
 
 
@@ -136,36 +136,36 @@
                         <div class="allDay hide" id="days">
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][1]" id="activity[ByDay][1]" >
-                                <label class="form-check-label" for="activity[ByDay][1]">Monday</label>
+                                <label class="form-check-label" for="activity[ByDay][1]">@lang('weekdays.monday')</label>
                             </div>
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][2]" id="activity[ByDay][2]" >
-                                <label class="form-check-label" for="activity[ByDay][2]">Tuesday</label>
+                                <label class="form-check-label" for="activity[ByDay][2]">@lang('weekdays.tuesday')</label>
                             </div>
 
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][3]" id="activity[ByDay][3]" >
-                                <label class="form-check-label" for="activity[ByDay][3]">Wednesday</label>
+                                <label class="form-check-label" for="activity[ByDay][3]">@lang('weekdays.wednesday')</label>
                             </div>
 
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][4]" id="activity[ByDay][4]" >
-                                <label class="form-check-label" for="activity[ByDay][4]">Thursday</label>
+                                <label class="form-check-label" for="activity[ByDay][4]">@lang('weekdays.thursday')</label>
                             </div>
 
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][5]" id="activity[ByDay][5]" >
-                                <label class="form-check-label" for="activity[ByDay][5]">Friday</label>
+                                <label class="form-check-label" for="activity[ByDay][5]">@lang('weekdays.friday')</label>
                             </div>
 
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][6]" id="activity[ByDay][6]" >
-                                <label class="form-check-label" for="activity[ByDay][6]">Saturday</label>
+                                <label class="form-check-label" for="activity[ByDay][6]">@lang('weekdays.saturday')</label>
                             </div>
 
                             <div class="form-check-inline">
                                 <input type="checkbox" class="form-check-input" name="activity[ByDay][7]" id="activity[ByDay][7]">
-                                <label class="form-check-label" for="activity[ByDay][7]">Sunday</label>
+                                <label class="form-check-label" for="activity[ByDay][7]">@lang('weekdays.sunday')</label>
                             </div>
                         </div>
 
@@ -175,40 +175,40 @@
                 </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="checkbox blockTitle">
+{{--                <div class="form-group">--}}
+{{--                    <div class="checkbox blockTitle">--}}
 
-                        <input type="checkbox" class="form-check-input" id="IsSchedule"/>
-                        <label for="IsSchedule" class="form-check-label ">Temporary schedule</label>
+{{--                        <input type="checkbox" class="form-check-input" id="IsSchedule"/>--}}
+{{--                        <label for="IsSchedule" class="form-check-label ">Temporary schedule</label>--}}
 
-                    </div>
-                </div>
+{{--                    </div>--}}
+{{--                </div>--}}
 
-                <div class="p-2 bg-white">
+{{--                <div class="p-2 bg-white">--}}
 
-                    <div class="form-group row" id="schedule">
+{{--                    <div class="form-group row" id="schedule">--}}
 
-                        <div class="col-sm-4">
+{{--                        <div class="col-sm-4">--}}
 
-                            <label class="form-control-plaintext">Start date</label>
-                            <input type="text" class="form-control" name="schedule[StartDate]" id="startDate"/>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="form-control-plaintext" >End date</label>
-                            <input type="text" class="form-control" name="schedule[EndDate]" id="endDate"/>
-                        </div>
-                        <div class="col-sm-4">
-                            <label class="form-control-plaintext" >Type</label>
-                            <div class="form-check-inline">
+{{--                            <label class="form-control-plaintext">Start date</label>--}}
+{{--                            <input type="text" class="form-control" name="schedule[StartDate]" id="startDate"/>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-sm-4">--}}
+{{--                            <label class="form-control-plaintext" >End date</label>--}}
+{{--                            <input type="text" class="form-control" name="schedule[EndDate]" id="endDate"/>--}}
+{{--                        </div>--}}
+{{--                        <div class="col-sm-4">--}}
+{{--                            <label class="form-control-plaintext" >Type</label>--}}
+{{--                            <div class="form-check-inline">--}}
 
-                                <select class="form-control" name="schedule[IsActive]">
-                                    <option>Active</option>
-                                    <option>Inactive</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+{{--                                <select class="form-control" name="schedule[IsActive]">--}}
+{{--                                    <option>Active</option>--}}
+{{--                                    <option>Inactive</option>--}}
+{{--                                </select>--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save"/>

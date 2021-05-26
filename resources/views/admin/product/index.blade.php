@@ -3,24 +3,24 @@
 @section('content')
     <div class="row">
         <div class="col">
-            <a href="{{route('admin.product.add')}}" class="btn btn-primary">Add</a>
+            <a href="{{route('admin.product.add')}}" class="btn btn-primary">@lang('admin.product_reservation_add')</a>
         </div>
     </div>
     <div class="row">
         <div class="col">
 
-            <h2>Product management</h2>
+            <h2>@lang('admin.product_info')</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Division</th>
-                        <th>Displayed</th>
-                        <th>Capacity adult/child</th>
-                        <th>Description</th>
-                        <th>Price adult</th>
-                        <th>Price child</th>
+                        <th>@lang('admin.product_name')</th>
+                        <th>@lang('admin.product_division')</th>
+                        <th>@lang('admin.product_displayed')</th>
+                        <th>@lang('admin.product_capacity')</th>
+                        <th>@lang('admin.product_description')</th>
+                        <th>@lang('admin.product_adult_price')</th>
+                        <th>@lang('admin.product_child_price')</th>
 
                     </tr>
                 </thead>
@@ -50,30 +50,7 @@
 @section('scripts')
     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script>
-        $(document).ready(function(){
-            window.activateConfirm = function(itemId)
-            {
-                Swal.fire({
-                    icon: 'warning',
-                    text: 'Do you want activate?',
-                    showCancelButton: true,
-                    confirmButtonText: 'Activate',
-                    confirmButtonColor: '#e3342f',
-                }).then((result) => {
-                    $.ajax({
-                        url:'{{url('/admin/vendor/activate')}}/'+itemId,
-                        method:'GET'
 
-                    })
-                    .done(function(data){
-                        if(data.status == {{\App\Common\Enums\ResultStatus::Success}})
-                        {
-                            window.location.reload();
-                        }
-                    });
-                });
-            }
-        });
 
     </script>
 

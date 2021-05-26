@@ -21,11 +21,11 @@
 @yield('styles')
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Yacht reservation</a>
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">@lang('admin.site_title')</a>
     <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link text-white" href="{{route('admin.logout')}}"> <i class="fa fa-sign-out"></i> Sign out</a>
+            <a class="nav-link text-white" href="{{route('admin.logout')}}"> <i class="fa fa-sign-out"></i> @lang('admin.logout')</a>
         </li>
     </ul>
 </nav>
@@ -55,26 +55,26 @@
                     </li>
                 </ul>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span><span data-feather="users"></span> Membership information</span>
+                    <span><span data-feather="users"></span> @lang('admin.membership_info')</span>
 
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.member')}}">
                             <span class="fa fa-users"></span>
-                            Members list
+                            @lang('admin.member_list')
                         </a>
                     </li>
                 </ul>
                 <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                    <span class="fa fa-calendar-alt"> Reservations</span>
+                    <span class="fa fa-calendar-alt"> @lang('admin.reservations')</span>
 
                 </h6>
                 <ul class="nav flex-column">
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.reservation')}}">
                             <span class="fa fa-calendar-alt"></span>
-                            Reservation list
+                            @lang('admin.reservation_list')
                         </a>
                     </li>
                 </ul>

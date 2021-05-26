@@ -5,16 +5,16 @@
 
     <div class="row">
         <div class="col">
-            <h2>Yachts </h2>
-            <a href="{{route('admin.yacht.add')}}" class="btn btn-primary float-right">Add</a>
+            <h2>@lang('admin.yacht_list')</h2>
+            <a href="{{route('admin.yacht.add')}}" class="btn btn-primary float-right">@lang('admin.yacht_add')</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
                     <th>#</th>
-                    <th>Name</th>
-                    <th>Company name</th>
-                    <th>Address</th>
-                    <th>Capacity</th>
+                    <th>@lang('admin.yacht_name')</th>
+                    <th>@lang('admin.yacht_company')</th>
+                    <th>@lang('admin.yacht_address')</th>
+                    <th>@lang('admin.yacht_capacity')</th>
 
                     <th></th>
                     <th></th>

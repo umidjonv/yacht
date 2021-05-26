@@ -5,15 +5,15 @@
     <div class="row">
         <div class="col">
 
-            <h2>Yacht owners</h2>
+            <h2>@lang('admin.pindex_vendor_list_title')</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Name</th>
-                        <th>Representative Name</th>
-                        <th>Contact</th>
-                        <th>Email</th>
+                        <th>@lang('admin.pindex_name')</th>
+                        <th>@lang('admin.pindex_representative')</th>
+                        <th>@lang('admin.pindex_contact')</th>
+                        <th>@lang('admin.pindex_email')</th>
                         <th></th>
                         <th></th>
 
@@ -28,11 +28,11 @@
                             <td>{{$item->Contact}}</td>
                             <td>{{$item->user()->first()->name}}</td>
                             @if(!($item->IsActive))
-                                <td><a href="javascript:void(0);" class="btn btn-outline-info" onclick="activateConfirm({{$item->Id}});">Activate</a></td>
+                                <td><a href="javascript:void(0);" class="btn btn-outline-info" onclick="activateConfirm({{$item->Id}});">@lang('admin.pindex_activate')</a></td>
                             @else
-                                <td class="text-success">Active</td>
+                                <td class="text-success">@lang('admin.pindex_active')</td>
                             @endif
-                            <td><a href="{{route('admin.vendor.yachts',['vendorId'=>$item->Id])}}">View yachts</a> </td>
+                            <td><a href="{{route('admin.vendor.yachts',['vendorId'=>$item->Id])}}">@lang('admin.pindex_view_yacht')</a> </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -51,9 +51,9 @@
             {
                 Swal.fire({
                     icon: 'warning',
-                    text: 'Do you want activate?',
+                    text: '@lang('admin.pindex_agree_activate')',
                     showCancelButton: true,
-                    confirmButtonText: 'Activate',
+                    confirmButtonText: '@lang('admin.pindex_activate')',
                     confirmButtonColor: '#e3342f',
                 }).then((result) => {
                     $.ajax({

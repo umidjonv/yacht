@@ -35,7 +35,7 @@
 
     <div class="row bg-light">
         <div class="col-6">
-            <h2>Product information</h2>
+            <h2>@lang('admin.product_info')</h2>
 
             <form action="{{ route('admin.product.save', ['id'=>$id]) }}" method="post" >
                 {{csrf_field()}}
@@ -44,19 +44,19 @@
                 <input type="hidden" value="{{old('Division', $model->Division)}}" name="div" />
                 <div class="p-2 bg-white">
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Division</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_division')</label>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="Division" id="division.tour" {{old('Division', $model->Division)==\App\Common\Enums\YachtDivision::tour ? "checked":""}} value="{{\App\Common\Enums\YachtDivision::tour}}">
-                            <label class="form-check-label" for="division.tour">Tour</label>
+                            <label class="form-check-label" for="division.tour">@lang('admin.product_tour')</label>
 
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="Division" id="division.lodgement" {{old('Division', $model->Division)==\App\Common\Enums\YachtDivision::lodgement ? "checked":""}} value="{{\App\Common\Enums\YachtDivision::lodgement}}">
-                            <label class="form-check-label" for="division.lodgement">Lodgement</label>
+                            <label class="form-check-label" for="division.lodgement">@lang('admin.product_lodgement')</label>
                         </div>
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="radio" name="Division" id="division.theme" {{old('Division', $model->Division)==\App\Common\Enums\YachtDivision::theme ? "checked":""}} value="{{\App\Common\Enums\YachtDivision::theme}}"/>
-                            <label class="form-check-label" for="division.theme">Theme</label>
+                            <label class="form-check-label" for="division.theme">@lang('admin.product_theme')</label>
                         </div>
 
                     </div>
@@ -64,7 +64,7 @@
 
                         <div class="form-check form-check-inline">
                             <input class="form-check-input" type="checkbox" name="IsDisplayed" id="IsDisplayed" {{old('IsDisplayed', $model->IsDisplayed)==true ? "checked":""}} value="{{old('IsDisplayed', $model->IsDisplayed)==true?1:0}}">
-                            <label class="form-check-label" for="IsDisplayed"><span class="text-danger">*</span> Displayed</label>
+                            <label class="form-check-label" for="IsDisplayed"><span class="text-danger">*</span> @lang('admin.product_displayed')</label>
                         </div>
 
                     </div>
@@ -73,41 +73,41 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Product name</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_name')</label>
                         <input type="text" class="form-control" name="Name" value="{{old('Name', $model->Name)}}" />
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> Adults</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_adults')</label>
                             <input type="text" class="form-control" name="CapacityAdult"  value="{{old('CapacityAdult', $model->CapacityAdult)}}"/>
                         </div>
                         <div class="col-6">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> Childs</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_children')</label>
                             <input type="text" class="form-control" name="CapacityChild" value="{{old('CapacityChild', $model->CapacityChild)}}"/>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-6">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> Adults price</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_adult_price')</label>
                             <input type="text" class="form-control" name="PriceAdult" value="{{old('PriceAdult', $model->PriceAdult)}}" />
                         </div>
                         <div class="col-6">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> Childs price</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_child_price')</label>
                             <input type="text" class="form-control" name="PriceChild" value="{{old('PriceChild', $model->PriceChild)}}"/>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Price</label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_price')</label>
                         <input type="text" class="form-control" name="Price" id="Price"  value="{{old('Price', $model->Price)}}" />
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> Brief introduction </label>
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_brief') </label>
                         <textarea class="form-control" name="Introduction">{{old('Introduction', $model->Introduction)}}</textarea>
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext" ><span class="text-danger">*</span> Area</label>
+                        <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.product_area')</label>
                         <select class="form-control" name="Area">
                             @foreach(\App\Common\Arrays\Area::get() as $key=>$area)
                                 <option value="{{$key}}" {{$key == $model->Area?"selected":""}}>{{$area}}</option>
@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext" ><span class="text-danger">*</span> Location</label>
+                        <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.product_location')</label>
 
                         <div class="input-group mb-3">
                             <input class="form-control" name="Location" id="Location" value="{{old('Location', $model->Location)}}">
@@ -131,7 +131,7 @@
 
                 <div class="form-group">
                     <div class="blockTitle">
-                        <label  class="form-control-plaintext ">Reservation time</label>
+                        <label  class="form-control-plaintext ">@lang('admin.product_reservation_time')</label>
                     </div>
                 </div>
                 <div class="p-2 bg-white">
@@ -143,11 +143,11 @@
                             <input type="text" class="form-control" name="Reservation[Time]" id="reservationTime" value=""/>
                         </div>
                         <div class="col-2">
-                            <a href="javascript:void(0)" class="btn btn-primary" id="addtime">add</a>
+                            <a href="javascript:void(0)" class="btn btn-primary" id="addtime">@lang('admin.product_reservation_add')</a>
                         </div>
                         <div class="col-2">
 
-                            <a href="javascript:void(0)" class="btn btn-dark" id="removetime">remove</a>
+                            <a href="javascript:void(0)" class="btn btn-dark" id="removetime">@lang('admin.product_reservation_remove')</a>
                         </div>
 
                     </div>
@@ -165,7 +165,7 @@
                         </ul>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <button class="btn btn-primary" type="submit">@lang('admin.product_save')</button>
                     </div>
 
 

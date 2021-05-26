@@ -13,13 +13,13 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
-    'login_title' => 'Login',
-    'email' => 'E-Mail Address',
-    'password' => 'Password',
-    'remember' => 'Remember Me',
-    'forgot_password' => 'Forgot Your Password'
+    'failed' => '이 자격 증명은 당사 기록과 일치하지 않습니다.',
+    'throttle' => '로그인 시도가 너무 많습니다. 다시 시도하십시오..',
+    'login_title' => '로그인',
+    'email' => '이메일 주소',
+    'password' => '암호',
+    'remember' => '자동로그인',
+    'forgot_password' => '비밀번호 찾기'
 
 
 ];
