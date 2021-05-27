@@ -41,7 +41,7 @@ return [
     'pindex_active' => 'Active',
     'pindex_view_yacht' => 'View yachts',
     'pindex_agree_activate' => 'Do you want to activate owner?',
-    //---sent to translate
+
 
     //yacht.index,add
     'yacht_list' =>'Yacht list',
@@ -89,6 +89,15 @@ return [
     'product_reservation_add' => 'add',
     'product_reservation_remove' => 'remove',
     'product_save' => 'Save',
+//---sent to translate
+
+
+    //event
+    'events' => 'Events management',
+    'event_list' => 'Events list',
+
+
+
 
 
 

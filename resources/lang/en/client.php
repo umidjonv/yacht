@@ -64,6 +64,59 @@ return [
     'reservation_reservation_time' => 'Reservation time',
     'reservation_reservation_date' => 'Reservation date',
     'reservation_reservation_places' => 'Places',
+    //sent to translate
+
+    'product_view_top_reviews' => 'Total reviews',
+    'product_view_seats' => 'seats',
+    'product_view_details' => 'Details',
+    'product_view_qa' => 'Q&A',
+    'product_view_review' => 'Review',
+    'product_view_refund_title' => 'Refund Policy Guide',
+    'product_view_refund_before7' => 'refund if canceled 7 days before the reservation date',
+    'product_view_refund_before46' => 'refund if canceled 4-6 days before the reservation date',
+    'product_view_refund_before13' => 'refund if canceled 1-3 days before the reservation date',
+    'product_view_refund_before0' => 'refund if canceled on the day of reservation',
+    'product_view_refund_not_cancellable' => 'Not cancellable',
+    'product_view_feedback_my_view' => 'View my feedback',
+    'product_view_feedback_feedback' => 'Feedback',
+    'product_view_feedback_waiting' => 'Waiting reply',
+    'product_view_feedback_answered' => 'Answered',
+    'product_view_feedback_view_more' => 'View more',
+    'product_view_review_write' => 'Write review',
+    'product_view_make_reservation' => 'Make a reservation',
+
+    //reservation.prepare
+    'make_reservation' => 'Make a reservation',
+    'reservation_date' => 'Reservation date',
+    'select_time' => 'Select a time',
+    'close' => 'Close',
+    'reservation_number' => 'Reservation number',
+    'adults' => 'Adults',
+    'adults_description' => 'Middle school students <br/>and above',
+    'children' => 'Children',
+    'children_description' => 'Over 36 months to elementary <br/>school students',
+    'payment' => 'Payment',
+
+    'payment_method' => 'Payment method',
+    'credit_card' => 'Credit card',
+    'bank_transfer' => 'Real-time bank transfer',
+    'payment_amount' => 'Payment amount',
+    'product_amount' => 'Product amount',
+    'used_points' => 'Used points',
+    'use_points' => 'Use points',
+    'total_payment_amount' => 'Total payment amount',
+    'retained_points' => 'Retained points',
+    'make_payment' => 'Make a payment',
+
+
+
+
+
+
+
+
+
+
 
 
 

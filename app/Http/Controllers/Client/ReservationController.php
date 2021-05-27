@@ -83,6 +83,8 @@ class ReservationController extends Controller
         $reservation = Reservation::where('Id', $id)->with('product')->first();
         $member = Member::where('UserId', $reservation->UserId)->first();
         $product = $reservation->product()->first();
+        $yacht = $product->yacht()->first();
+        $vendor = $yacht->vendor()->first();
 
 
         if($reservation==null)
@@ -91,7 +93,7 @@ class ReservationController extends Controller
 //        if($reservation->IsPayed)
 //            return view('client.mobile.reservation.view')->with(['model'=>$reservation]);
 
-        return view('client.mobile.reservation.payment')->with(['model'=>$reservation, 'member'=>$member, 'product'=>$product]);
+        return view('client.mobile.reservation.payment')->with(['model'=>$reservation, 'member'=>$member, 'product'=>$product, 'vendor'=>$vendor]);
     }
 
     public function do_payment(Request $request)

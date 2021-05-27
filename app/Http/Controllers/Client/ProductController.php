@@ -71,7 +71,6 @@ class ProductController extends Controller
     }
 
 
-
     public function reserved()
     {
         return view('client.mobile.product.reserved');
@@ -110,9 +109,7 @@ class ProductController extends Controller
 
         }
 
-
         return response()->json($favour);
-
 
     }
 

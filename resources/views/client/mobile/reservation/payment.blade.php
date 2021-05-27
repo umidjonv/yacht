@@ -93,12 +93,12 @@
 {{--            </div>--}}
 
             <div class="pdg_b20">
-                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Use points</span></div>
+                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.use_points')</span></div>
 
                 <div class="pdg_s15">
                     <div class="flx_side">
                         <div class="jm_tsss2 jcr_grey9">
-                            Retained points<span class="js_point02">{{$member->AccumulatedPoint}}</span>
+                            @lang('client.retained_points')<span class="js_point02">{{$member->AccumulatedPoint}}</span>
                         </div>
 
                     </div>
@@ -116,37 +116,37 @@
             </div>
 
             <div class="pdg_b20">
-                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Payment method</span></div>
+                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.payment_method')</span></div>
 
                 <div class="pdg_s15">
                     <div class="radio_box radio_box_sq">
                         <input type="radio" name="pay" id="type_01" value="9" checked>
-                        <label for="type_01">Credit card</label>
+                        <label for="type_01">@lang('client.credit_card')</label>
                         <input type="radio" name="pay" id="type_02" value="11">
-                        <label for="type_02">Real-time bank transfer</label>
+                        <label for="type_02">@lang('client.bank_transfer')</label>
                     </div>
                 </div>
             </div>
 
             <div class="pdg_b20">
-                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Payment amount</span></div>
+                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.payment_amount')</span></div>
 
                 <div class="pdg_s15">
                     <div class="jbg_grey01 pdg_tb15 pdg_s10">
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
-                            <div class="jm_tsss2 j_bold">Product amount</div>
+                            <div class="jm_tsss2 j_bold">@lang('client.product_amount')</div>
                             <div class="js_money02" style="font-weight: normal;">
                                 {{$model->TotalAmount}}
                             </div>
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
-                            <div class="jm_tsss2 j_bold">With points amount</div>
+                            <div class="jm_tsss2 j_bold">@lang('client.used_points')</div>
                             <div class="js_money02" style="font-weight: normal;" >
                                 - <label id="usedPoints"  style="font-size: 14px;">0</label>
                             </div>
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb05 pdg_s05">
-                            <div class="jm_tsss2 j_bold">Total payment amount</div>
+                            <div class="jm_tsss2 j_bold">@lang('client.total_payment_amount')</div>
                             <div class="js_money">
                                 <label id="totalPayment" style="font-size: 14px;">{{$model->TotalAmount}}</label>
                             </div>
@@ -154,7 +154,32 @@
                     </div>
                     <div class="pdg_t10">
                         <div class="jm_tsss1 jcr_ylw j_bold" style="letter-spacing: -0.7;">
-                            ※ Refund policy 7 days before 100% / 4 to 6 days before 50% / 1 to 3 days before 30% / No cancellation on the day
+                            <div class="pdg_15">
+                                <div class="jbg_grey01 pdg_15">
+                                    <div class="jcr_grey9 jm_tsss2 j_bold pdg_b05">
+                                        @lang('client.product_view_refund_title')
+                                    </div>
+                                    @if($vendor->IsCancellable)
+                                        <div class="jcr_grey9 jm_tsss2 pdg_b05">
+                                            -{{$vendor->CancelledBefore7}}% @lang('client.product_view_refund_before7')
+                                        </div>
+                                        <div class="jcr_grey9 jm_tsss2 pdg_b05">
+                                            -{{$vendor->CancelledBefore45}}% @lang('client.product_view_refund_before46')</div>
+                                        <div class="jcr_grey9 jm_tsss2 pdg_b05">
+                                            -{{$vendor->CancelledBefore13}}% @lang('client.product_view_refund_before13')
+                                        </div>
+                                        <div class="jcr_grey9 jm_tsss2 pdg_b05">
+                                            -{{$vendor->CancelledOnDay}}% @lang('client.product_view_refund_before0')
+                                        </div>
+                                    @else
+                                        <div class="jcr_grey9 jm_tsss2 pdg_b05">
+                                            @lang('client.product_view_refund_not_cancellable')
+                                        </div>
+                                    @endif
+
+
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -166,7 +191,7 @@
         <div class="btm_bt_wrap02 btm_bt_fix" style="padding:12px 15px 12px;">
             <!-- button -->
             <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" onclick="location.href='product_booking_fns.html'">
-                Make a payment
+                @lang('client.make_payment')
             </div>
             <!--// button -->
         </div>

@@ -39,7 +39,7 @@
         </div>
         <div class="flx_c" style="height:60px;">
             <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
-                Make a reservation
+                @lang('client.make_reservation')
             </div>
         </div>
         <div class="flx_rgt_m" style="width:65px; height:60px;">
@@ -55,7 +55,7 @@
 
     <!-- calendar -->
     <div class="pdg_b20">
-        <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Reservation date</span></div>
+        <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.reservation_date')</span></div>
         <div class="pdg_s15">
             <div id="datepicker" value="12/03/2021"></div>
 
@@ -77,7 +77,7 @@
         <input type="hidden" name="TotalAmount" value="{{old('TotalAmount')}}" />
 
         <div class="p-4">
-            <button  type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#exampleModal" id="time_btn">select a time</button>
+            <button  type="button" class="btn btn-warning form-control" data-toggle="modal" data-target="#exampleModal" id="time_btn">@lang('client.select_time')</button>
 
         </div>
         <div class="modal fade"  tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" id="exampleModal">
@@ -85,7 +85,7 @@
 
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Select a time</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">@lang('client.select_time')</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -117,7 +117,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">@lang('client.close')</button>
 
                     </div>
                 </div>
@@ -138,14 +138,14 @@
 
 
             <div class="pdg_b20">
-                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">Reservation number</span></div>
+                <div class="hd_tit mgn_b15 js_align_c"><span class="jcr_grey9 jm_tsss0">@lang('client.reservation_number')</span></div>
                 <div class="pdg_s15">
 
                     <div class="jbg_grey01 pdg_s10">
                         <div class="flx_side_m pdg_tb15 pdg_s05 line_bt01 " style="border-color: #ccc">
                             <div class="flx_lft_m row">
-                                <span class="jm_tsss2 j_bold col-sm-5">Adults</span>
-                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-7">Middle school students <br/>and above</span>
+                                <span class="jm_tsss2 j_bold col-sm-5">@lang('client.adults')</span>
+                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-7">@lang('client.adults_description')</span>
                             </div>
                             <div class="flx_side_m count ml-1">
                                 <input type="text" name="Adults" value="{{old('Adults')}}"/>
@@ -157,8 +157,8 @@
                         </div>
                         <div class="flx_side_m jbg_grey01 pdg_tb15 pdg_s05 line_bt01" style="border-color: #ccc">
                             <div class="flx_lft_m row">
-                                <span class="jm_tsss2 j_bold col-sm-4">Kids</span><br/>
-                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-6">Over 36 months to elementary <br/>school students</span>
+                                <span class="jm_tsss2 j_bold col-sm-4">@lang('client.children')</span><br/>
+                                <span class="pdg_l05 jm_tsss2 jcr_grey9 col-sm-6">@lang('client.children_description')</span>
                             </div>
                             <div class="flx_side_m count ml-1">
                                 <input type="text" class="" name="Childs" value="{{old('Childs')}}"/>
@@ -186,7 +186,7 @@
     <div class="btm_bt_wrap02 btm_bt_fix" style=" padding:12px 15px 12px;">
         <!-- button -->
         <button class="btn btn-warning form-control" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" type="submit" >
-            payment
+            @lang('client.payment')
         </button>
         <!--// button -->
     </div>

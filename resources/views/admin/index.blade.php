@@ -12,6 +12,8 @@
     <link href="{{ asset('libs/gijgo/css/gijgo.min.css') }}" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.css') }}">
     <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
+    @yield('header_styles')
+
 
     <title>Administrator management page</title>
 
@@ -22,7 +24,7 @@
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">@lang('admin.site_title')</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" id="search">
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
             <a class="nav-link text-white" href="{{route('admin.logout')}}"> <i class="fa fa-sign-out"></i> @lang('admin.logout')</a>
@@ -38,19 +40,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.vendor')}}">
                             <span class="fa fa-user-shield"></span>
-                            {{ __("admin.owner_management") }}
+                            @lang("admin.owner_management")
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.yacht') }}">
                             <span class="fa fa-ship"></span>
-                            {{ __("admin.yacht_management") }}
+                            @lang("admin.yacht_management")
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('admin.product') }}">
                             <span class="fa fa-shopping-cart"></span>
-                            {{ __("admin.product_management") }}
+                            @lang("admin.product_management")
                         </a>
                     </li>
                 </ul>
@@ -78,6 +80,19 @@
                         </a>
                     </li>
                 </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span class="fa fa-blog"> @lang('admin.events')</span>
+
+                </h6>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.event')}}">
+
+                            @lang('admin.event_list')
+                        </a>
+                    </li>
+                </ul>
+
 
             </div>
         </nav>

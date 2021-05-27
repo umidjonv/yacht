@@ -8,6 +8,7 @@
 
             <form action="{{ route('admin.event.update', $event->Id) }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
+                <input type="hidden" name="Id" value="{{$event->Id}}"/>
                 <div class="form-group">
                     <label class="form-control-plaintext"><span class="text-danger">*</span> Event title</label>
                     <input type="text" class="form-control" name="Title" value="{{$event->Title}}">
@@ -50,22 +51,24 @@
 
 @section('scripts')
     <script>
-        $('.input-images').imageUploader();
         let preloaded = [
-            {id: 1, src: 'https://picsum.photos/500/500?random=1'},
-            {id: 2, src: 'https://picsum.photos/500/500?random=2'},
-            {id: 3, src: 'https://picsum.photos/500/500?random=3'},
-            {id: 4, src: 'https://picsum.photos/500/500?random=4'},
-            {id: 5, src: 'https://picsum.photos/500/500?random=5'},
-            {id: 6, src: 'https://picsum.photos/500/500?random=6'},
-        ];
+                @php
+                        @endphp
+                @foreach($event->images as $image)
 
-        $('.input-images-2').imageUploader({
-            preloaded: preloaded,
-            imagesInputName: 'photos',
-            preloadedInputName: 'old'
+            {id:{{$image->Id}}, src: '{{asset('/storage/events/'.$image->Name)}}'},
+
+            @endforeach
+
+
+
+        ];
+        $('.input-images').imageUploader({
+            preloaded:preloaded,
+
+            //imagesInputName:"image[]"
         });
 
-        $('#EventDate').datepicker();
+        $('#EventDate').datepicker({ format: 'yyyy-mm-dd' });
     </script>
 @endsection

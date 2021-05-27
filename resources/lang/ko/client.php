@@ -65,6 +65,49 @@ return [
     'reservation_reservation_date' => '예약일',
     'reservation_reservation_places' => '장소',
 
+    'product_view_top_reviews' => '총 리뷰',
+    'product_view_seats' => '좌석',
+    'product_view_details' => '상세한',
+    'product_view_qa' => 'Q&A',
+    'product_view_review' => '리뷰',
+    'product_view_refund_title' => '환불 정책 안내',
+    'product_view_refund_before7' => '예약일 7 일전 취소시 환불',
+    'product_view_refund_before46' => '예약일 4 ~ 6 일 전 취소시 환불',
+    'product_view_refund_before13' => '예약일 1 ~ 3 일 전 취소시 환불',
+    'product_view_refund_before0' => '예약 당일 취소시 환불',
+    'product_view_refund_not_cancellable' => '취소 할 수 없습니다',
+    'product_view_feedback_my_view' => '내 피드백보기',
+    'product_view_feedback_feedback' => '피드백',
+    'product_view_feedback_waiting' => '답변을 기다리는 중',
+    'product_view_feedback_answered' => '답변',
+    'product_view_feedback_view_more' => '더보기',
+    'product_view_review_write' => '리뷰를 쓰다',
+    'product_view_make_reservation' => '예약',
+
+    //reservation.prepare
+    'make_reservation' => '예약',
+    'reservation_date' => '예약일',
+    'select_time' => '시간 선택',
+    'close' => '닫기',
+    'reservation_number' => '예약 번호',
+    'adults' => '성인',
+    'adults_description' => '중학생 <br/>이상',
+    'children' => '어린이',
+    'children_description' => '36 개월 이상 초등학교 <br/> 학생',
+    'payment' => '결제',
+
+    'payment_method' => '결제 방법',
+    'credit_card' => '신용 카드',
+    'bank_transfer' => '실시간 은행 송금',
+    'payment_amount' => '결제 금액',
+    'product_amount' => '상품 금액',
+    'used_points' => '사용한 포인트',
+    'use_points' => '포인트 사용',
+    'total_payment_amount' => '총 결제 금액',
+    'retained_points' => '유지 포인트',
+    'make_payment' => '결제 하기',
+
+
 
 
 ];

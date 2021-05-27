@@ -81,6 +81,7 @@ class  ProductController extends BaseController
             'CapacityChild' => 'integer',
             'PriceAdult'=> 'required',
             'PriceChild'=> 'required',
+            'YachtId'=> 'required',
             'Price'=> 'required',
         ]);
 
