@@ -95,6 +95,26 @@ return [
     //event
     'events' => 'Events management',
     'event_list' => 'Events list',
+    'event_image' => "Image",
+    'event_title' => 'Title',
+    'event_short_description' => 'Short description',
+    'event_date' => 'Event date',
+    'event_actions' => 'Actions',
+    'event_add' => 'Add',
+
+
+    //yacht
+    'yacht_image' => "Image",
+
+    'banner_management' => 'Banner management',
+    'banner_link' => 'Link',
+    'banner_image' =>  'Image',
+    'banner_list' => 'Banner list',
+    'banner_order' => 'Order',
+    'banner_event' => 'Event',
+    'banner_edit_title' => 'Banners edit',
+    'banner_load_image' => 'Load images',
+
 
 
 

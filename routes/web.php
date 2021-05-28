@@ -73,6 +73,11 @@ Route::namespace('Admin')->group(function(){
         Route::post('/event/store',           'EventController@store')->name('admin.event.store');
         Route::post('/event/update/{event}',  'EventController@update')->name('admin.event.update');
 
+        //Banners
+        Route::get('/banner',                  'BannerController@index')->name('admin.banner');
+        Route::get('/banner/edit',           'BannerController@edit')->name('admin.banner.edit');
+        Route::post('/banner/store',           'BannerController@store')->name('admin.banner.store');
+
 
 
 

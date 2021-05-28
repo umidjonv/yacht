@@ -10,10 +10,11 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
     <link href="{{ asset('fontawesome/css/all.css') }}" rel="stylesheet">
     <link href="{{ asset('libs/gijgo/css/gijgo.min.css') }}" rel="stylesheet">
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.css') }}">
-    <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
-    @yield('header_styles')
 
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
+    <link type="text/css" rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @yield('header_styles')
+    <link rel="stylesheet" href="{{asset('libs/datatables/jquery.dataTables.css')}}"/>
 
     <title>Administrator management page</title>
 
