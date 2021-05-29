@@ -114,6 +114,9 @@ return [
     'banner_event' => 'Event',
     'banner_edit_title' => 'Banners edit',
     'banner_load_image' => 'Load images',
+    'banner_delete' => 'Delete',
+    'banner_save' => 'Save',
+    'banner_change' => 'Change'
 
 
 

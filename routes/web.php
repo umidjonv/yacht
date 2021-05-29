@@ -76,7 +76,8 @@ Route::namespace('Admin')->group(function(){
         //Banners
         Route::get('/banner',                  'BannerController@index')->name('admin.banner');
         Route::get('/banner/edit',           'BannerController@edit')->name('admin.banner.edit');
-        Route::post('/banner/store',           'BannerController@store')->name('admin.banner.store');
+        Route::post('/banner/save',           'BannerController@save')->name('admin.banner.save');
+        Route::post('/banner/update',           'BannerController@update')->name('admin.banner.update');
 
 
 

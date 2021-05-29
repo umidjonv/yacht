@@ -44,13 +44,13 @@
                         <tr class="">
                             <td>
 
-                                <div class="input-images" name='imageInputs'>
-                                    <input type="file" name="{{$groupCount}}.image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">
+                                <div class="input-images0" name='imageInputs'>
+                                    <input type="file" name="banner{{$groupCount}}.image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">
                                 </div>
                             </td>
                             <td>
                                 <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.banner_order') </label>
-                                <input type="text" name="{{$groupCount}}.Image" class="form-control" value="0" >
+                                <input type="text" name="banner{{$groupCount}}.Order" class="form-control" value="0" >
                             </td>
 
 
@@ -62,6 +62,26 @@
 
 
                         @else
+                        @foreach($model as $banner)
+                            <tr class="">
+                                <td>
+
+                                    <div class="input-images{{$groupCount}}" name='imageInputs'>
+
+                                    </div>
+                                </td>
+                                <td>
+                                    <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.banner_order') </label>
+                                    <input type="text" name="{{$groupCount}}.Order" class="form-control" value="{{$banner->Order}}" >
+                                </td>
+                                @if($groupCount!=0) <td><input type='button' class='btn btn-danger' name='delete_group' value="@lang('admin.banner_delete')"/> </td> @endif
+                            </tr>
+
+
+                                @php
+                                    $groupCount++;
+                                @endphp
+                            @endforeach
 
 
                     @endif
@@ -96,11 +116,41 @@
 
 @section('scripts')
     <script>
-        $('.input-images').imageUploader({
 
-            maxFiles: 1,
-            label:"add image"
-        });
+        @if(count($model))
+            @php
+                $indexPreload = 0;
+            @endphp
+            @foreach($model as $banner)
+                function load{{$indexPreload}}(){
+                    let preloaded = [
+                        {id: {{$indexPreload+1}}, src: '{{asset('/storage/banners/'.$banner->Image)}}'},
+                    ];
+                    var selector = '.input-images{{$indexPreload}}';
+                    $(selector).imageUploader({
+
+                        preloaded:preloaded,
+                        maxFiles: 1,
+                        label:"add image"
+                    });
+
+                }
+
+            load{{$indexPreload}}();
+                    @php
+                        $indexPreload++;
+                    @endphp
+
+
+            @endforeach
+        @else
+                    $('.input-images0').imageUploader({
+                        maxFiles: 1,
+                        label:"add image"
+                    });
+        @endif
+
+
 
 
         var groupCount = {{$groupCount}};
@@ -117,7 +167,7 @@
                 "<label class='form-control-plaintext'><span class='text-danger'>*</span> @lang('admin.banner_order') </label>"+
                 "                                <input type='text' name='"+groupCount+".Order' class='form-control' value='0' >" +
                 "</td>"+
-                (groupCount!=0 ? "<td><input type='button' class='btn btn-danger' name='delete_group'/> </td>":"")+
+                (groupCount!=0 ? "<td><input type='button' class='btn btn-danger' name='delete_group' value='@lang('admin.banner_delete')'/> </td>":"")+
 
                 "                        </tr>";
 
@@ -125,7 +175,6 @@
 
             var selector = '.input-images'+groupCount;
             $(selector).imageUploader({
-
                 maxFiles: 1,
                 label:"add image"
             });

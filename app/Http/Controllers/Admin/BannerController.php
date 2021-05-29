@@ -23,7 +23,9 @@ class BannerController extends Controller
     use Notifiable;
 
     public function index(){
-        $data = Banner::all();
+        $data = Banner::orderBy('Order')->get();
+
+
 
         return view('admin.banner.index')->with('model', $data);
     }
@@ -38,37 +40,44 @@ class BannerController extends Controller
         $banners = Banner::with('event')->get();
 
 
-        return view('admin.banner.edit')->with(['model'=> $banners]);
+        return view('admin.banner.add')->with(['model'=> $banners]);
     }
 
-    public function store(Request $request){
-//        $validator = \Validator::make($request->all(), [
-//            "*.name"    => "required",
-//
-//        ]);
-//
-//        if($validator->fails())
-//        {
-//            return redirect('admin/banner/edit')
-//                ->withInput()
-//                ->withErrors($validator);
-//        }
+    public function save(Request $request){
 
-        dd($request->all());
+        $preloadImages = array();
+        $preloadImages = $request->preloaded;
 
-//        foreach ($request->all() as $model)
-//        {
-//            foreach ((array) $request->file($index.'images') as $image) {
-//                $f_name = $this->get_image_name($image->getClientOriginalExtension());
-//
-//                $image->storeAs('public/yachts', $f_name);
-//
-//                $banner = new Banner();
-//                $banner->Image = $f_name;
-//                $banner->Order = $request->input($index.'Order');
-//
-//        }
-//        }
+        //return dd($request->all());
+
+        if($preloadImages!=null) {
+            $banners = Banner::all();
+            foreach ($banners as $banner) {
+                if (!in_array($banner->Id, $preloadImages)) {
+                    $banner->delete();
+                }
+            }
+        }else{
+            Banner::truncate();
+        }
+
+
+
+        $index = 0;
+
+        foreach ((array) $request->file('images') as $image) {
+            $f_name = $this->get_image_name($image->getClientOriginalExtension());
+
+            $image->storeAs('public/banners', $f_name);
+
+            $banner = new Banner();
+            $banner->Image = $f_name;
+            $banner->Order = 1;
+
+            $banner->save();
+
+
+        }
 
 
         return redirect('admin/banner');
@@ -104,78 +113,23 @@ class BannerController extends Controller
 
     }
 
-    public function update(YachtRequest $request, $id){
+    public function update(Request $request)
+    {
+        $banners = Banner::all();
 
-        //return dd($request->all());
-        $validated = $request->validated();
-
-        $yacht = Yacht::find($request->Id);
-        $yacht->VendorId = $request->VendorId;
-        $yacht->Name = $request->Name;
-        $yacht->Area = $request->Area;
-        $yacht->Address = $request->Address;
-        $yacht->Capacity = $request->Capacity;
-
-        $yacht->save();
-
-
-        $oldImages = YachtImage::where('YachtId', $yacht->Id)->select('Id')->get();
-
-        $deleteImages = $this->image_differences($oldImages, $request->preloaded);
-
-
-        //return dd($deleteImages);
-
-        $this->delete_images($deleteImages);
-
-
-
-        foreach ((array) $request->file('images') as $image) {
-            $f_name = $this->get_image_name($image->getClientOriginalExtension());
-            $image->storeAs('public/yachts', $f_name);
-
-            YachtImage::create([
-                'Name' => $f_name,
-                'YachtId' => $yacht->Id
-            ]);
-        }
-
-        if($yacht!=null && $yacht->Id>0)
+        foreach ($banners as $banner)
         {
-            $activity = Activity::where('YachtId', $yacht->Id)->first();
+            //return dd($request->input('banner'.$banner->Id.'_Id'));
 
-            if($activity == null)
-                $activity = new Activity();
+            if($banner->Id == $request->input('banner'.$banner->Id.'_Id'))
+            {
 
-            $activity->StartTime = $request->input('activity.StartTime');
-            $activity->EndTime = $request->input('activity.EndTime');
-            $activity->Regularity = $request->input('activity.Regularity');
-
-            $activity->save();
-
-            if($request->IsSchedule) {
-
-                Validator::make($request->all(), [
-                    'schedule.StartDate' => 'date_format:d.m.Y',
-                    'schedule.EndDate' => 'date_format:d.m.Y|required_with:StartDate',
-                    'schedule.IsActive' => 'boolean',
-                ]);
-
-                $schedule = new  Schedule();
-                $schedule->IsActive = $request->schedule->IsActive;
-                $schedule->StartDate = $request->schedule->StartDate;
-                $schedule->EndDate = $request->schedule->EndDate;
-
-                $schedule->save();
-            }else{
-                Schedule::where('YachtId', $yacht->Id)->delete();
+                $banner->Order = $request->input('banner'.$banner->Id.'_Order');
+                $banner->save();
             }
-
-            return redirect()->route('admin.yacht');
-
         }
 
-        return redirect()->route('admin.yacht.add');
+        return redirect()->route('admin.banner');
     }
 //
 //    public function show($id){

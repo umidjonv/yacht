@@ -15,9 +15,10 @@ class ReservationNewcolumns2 extends Migration
     {
         Schema::table('reservations', function (Blueprint $table) {
 
-            $table->integer('UserId')->unsigned();
+            $table->integer('UserId')->unsigned()->default(null);
 
             $table->foreign('UserId')->references('id')->on('users');
+
 
         });
     }
