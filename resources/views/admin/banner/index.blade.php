@@ -24,7 +24,7 @@
             <th>#</th>
             <th>@lang('admin.banner_image')</th>
             <th>@lang('admin.banner_order')</th>
-{{--            <th>@lang('admin.banner_event')</th>--}}
+            <th>@lang('admin.banner_event')</th>
 
         </tr>
         </thead>
@@ -45,7 +45,30 @@
 
                 <input type="number" name="banner{{$banner->Id}}.Order" value="{{$banner->Order}}" class="form-control"/>
             </td>
-{{--            <td>{{$banner->EventId}}</td>--}}
+            <td> @if(isset($banner->EventId))
+                <a href="{{route('admin.banner.events', ['id'=>$banner->Id])}}" class="btn btn-secondary"><span class="fa fa-blog"></span>
+                    @lang('admin.banner_attached')
+                </a>
+                    <a href="{{route('admin.event.edit', ['event'=>$banner->EventId])}}" class="btn btn-secondary">
+                        @php
+                            $title = $banner->event()->first()->Title;
+                            $title = strlen($title) > 30 ? substr($title,0,30)."..." : $title;
+                        @endphp
+                        {{$title}}
+
+                    </a>
+                    <a href="{{route('admin.banner.event_detach', ['id'=>$banner->Id])}}" class="btn btn-danger"><span class="fa fa-close"></span>
+                        @lang('admin.banner_detach')
+                    </a>
+
+
+                @else
+                    <a href="{{route('admin.banner.events', ['id'=>$banner->Id])}}" class="btn btn-outline-secondary"><span class="fa fa-blog"></span>
+                        @lang('admin.banner_select_event')
+                    </a>
+
+                @endif
+            </td>
 
 
 

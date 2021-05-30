@@ -78,6 +78,10 @@ Route::namespace('Admin')->group(function(){
         Route::get('/banner/edit',           'BannerController@edit')->name('admin.banner.edit');
         Route::post('/banner/save',           'BannerController@save')->name('admin.banner.save');
         Route::post('/banner/update',           'BannerController@update')->name('admin.banner.update');
+        Route::get('/banner/events/{id}',           'BannerController@events')->name('admin.banner.events');
+        Route::get('/banner/detach/{id}',           'BannerController@detach_event')->name('admin.banner.event_detach');
+        Route::post('/banner/attach',           'BannerController@attach_event')->name('admin.banner.attach');
+
 
 
 

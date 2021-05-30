@@ -1,5 +1,10 @@
 @extends('admin.index')
 
+
+@section('header_styles')
+    <link rel="stylesheet" href="{{asset('libs/summernote/summernote-bs4.min.css')}}">
+@endsection
+
 @section('content')
 
     <div class="row bg-white">
@@ -24,7 +29,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-control-plaintext"><span class="text-danger">*</span> Description</label>
-                    <textarea class="form-control" rows="6" id="Description" name="Description" maxlength="700">{{old('Description')}}</textarea>
+                    <textarea class="form-control summernote" rows="6" id="Description" name="Description" maxlength="700">{{old('Description')}}</textarea>
                 </div>
                 <div class="form-group col-sm-7">
                     <label class="form-control-plaintext">Event date</label>
@@ -49,9 +54,15 @@
 @endsection
 
 @section('scripts')
+
+    <script src="{{asset('libs/summernote/summernote-bs4.min.js')}}"></script>
     <script>
         $('.input-images').imageUploader();
 
         $('#EventDate').datepicker({ format: 'yyyy-mm-dd' });
+
+        $('.summernote').summernote({
+            airMode: false
+        });
     </script>
 @endsection

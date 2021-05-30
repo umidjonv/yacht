@@ -26,7 +26,7 @@ class EventRequest extends FormRequest
         return [
             'Title'             => 'required|max:50',
             'ShortDescription'  => 'required|max:255',
-            'Description'       => 'required|max:700',
+            'Description'       => 'required',
             'image.*'           => 'required|image|mimes:jpeg,png,jpg'
         ];
     }

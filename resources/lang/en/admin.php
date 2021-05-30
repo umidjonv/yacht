@@ -116,7 +116,10 @@ return [
     'banner_load_image' => 'Load images',
     'banner_delete' => 'Delete',
     'banner_save' => 'Save',
-    'banner_change' => 'Change'
+    'banner_change' => 'Change',
+    'banner_attached' => 'attached',
+    'banner_select_event' => 'select event',
+    'banner_detach' => 'detach'
 
 
 
