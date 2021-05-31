@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Artisan::call('storage:link');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -27,15 +28,6 @@ Route::get('/', function () {
 */
 
 
-//Route::group([
-//    'prefix' => 'admin',
-//    'as' => 'admin',
-//    'namespace' => 'App\\Http\\Controllers\\Admin',
-//
-//], function(){
-//
-//    Route::get('/',                         [AdminController::class,        'index' ])->name('admin.index');
-//});
 //yacht methods
 Route::namespace('Admin')->group(function(){
     Route::prefix('admin')->middleware(['auth'])->group(function () {
