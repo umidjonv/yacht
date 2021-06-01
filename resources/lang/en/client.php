@@ -108,6 +108,11 @@ return [
     'retained_points' => 'Retained points',
     'make_payment' => 'Make a payment',
 
+    'feedback_public_title'=>'Whether to publish the article',
+    'feedback_public' => 'Public',
+    'feedback_private' => 'Private',
+    'feedback_title' => 'Title',
+
 
 
 

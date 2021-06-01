@@ -198,7 +198,7 @@
                 </div>
                 <div class="pdg_l10">
                     <!-- bt_mid -->
-                    <div class="w_100 flx_c bt_mid01" style="padding:5px 50px;" onclick="location.href='product_qna_write.html'">
+                    <div class="w_100 flx_c bt_mid01" style="padding:5px 50px;" onclick="location.href='{{route('client.mobile.feedback.add')}}'">
                         @lang('client.product_view_feedback_feedback')
                     </div><!-- // bt_mid -->
                 </div>
