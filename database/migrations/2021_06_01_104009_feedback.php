@@ -19,9 +19,9 @@ class Feedback extends Migration
             $table->bigInteger('ProductId')->unsigned();
             $table->integer('UserId')->unsigned();
             $table->integer('Type')->default(0);
-            $table->text('Title')->default(0);
+            $table->text('Title');
             $table->text('Message');
-            $table->bigInteger('ParentId')->nullable();
+            $table->bigInteger('ParentId')->unsigned()->nullable();
             $table->boolean('IsPublic')->deafault(false);
 
             $table->dateTime('UpdatedAt')->nullable();

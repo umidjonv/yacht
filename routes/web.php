@@ -30,9 +30,11 @@ Artisan::call('storage:link');
 
 //yacht methods
 Route::namespace('Admin')->group(function(){
-    Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::prefix('admin')->middleware(['auth', 'checkVendor'])->group(function () {
 
         Route::get('/', 'AdminController@index')->name('admin.index');
+        Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+
         Route::get('/logout', 'LoginController@logout_admin')->name('admin.logout');
 
         Route::get('/yacht', 'YachtController@index')->name('admin.yacht');

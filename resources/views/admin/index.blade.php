@@ -27,12 +27,15 @@
 
 <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
     <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">@lang('admin.site_title')</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search" id="search">
+    <input class="form-control form-control-dark " type="text" placeholder="Search" aria-label="Search" id="search">
+    <a href="{{route('admin.profile')}}" class="text-white col-sm-2 col-md-2 mr-0" ><span class="fa fa-user"></span> {{auth()->user()->name}}</a>
     <ul class="navbar-nav px-3">
         <li class="nav-item text-nowrap">
-            <a class="nav-link text-white" href="{{route('admin.logout')}}"> <i class="fa fa-sign-out"></i> @lang('admin.logout')</a>
+             <a class="nav-link text-white t" href="{{route('admin.logout')}}"> <span class="fa fa-sign-out-alt"></span> </a>
         </li>
+
     </ul>
+
 </nav>
 
 <div class="container-fluid">

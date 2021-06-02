@@ -22,6 +22,8 @@ class RedirectIfNotAuthenticated
             return $next($request);
         }
 
+
+
         $uri = $request->path();
 
         if (str_contains($uri, 'client/mobile')) {
