@@ -7,6 +7,7 @@ namespace App\Http\Controllers\Client;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\Feedback;
+use App\Models\Product;
 use App\Models\Vendor;
 use App\User;
 use \Illuminate\Http\Request;
@@ -17,9 +18,20 @@ use Validator;
 class FeedbackController extends Controller
 {
 
-    public function add()
+    public function add($id)
     {
-        return view('client.mobile.feedback.add');
+        if(!Auth::check())
+        {
+            return redirect('client/login');
+        }
+        $user= Auth::user();
+
+        $product = Product::find($id);
+
+        $parentFeedback = Feedback::where(['ProductId', $id], ['UserId', $user->id], ['ParentId',null])->first();
+
+
+        return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback]);
     }
 
     public function save(Request $request)
@@ -42,10 +54,14 @@ class FeedbackController extends Controller
                 ->withInput();
         }
 
+
+
         $feedback = new Feedback();
         $feedback->UserId = $user->id;
+        $feedback->Title = $request->input('Title');
         $feedback->Message = $request->input('Message');
         $feedback->ProductId = $request->input('ProductId');
+        $feedback->IsPublic = $request->input('IsPublic');
         $feedback->save();
 
 

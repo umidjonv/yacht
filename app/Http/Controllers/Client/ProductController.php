@@ -8,6 +8,7 @@ use App\Common\Enums\UI\SortOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\Favourite;
+use App\Models\Feedback;
 use App\Models\Product;
 use App\Models\Vendor;
 use App\User;
@@ -56,6 +57,20 @@ class ProductController extends Controller
 
         $product = Product::where('Id',$id)->with('yacht')->first();
 
+        if(!Auth::check())
+        {
+            return redirect('client/login');
+        }
+        $user= Auth::user();
+
+
+        $parentFeedbacks = Feedback::where(['ProductId', $id])
+            ->where('ParentId', null)
+            
+            ->with('childs')->get();
+
+        return dd('ok');
+
         $yacht = $product->yacht()->first();
 
         $vendor = $yacht->vendor()->first();
@@ -63,7 +78,7 @@ class ProductController extends Controller
 
         if($vendor!=null)
         {
-            return view('client.mobile.product.view')->with(['model'=>$product, 'vendor'=>$vendor]);
+            return view('client.mobile.product.view')->with(['model'=>$product, 'vendor'=>$vendor, 'feedbacks'=>$parentFeedbacks]);
         }
 
         return redirect()->back();
