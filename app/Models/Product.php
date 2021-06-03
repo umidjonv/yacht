@@ -17,5 +17,10 @@ class Product extends BaseModel
         return $this->belongsTo(Yacht::class, 'YachtId');
     }
 
+    public function favourite()
+    {
+        return $this->hasMany(Favourite::class, 'ProductId');
+    }
+
 
 }

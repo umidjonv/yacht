@@ -4,10 +4,14 @@
         <!-- thumbnail -->
         <div style="width:112px;">
             <div class="thumb_01 flx_c">
-                <img src="{{asset('mobile/client/images/pic/review_01.png')}}" alt="" onclick="location.href='{{route('client.mobile.product.view', ['Id' => $item->Id])}}'" />
+                @php
+                $yacht = $item->yacht()->first();
+                $favour = $item->favourite()->first();
+                @endphp
+                <img src="{{url('/storage/yachts/'.$yacht->images()->first()->Name)}}" alt="" onclick="location.href='{{route('client.mobile.product.view', ['Id' => $item->Id])}}'" />
                 <!-- pick -->
                 <div class="up_bt02_wrap">
-                    <div class="up_bt02 js_btn_toggle " name="favour" data-id="{{$item->Id}}">
+                    <div class="up_bt02 js_btn_toggle {{$favour!=null?"on":""}}" name="favour" data-id="{{$item->Id}}">
                     </div>
                 </div>
                 <!-- // pick -->
@@ -65,6 +69,7 @@
 
        $.ajax({
            url:urlAjax,
+           method:'get',
            success:function(data){
                console.log(JSON.parse(data));
            },
