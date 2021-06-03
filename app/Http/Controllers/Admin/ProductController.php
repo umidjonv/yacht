@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Common\Enums\UserType;
 use App\Common\JsonData;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -11,6 +12,7 @@ use App\Models\Vendor;
 use App\Models\Yacht;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use phpDocumentor\Reflection\Types\Collection;
 use Validator;
 
 class  ProductController extends BaseController
@@ -38,9 +40,27 @@ class  ProductController extends BaseController
 
     public function index()
     {
+        $products = collect();
+
+        if(Auth::user()->type == UserType::admin)
+        {
+            $products = Product::all();
+        }else{
+            $vendor = Vendor::where('UserId', Auth::user()->id)->first();
+
+            $yachts = Yacht::where('VendorId', $vendor->Id)-> with('products')->get();
+            foreach ($yachts as $yacht)
+            {
+                $product = $yacht->products()->get();
+
+                //dd($product);
+                $products = $products->merge($product);
+            }
+        }
+
         $yachtd = new \App\Common\Enums\YachtDivision();
 
-        $products = Product::all();
+
 
         return view('admin.product.index')->with(['model'=>$products]);
     }
@@ -72,11 +92,12 @@ class  ProductController extends BaseController
     {
         //return dd($request->all());
 
+
         $validator = \Validator::make($request->all(), [
             'Name' => 'required|max:255',
             'Division' => 'required',
             'Area' => 'required',
-            'IsDisplayed' => 'required',
+//            'IsDisplayed' => 'required',
             'CapacityAdult'=> 'integer',
             'CapacityChild' => 'integer',
             'PriceAdult'=> 'required',
