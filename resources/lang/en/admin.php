@@ -119,7 +119,17 @@ return [
     'banner_change' => 'Change',
     'banner_attached' => 'attached',
     'banner_select_event' => 'select event',
-    'banner_detach' => 'detach'
+    'banner_detach' => 'detach',
+
+    //admin
+    'save' => 'Save',
+    'profile' => 'Profile',
+    'upload_photo' => 'Upload a different photo...',
+    'id' => 'ID',
+    'contact' => 'Contact',
+    'email' => 'Email',
+    'password' => 'Password',
+    'repassword' => 'Retype password',
 
 
 

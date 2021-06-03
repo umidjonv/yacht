@@ -63,7 +63,8 @@
                     <div class="form-group">
 
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="checkbox" name="IsDisplayed" id="IsDisplayed" {{old('IsDisplayed', $model->IsDisplayed)==true ? "checked":""}} value="{{old('IsDisplayed', $model->IsDisplayed)==true?1:0}}">
+                            <input class="form-check-input" type="hidden" name="IsDisplayed" value="{{old('IsDisplayed', $model->IsDisplayed)==true?1:0}}">
+                            <input class="form-check-input" type="checkbox" id="IsDisplayed" {{old('IsDisplayed', $model->IsDisplayed)==true ? "checked":"unchecked"}} value="{{old('IsDisplayed', $model->IsDisplayed)==true?true:false}}">
                             <label class="form-check-label" for="IsDisplayed"><span class="text-danger">*</span> @lang('admin.product_displayed')</label>
                         </div>
 
@@ -255,9 +256,11 @@
             $('#IsDisplayed').click(function(){
                 if($(this).prop( "checked" ) == true)
                 {
+                    $('[name="IsDisplayed"]').val(1);
                     $(this).val(1);
                 }else{
                     $(this).val(0);
+                    $('[name="IsDisplayed"]').val(0);
                 }
             });
 

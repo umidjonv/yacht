@@ -28,16 +28,16 @@ class ProductController extends Controller
         switch($sort)
         {
             case SortOrder::popularity:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')-> get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')-> get();
                 break;
             case SortOrder::registration:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')-> get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->get();
                 break;
             case SortOrder::low_price:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->orderBy('Price', 'asc')->get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->orderBy('Price', 'asc')->get();
                 break;
             case SortOrder::high_price:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->orderBy('Price', 'desc')->get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->orderBy('Price', 'desc')->get();
                 break;
         }
 
@@ -112,7 +112,7 @@ class ProductController extends Controller
         $favour = Favourite::where([
             ['ProductId', $product->Id],
             ['UserId', $user->id]
-        ])->get();
+        ])->first();
 
         if($favour==null)
         {

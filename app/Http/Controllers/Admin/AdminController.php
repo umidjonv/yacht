@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -16,6 +17,17 @@ class AdminController extends Controller
 
     public function mobile_index(){
         return view('admin.mobile.index');
+    }
+
+    public function profile()
+    {
+        if(!Auth::check())
+        {
+            return redirect('/login');
+        }
+
+        return view('admin.profile');
+
     }
 
 

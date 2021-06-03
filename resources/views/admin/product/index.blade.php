@@ -30,7 +30,7 @@
                             <td>{{$item->Id}}</td>
                             <td>{{$item->Name}}</td>
                             <td>{{(new \App\Common\Enums\YachtDivision())->Name($item->Division)}}</td>
-                            <td>{{$item->Displayed}}</td>
+                            <td>@if($item->IsDisplayed)<span class="fa fa-eye"></span>@else <span class="fa fa-eye-slash"></span>@endif </td>
                             <td>{{$item->CapacityAdult}} / {{$item->CapacityChild}}</td>
                             <td>{{$item->PriceAdult}}</td>
                             <td>{{$item->PriceChild}}</td>
