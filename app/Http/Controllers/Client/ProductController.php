@@ -64,21 +64,20 @@ class ProductController extends Controller
         $user= Auth::user();
 
 
-        $parentFeedbacks = Feedback::where(['ProductId', $id])
+        $parentFeedbacks = Feedback::where('ProductId', $id)
             ->where('ParentId', null)
             
             ->with('childs')->get();
 
-        return dd('ok');
 
-        $yacht = $product->yacht()->first();
+        $yacht = $product->yacht()->with('images')->first();
 
         $vendor = $yacht->vendor()->first();
 
 
         if($vendor!=null)
         {
-            return view('client.mobile.product.view')->with(['model'=>$product, 'vendor'=>$vendor, 'feedbacks'=>$parentFeedbacks]);
+            return view('client.mobile.product.view')->with(['model'=>$product, 'vendor'=>$vendor, 'feedbacks'=>$parentFeedbacks, 'yacht'=>$yacht]);
         }
 
         return redirect()->back();
@@ -104,7 +103,9 @@ class ProductController extends Controller
 
         $user  = Auth::user();
 
-        if(Auth::check())
+
+
+        if(!Auth::check())
         {
             throw new \Exception("not authenticated");
         }
@@ -124,7 +125,7 @@ class ProductController extends Controller
 
         }
 
-        return response()->json($favour);
+        return response()->json('success');
 
     }
 

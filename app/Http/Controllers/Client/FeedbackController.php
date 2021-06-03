@@ -28,7 +28,7 @@ class FeedbackController extends Controller
 
         $product = Product::find($id);
 
-        $parentFeedback = Feedback::where(['ProductId', $id], ['UserId', $user->id], ['ParentId',null])->first();
+        $parentFeedback = Feedback::where([['ProductId', $id], ['UserId', $user->id], ['ParentId',null]])->first();
 
 
         return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback]);
@@ -65,6 +65,7 @@ class FeedbackController extends Controller
         $feedback->save();
 
 
+        return redirect()->route('client.mobile.product.view', ['id'=>$feedback->ProductId]);
     }
 
     

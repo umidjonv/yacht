@@ -71,7 +71,7 @@
            url:urlAjax,
            method:'get',
            success:function(data){
-               console.log(JSON.parse(data));
+               console.log(data);
            },
            error:function(error){
 

@@ -36,18 +36,15 @@
     <div class="inner-t2">
         <div class="swiper-container swiper_loop w_100" style="height: 0; padding-top:100%;">
             <div class="swiper-wrapper w_100" style="margin-top:-100%;">
+                @php
+                    $images = $yacht->images()->get();
+                @endphp
+                @foreach($images  as $image)
                 <div class="swiper-slide">
-                    <img src="{{asset('mobile/client/images/pic/review_07.png')}}" width="100%" alt="">
+                    <img src="{{url('/storage/yachts').'/'.$image->Name}}" width="100%" alt="">
                 </div>
-                <div class="swiper-slide">
-                    <img src="{{asset('mobile/client/images/pic/review_04.png')}}" width="100%" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{asset('mobile/client/images/pic/review_07.png')}}" width="100%" alt="">
-                </div>
-                <div class="swiper-slide">
-                    <img src="{{asset('mobile/client/images/pic/review_04.png')}}" width="100%" alt="">
-                </div>
+
+                @endforeach
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>
@@ -99,46 +96,18 @@
     <!-- // tab -->
 
     <div id="prd_info" class="tab_con on">
-        <div class="pdg_15">
-            <div class="jcr_grey9 jm_tsss2 pdg_b20 lh_15">
-                제주도 연안에는 약 100여 마리의 남방 거대 돌고래가 서식하며 연안 생태계의 최고 포식자입니다. 따라서 그들이 사라질 때 기본 생태계를 구성하는 생물도 존재로 위협받을 수 있습니다.
-            </div>
-            <div class="jcr_grey9 jm_tsss2 lh_15">
-                김녕 돌고래 생태 관광은 자연 그대로의 생태 환경에 영향을주지 않고 보존 조치를 취하지 않으면 언제라도 제주 바다에서 사라질 수있는 제주 거대 돌고래의 야생 상태이다. 도시의 중요성에 대한 새로운 이해를 높이고 놀라운 생태계의 신비를 체험 할 수있는 투어입니다.
-            </div>
-        </div>
-        <!-- mid_photo -->
-        <div class="pdg_s15 pdg_t15">
-            <div class="mgn_b20" style="padding-top:60%; background:#fff;">
-                <div class="w_100" style="margin-top:-60%; overflow:hidden;">
-                    <div>
-                        <img src="{{'mobile/client/images/pic/info_03.png'}}" width="100%" alt="">
-                    </div>
-                </div>
-            </div>
+
+        <div class="pdg_s15 pdg_b15" style="font-size: 14px;">
+            {{$model->Introduction}}
+
         </div>
         <!-- // mid_photo -->
 
 
-        <div class="pdg_15">
-            <div class="jcr_grey9 jm_tsss2 pdg_b20 lh_15">
-                남대 돌고래는 아주 오랜 세월 제주 사람들과 공감하며 제주 바다에 머물며 해녀들의 삶에서 영적인 동물로 숭배 된 동물이다.
-            </div>
-            <div class="jcr_grey9 jm_tsss2 lh_15">
-                특히 김녕 지역의 여성 다이버들이 돌고래에 대한 애착이 매우 강한 것으로 조사되고있다. 처음에는 해녀 소재를 통해 돌고래와 상호 작용하고 돌고래의 습관을 이해하며 돌고래와 공존하는 법을 배웠습니다. 그래서 제주도에는 남방 대 돌고래가 많이 사는 곳이기도하다.
-            </div>
-        </div>
+
 
         <!-- mid_photo -->
-        <div class="pdg_s15 pdg_t15">
-            <div class="mgn_b20" style="padding-top:60%; background:#fff;">
-                <div class="w_100" style="margin-top:-60%; overflow:hidden;">
-                    <div>
-                        <img src="{{asset('mobile/client/images/pic/info_05.png')}}" width="100%" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
+
         <!-- // mid_photo -->
 
         <div class="pdg_s15 pdg_b15">
@@ -218,7 +187,7 @@
                     </div>
                     <div class="flx_rgt" style="width:calc(100%-100px);">
                         <div class="jcr_grey9 jm_tsss0 js_align_r">
-                            <font class="jcr_grey9 jm_tsss0">{{auth()->user()->email}}</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
+                            <font class="jcr_grey9 jm_tsss0">{{auth()->user()->email}}</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">{{$feedback->CreatedAt}}</font>
                         </div>
                     </div>
                 </div>
