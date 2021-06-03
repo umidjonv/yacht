@@ -17,9 +17,9 @@ class Feedback extends BaseModel
         return $this->belongsTo(Product::class, 'ProductId');
     }
 
-    public function feedbacks()
+    public function childs()
     {
-        return $this->hasMany(Feedback::class, 'FeedbackId');
+        return $this->hasMany(Feedback::class, 'ParentId');
     }
 
 }

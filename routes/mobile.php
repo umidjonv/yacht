@@ -38,7 +38,7 @@ Route::namespace('Client')->group(function(){
             Route::get('/product/favourite/{id}', 'ProductController@set_favourite')->name('client.mobile.product.set_favourite');
             Route::get('/product/favourite/remove/{id}', 'ProductController@remove_favourite')->name('client.mobile.product.remove_favourite');
 
-            Route::get('/feedback/add', 'FeedbackController@add')->name('client.mobile.feedback.add');
+            Route::get('/feedback/add/{id}', 'FeedbackController@add')->name('client.mobile.feedback.add');
             Route::post('/feedback/save', 'FeedbackController@save')->name('client.mobile.feedback.save');
 
 

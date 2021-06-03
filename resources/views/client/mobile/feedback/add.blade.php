@@ -36,6 +36,10 @@
         <!-- // header -->
         <!-- toggle menu -->
         <form action="{{route('client.mobile.feedback.save')}}" method="post">
+            {{csrf_field()}}
+            <input type="hidden" name="ProductId" value="{{$model->Id}}">
+            @if(isset($feedback))<input type="hidden" name="ParentId" value="{{$feedback->Id}}">@endif
+
         <div class="pdg_s15 pdg_t15">
             <div class="flx_side_m">
                 <div class="flx_lft">
@@ -47,9 +51,9 @@
 
                     <div class="flx_rgt">
                         <div class="radio_box radio_box_open">
-                            <input type="radio" name="IsPublic" id="type_01" value="1" checked>
+                            <input type="radio" name="IsPublic" id="type_01" value="{{true}}" checked>
                             <label for="type_01">@lang('client.feedback_public')</label>
-                            <input type="radio" name="IsPublic" id="type_02" value="0">
+                            <input type="radio" name="IsPublic" id="type_02" value="{{false}}">
                             <label for="type_02">@lang('client.feedback_private')</label>
                         </div>
                     </div>
@@ -87,9 +91,9 @@
         <!-- fixed Bottom Button -->
         <div class="btm_bt_wrap02" style="padding:12px 15px 12px;">
             <!-- button -->
-            <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="padding:19px 0; border-radius:0px;" onclick="location.href='product_qna_write_over.html'">
+            <button class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold w-100" style="padding:19px 0; border-radius:0px;" type="submit">
                 Inquiry registration
-            </div>
+            </button>
             <!--// button -->
         </div>
         <!-- // fixed Bottom Button -->

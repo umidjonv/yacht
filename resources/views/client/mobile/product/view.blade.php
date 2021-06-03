@@ -198,7 +198,7 @@
                 </div>
                 <div class="pdg_l10">
                     <!-- bt_mid -->
-                    <div class="w_100 flx_c bt_mid01" style="padding:5px 50px;" onclick="location.href='{{route('client.mobile.feedback.add')}}'">
+                    <div class="w_100 flx_c bt_mid01" style="padding:5px 50px;" onclick="location.href='{{route('client.mobile.feedback.add', ['id'=>$model->Id])}}'">
                         @lang('client.product_view_feedback_feedback')
                     </div><!-- // bt_mid -->
                 </div>
@@ -207,227 +207,240 @@
         <!-- // Question -->
         <!-- Q_list -->
         <!-- -->
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01">
-                        @lang('client.product_view_feedback_waiting')
-                    </div><!-- // flag -->
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
+        @foreach($feedbacks as $feedback)
+            <div class="pdg_s15 pdg_t15 js_acd">
+                <div class="flx_side_m pdg_b05">
+                    <div class="flx_lft" style="width:100px;">
+                        <!-- flag -->
+                        <div class="flx_c bt_sml01">
+                            @lang('client.product_view_feedback_waiting')
+                        </div><!-- // flag -->
+                    </div>
+                    <div class="flx_rgt" style="width:calc(100%-100px);">
+                        <div class="jcr_grey9 jm_tsss0 js_align_r">
+                            <font class="jcr_grey9 jm_tsss0">{{auth()->user()->email}}</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    무조건 돌고래를 볼 수 있나요?
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        가면 항상 돌고래를 볼 수 있나요? <br> 아니면 얼마나 자주 나타나나요?
+                <div class="pdg_b15 line_bt01 js_acd_tit">
+                    <div class="jcr_grey2 jm_tsss2 j_bold">
+                        {{$feedback->Title}}
                     </div>
                 </div>
+                <div class="js_acd_con">
+                    <div class="pdg_15 jbg_grey01 flx_lft">
+                        <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
+                            Q
+                        </div>
+                        <div class="jcr_grey2 jm_tsss2">
+                            {{$feedback->Message}}
+                        </div>
+                    </div>
+                    @foreach($feedback->childs()->get() as $child)
+                    <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">
+                        <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">
+                            {{$child->Type == false? "Q":"A"}}
+                        </div>
+                        <div class="jcr_grey2 jm_tsss2">
+                            {{$child->Message}}
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
             </div>
-        </div>
+        @endforeach
+
         <!-- // -->
         <!-- -->
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01">
-                        @lang('client.product_view_feedback_waiting')
-                    </div><!-- // flag -->
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
-                    </div>
-                </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    무조건 돌고래를 볼 수 있나요?
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        가면 항상 돌고래를 볼 수 있나요? <br> 아니면 얼마나 자주 나타나나요?
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- // -->
-        <!-- -->
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01">
-                        @lang('client.product_view_feedback_waiting')
-                    </div><!-- // flag -->
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
-                    </div>
-                </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    무조건 돌고래를 볼 수 있나요?
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        가면 항상 돌고래를 볼 수 있나요? <br> 아니면 얼마나 자주 나타나나요?
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- // -->
-        <!-- -->
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01 on">
-                        @lang('client.product_view_feedback_answered')
-                    </div><!-- // flag -->
-                    <div class="pdg_l03">
-                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>
-                    </div>
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
-                    </div>
-                </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    애완 동물 탑승 문의
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?
-                    </div>
-                </div>
-                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">
-                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">
-                        A
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- // -->
-        <!-- -->
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01 on">
-                        @lang('client.product_view_feedback_answered')
-                    </div><!-- // flag -->
-                    <div class="pdg_l03">
-                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>
-                    </div>
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
-                    </div>
-                </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    애완 동물 탑승 문의
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?
-                    </div>
-                </div>
-                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">
-                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">
-                        A
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="pdg_s15 pdg_t15 js_acd">
-            <div class="flx_side_m pdg_b05">
-                <div class="flx_lft" style="width:100px;">
-                    <!-- flag -->
-                    <div class="flx_c bt_sml01 on">
-                        @lang('client.product_view_feedback_answered')
-                    </div><!-- // flag -->
-                    <div class="pdg_l03">
-                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>
-                    </div>
-                </div>
-                <div class="flx_rgt" style="width:calc(100%-100px);">
-                    <div class="jcr_grey9 jm_tsss0 js_align_r">
-                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>
-                    </div>
-                </div>
-            </div>
-            <div class="pdg_b15 line_bt01 js_acd_tit">
-                <div class="jcr_grey2 jm_tsss2 j_bold">
-                    애완 동물 탑승 문의
-                </div>
-            </div>
-            <div class="js_acd_con">
-                <div class="pdg_15 jbg_grey01 flx_lft">
-                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">
-                        Q
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?
-                    </div>
-                </div>
-                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">
-                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">
-                        A
-                    </div>
-                    <div class="jcr_grey2 jm_tsss2">
-                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^
-                    </div>
-                </div>
-            </div>
-        </div>
+{{--        <div class="pdg_s15 pdg_t15 js_acd">--}}
+{{--            <div class="flx_side_m pdg_b05">--}}
+{{--                <div class="flx_lft" style="width:100px;">--}}
+{{--                    <!-- flag -->--}}
+{{--                    <div class="flx_c bt_sml01">--}}
+{{--                        @lang('client.product_view_feedback_waiting')--}}
+{{--                    </div><!-- // flag -->--}}
+{{--                </div>--}}
+{{--                <div class="flx_rgt" style="width:calc(100%-100px);">--}}
+{{--                    <div class="jcr_grey9 jm_tsss0 js_align_r">--}}
+{{--                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="pdg_b15 line_bt01 js_acd_tit">--}}
+{{--                <div class="jcr_grey2 jm_tsss2 j_bold">--}}
+{{--                    무조건 돌고래를 볼 수 있나요?--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="js_acd_con">--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft">--}}
+{{--                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">--}}
+{{--                        Q--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        가면 항상 돌고래를 볼 수 있나요? <br> 아니면 얼마나 자주 나타나나요?--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- // -->--}}
+{{--        <!-- -->--}}
+{{--        <div class="pdg_s15 pdg_t15 js_acd">--}}
+{{--            <div class="flx_side_m pdg_b05">--}}
+{{--                <div class="flx_lft" style="width:100px;">--}}
+{{--                    <!-- flag -->--}}
+{{--                    <div class="flx_c bt_sml01">--}}
+{{--                        @lang('client.product_view_feedback_waiting')--}}
+{{--                    </div><!-- // flag -->--}}
+{{--                </div>--}}
+{{--                <div class="flx_rgt" style="width:calc(100%-100px);">--}}
+{{--                    <div class="jcr_grey9 jm_tsss0 js_align_r">--}}
+{{--                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="pdg_b15 line_bt01 js_acd_tit">--}}
+{{--                <div class="jcr_grey2 jm_tsss2 j_bold">--}}
+{{--                    무조건 돌고래를 볼 수 있나요?--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="js_acd_con">--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft">--}}
+{{--                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">--}}
+{{--                        Q--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        가면 항상 돌고래를 볼 수 있나요? <br> 아니면 얼마나 자주 나타나나요?--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- // -->--}}
+{{--        <!-- -->--}}
+{{--        <div class="pdg_s15 pdg_t15 js_acd">--}}
+{{--            <div class="flx_side_m pdg_b05">--}}
+{{--                <div class="flx_lft" style="width:100px;">--}}
+{{--                    <!-- flag -->--}}
+{{--                    <div class="flx_c bt_sml01 on">--}}
+{{--                        @lang('client.product_view_feedback_answered')--}}
+{{--                    </div><!-- // flag -->--}}
+{{--                    <div class="pdg_l03">--}}
+{{--                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="flx_rgt" style="width:calc(100%-100px);">--}}
+{{--                    <div class="jcr_grey9 jm_tsss0 js_align_r">--}}
+{{--                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="pdg_b15 line_bt01 js_acd_tit">--}}
+{{--                <div class="jcr_grey2 jm_tsss2 j_bold">--}}
+{{--                    애완 동물 탑승 문의--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="js_acd_con">--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft">--}}
+{{--                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">--}}
+{{--                        Q--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">--}}
+{{--                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">--}}
+{{--                        A--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <!-- // -->--}}
+{{--        <!-- -->--}}
+{{--        <div class="pdg_s15 pdg_t15 js_acd">--}}
+{{--            <div class="flx_side_m pdg_b05">--}}
+{{--                <div class="flx_lft" style="width:100px;">--}}
+{{--                    <!-- flag -->--}}
+{{--                    <div class="flx_c bt_sml01 on">--}}
+{{--                        @lang('client.product_view_feedback_answered')--}}
+{{--                    </div><!-- // flag -->--}}
+{{--                    <div class="pdg_l03">--}}
+{{--                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="flx_rgt" style="width:calc(100%-100px);">--}}
+{{--                    <div class="jcr_grey9 jm_tsss0 js_align_r">--}}
+{{--                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="pdg_b15 line_bt01 js_acd_tit">--}}
+{{--                <div class="jcr_grey2 jm_tsss2 j_bold">--}}
+{{--                    애완 동물 탑승 문의--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="js_acd_con">--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft">--}}
+{{--                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">--}}
+{{--                        Q--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">--}}
+{{--                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">--}}
+{{--                        A--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--        <div class="pdg_s15 pdg_t15 js_acd">--}}
+{{--            <div class="flx_side_m pdg_b05">--}}
+{{--                <div class="flx_lft" style="width:100px;">--}}
+{{--                    <!-- flag -->--}}
+{{--                    <div class="flx_c bt_sml01 on">--}}
+{{--                        @lang('client.product_view_feedback_answered')--}}
+{{--                    </div><!-- // flag -->--}}
+{{--                    <div class="pdg_l03">--}}
+{{--                        <img src="{{asset('mobile/client/images/icon/lock_icon.png')}}" height="20px" alt=""/>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="flx_rgt" style="width:calc(100%-100px);">--}}
+{{--                    <div class="jcr_grey9 jm_tsss0 js_align_r">--}}
+{{--                        <font class="jcr_grey9 jm_tsss0">mincho11@****.***</font> | <font class="jcr_grey9 jm_tsss0" style="white-space: nowrap;">2020.10.19</font>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="pdg_b15 line_bt01 js_acd_tit">--}}
+{{--                <div class="jcr_grey2 jm_tsss2 j_bold">--}}
+{{--                    애완 동물 탑승 문의--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--            <div class="js_acd_con">--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft">--}}
+{{--                    <div class="pdg_r15 jcr_grey9 jm_ts4 j_bold">--}}
+{{--                        Q--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        반려 동물은 탑승 할 수 있나요? <br> 반려 동물은 몇 마리인가요?--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class="pdg_15 jbg_grey01 flx_lft line_t_dash">--}}
+{{--                    <div class="pdg_r15 jcr_ylw jm_ts4 j_bold">--}}
+{{--                        A--}}
+{{--                    </div>--}}
+{{--                    <div class="jcr_grey2 jm_tsss2">--}}
+{{--                        안녕하세요, 매니저입니다. <br> 문의 사항을 전화로 알려 드리겠습니다. <br> 좋은 하루 되세요 ^^--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
         <!-- // -->
         <!-- // Q_list -->
 
