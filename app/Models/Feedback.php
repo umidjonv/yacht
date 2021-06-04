@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use App\User;
+
 class Feedback extends BaseModel
 {
     protected $table = 'feedbacks';
@@ -20,6 +22,11 @@ class Feedback extends BaseModel
     public function childs()
     {
         return $this->hasMany(Feedback::class, 'ParentId');
+    }
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'UserId');
     }
 
 }

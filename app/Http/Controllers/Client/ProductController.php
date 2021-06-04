@@ -66,6 +66,7 @@ class ProductController extends Controller
 
         $parentFeedbacks = Feedback::where('ProductId', $id)
             ->where('ParentId', null)
+            ->where('IsPublic', true)
             
             ->with('childs')->get();
 
