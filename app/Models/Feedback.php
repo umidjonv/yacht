@@ -26,7 +26,7 @@ class Feedback extends BaseModel
 
     public function user()
     {
-        return $this->hasMany(User::class, 'UserId');
+        return $this->belongsTo(User::class, 'UserId');
     }
 
 }

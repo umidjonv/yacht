@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Client;
+namespace App\Http\Controllers\Admin;
 
 
 use App\Http\Controllers\Admin\BaseController;
@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Validator;
 
-class FeedbackController extends BaseController
+class FeedbackController extends Controller
 {
 
     public function index($tab = "answered")
@@ -28,8 +28,8 @@ class FeedbackController extends BaseController
 
         $user= Auth::user();
 
-        $feedbacks = Feedback::where('ParentId', null)
-            ->with('childs')->with('users')->with('product')
+        $feedbacks = Feedback::where([['ParentId', null], ['']])
+            ->with('childs')->with('user')->with('product')
             ->orderBy('Id', 'desc')
             ->paginate(10);
 
@@ -47,14 +47,19 @@ class FeedbackController extends BaseController
 
         $validation = Validator::make($request->all(), [
             'Message' => 'required',
+            'Title' => 'required',
             'ParentId' => 'required',
             'IsPublic' => 'required',
             'ProductId' => 'required',
 
         ]);
 
+        //return dd($request->all());
         if($validation->fails())
         {
+
+            return dd($request->all());
+
             return redirect()->back()
                 ->withErrors($validation)
                 ->withInput();
@@ -66,11 +71,14 @@ class FeedbackController extends BaseController
 
         //if($feedback==null)
 
+
+
         $feedback = new Feedback();
         $feedback->UserId = $user->id;
         $feedback->Title = $request->input('Title');
         $feedback->Message = $request->input('Message');
-        $feedback->ProductId = $request->input('ParentId');
+        $feedback->ProductId = $request->input('ProductId');
+        $feedback->ParentId = $request->input('ParentId');
         $feedback->IsPublic = $request->input('IsPublic');
         $feedback->Type = true;
         $feedback->save();

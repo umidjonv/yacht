@@ -26,12 +26,14 @@ class FeedbackController extends Controller
         }
         $user= Auth::user();
 
-        $product = Product::find($id);
+        $product = Product::with('yacht')->where('Id',$id)->first();
+
+        $vendorId=Vendor::find($product->yacht()->first()->VendorId);
 
         $parentFeedback = Feedback::where([['ProductId', $id], ['UserId', $user->id], ['ParentId',null]])->first();
 
 
-        return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback]);
+        return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback, 'vendorId'=>$vendorId]);
     }
 
     public function save(Request $request)
@@ -47,6 +49,7 @@ class FeedbackController extends Controller
             'Message' => 'required'
         ]);
 
+        return dd($request->all());
         if($validation->fails())
         {
             return redirect()->back()
@@ -55,12 +58,12 @@ class FeedbackController extends Controller
         }
 
 
-
         $feedback = new Feedback();
         $feedback->UserId = $user->id;
         $feedback->Title = $request->input('Title');
         $feedback->Message = $request->input('Message');
         $feedback->ProductId = $request->input('ProductId');
+        $feedback->VendorId = $request->input('VendorId');
         $feedback->IsPublic = $request->input('IsPublic');
         $feedback->save();
 

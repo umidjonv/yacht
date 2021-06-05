@@ -76,6 +76,11 @@ Route::namespace('Admin')->group(function(){
         Route::get('/banner/detach/{id}',           'BannerController@detach_event')->name('admin.banner.event_detach');
         Route::post('/banner/attach',           'BannerController@attach_event')->name('admin.banner.attach');
 
+        //Feedbacks
+        Route::get('/feedback',           'FeedbackController@index')->name('admin.feedback.index');
+
+        Route::post('/feedback/save',           'FeedbackController@save')->name('admin.feedback.save');
+
 
 
 

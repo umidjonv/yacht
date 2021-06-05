@@ -130,6 +130,11 @@ return [
     'email' => 'Email',
     'password' => 'Password',
     'repassword' => 'Retype password',
+    'feedback_title' => 'Feedback',
+    'feedback_answer' => 'Answer',
+    'feedback_have_you_send' => 'Can you send answer?',
+    'feedback_send' => 'Send',
+    'feedback_is_required' => 'Message is required',
 
 
 
