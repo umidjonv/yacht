@@ -47,6 +47,8 @@ Route::namespace('Client')->group(function(){
             Route::get('/feedback/add/{id}', 'FeedbackController@add')->name('client.mobile.feedback.add');
             Route::post('/feedback/save', 'FeedbackController@save')->name('client.mobile.feedback.save');
 
+            Route::get('/event/{id}', 'EventController@view')->name('client.mobile.event.view');
+
 
 
         });

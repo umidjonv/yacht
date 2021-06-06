@@ -54,7 +54,7 @@
 @endsection
 
 @section('scripts')
-    <script src="{{asset('libs/summernote/summernote.min.js')}}"></script>
+    <script src="{{asset('libs/summernote/summernote-bs4.min.js')}}"></script>
     <script>
         let preloaded = [
                 @php

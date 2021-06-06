@@ -27,18 +27,14 @@
     <div class="inner-t2">
         <div class="swiper-container swiper_loop w_100" style="height: 0; padding-top:50%;">
             <div class="swiper-wrapper w_100" style="margin-top:-50%;">
-                <div class="swiper-slide" onclick="location.href='event_view.html'">
-                    <img src="{{asset('mobile/client/images/pic/rolling_img01.png')}}" width="100%" alt="">
+                @foreach($banners as $banner)
+                    @php
+                    $event = $banner->event()->first();
+                    @endphp
+                <div class="swiper-slide" onclick="location.href='{{$event==null?'#':route('client.mobile.event.view', ['id'=>$event->Id])}}'" >
+                    <img src="{{asset('storage/banners').'/'.$banner->Image}}" width="100%" alt="">
                 </div>
-                <div class="swiper-slide" onclick="location.href='event_view.html'">
-                    <img src="{{asset('mobile/client/images/pic/rolling_img02.png')}}" width="100%" alt="">
-                </div>
-                <div class="swiper-slide" onclick="location.href='event_view.html'">
-                    <img src="{{asset('mobile/client/images/pic/rolling_img01.png')}}" width="100%" alt="">
-                </div>
-                <div class="swiper-slide" onclick="location.href='event_view.html'">
-                    <img src="{{asset('mobile/client/images/pic/rolling_img02.png')}}" width="100%" alt="">
-                </div>
+                @endforeach
             </div>
             <!-- Add Pagination -->
             <div class="swiper-pagination"></div>

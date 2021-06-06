@@ -20,13 +20,7 @@
 
     @yield('header_styles')
     <!-- js -->
-    <script src="{{asset("js/jquery.min.js")}}"></script>
-    <script src="{{asset("js/jquery.mask.min.js")}}"></script>
-    <script src="{{asset("mobile/client/js/swiper.min4.js")}}"></script>
 
-    <script src="{{asset("mobile/client/js/script.js")}}"></script>
-
-    <script src="{{asset("js/bootstrap.min.js")}}"></script>
 </head>
 
 <body>
@@ -35,6 +29,15 @@
 
     @yield('content')
 
+
+    <script src="{{asset("js/jquery.min.js")}}"></script>
+    <script src="{{asset("js/jquery.mask.min.js")}}"></script>
+    <script src="{{asset("mobile/client/js/swiper.min4.js")}}"></script>
+
+    <script src="{{asset("mobile/client/js/script.js")}}"></script>
+
+    <script src="{{asset("js/bootstrap.min.js")}}"></script>
+    <script src="{{asset("js/popper.min.js")}}"></script>
     @yield('scripts')
 
 
