@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Admin;
 
 
+use App\Common\Enums\UserType;
 use App\Http\Controllers\Admin\BaseController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
@@ -28,10 +29,31 @@ class FeedbackController extends Controller
 
         $user= Auth::user();
 
-        $feedbacks = Feedback::where([['ParentId', null], ['']])
-            ->with('childs')->with('user')->with('product')
-            ->orderBy('Id', 'desc')
-            ->paginate(10);
+        $feedbacks = null;
+
+        if($user->type == UserType::user)
+        {
+            $vendor = Vendor::where('UserId', $user->id)->first();
+
+            if($vendor!=null)
+            {
+                $feedbacks = Feedback::where([['ParentId', null], ['VendorId', $vendor->Id]])
+                    ->with('childs')->with('user')->with('product')
+                    ->orderBy('Id', 'desc')
+                    ->paginate(10);
+            }
+
+            return view('admin.feedback.index')->with(['model'=>$feedbacks]);
+
+
+        }
+
+
+
+
+
+
+
 
         return view('admin.feedback.index')->with(['model'=>$feedbacks]);
     }
@@ -58,8 +80,6 @@ class FeedbackController extends Controller
         if($validation->fails())
         {
 
-            return dd($request->all());
-
             return redirect()->back()
                 ->withErrors($validation)
                 ->withInput();
@@ -69,9 +89,7 @@ class FeedbackController extends Controller
 
         $parent = Feedback::find($parentId);
 
-        //if($feedback==null)
-
-
+        $vendor = Vendor::where('UserId', $user->id)->first();
 
         $feedback = new Feedback();
         $feedback->UserId = $user->id;
@@ -80,6 +98,8 @@ class FeedbackController extends Controller
         $feedback->ProductId = $request->input('ProductId');
         $feedback->ParentId = $request->input('ParentId');
         $feedback->IsPublic = $request->input('IsPublic');
+        $feedback->VendorId = $vendor->Id;
+
         $feedback->Type = true;
         $feedback->save();
 

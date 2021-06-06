@@ -31,7 +31,7 @@ class User extends Authenticatable
 
     public function vendor()
     {
-        return $this->hasMany(Vendor::class)->first();
+        return $this->hasMany(Vendor::class, 'VendorId');
     }
 
     public function favourites()

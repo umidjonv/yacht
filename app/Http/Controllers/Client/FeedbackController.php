@@ -28,12 +28,12 @@ class FeedbackController extends Controller
 
         $product = Product::with('yacht')->where('Id',$id)->first();
 
-        $vendorId=Vendor::find($product->yacht()->first()->VendorId);
+        $vendor=Vendor::find($product->yacht()->first()->VendorId);
 
         $parentFeedback = Feedback::where([['ProductId', $id], ['UserId', $user->id], ['ParentId',null]])->first();
 
 
-        return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback, 'vendorId'=>$vendorId]);
+        return view('client.mobile.feedback.add')->with(['model'=>$product, 'feedback'=>$parentFeedback, 'vendor'=>$vendor]);
     }
 
     public function save(Request $request)
@@ -49,7 +49,7 @@ class FeedbackController extends Controller
             'Message' => 'required'
         ]);
 
-        return dd($request->all());
+
         if($validation->fails())
         {
             return redirect()->back()

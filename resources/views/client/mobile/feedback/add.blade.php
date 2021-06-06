@@ -38,7 +38,7 @@
         <form action="{{route('client.mobile.feedback.save')}}" method="post">
             {{csrf_field()}}
             <input type="hidden" name="ProductId" value="{{$model->Id}}">
-            <input type="hidden" name="VendorId" value="{{$vendorId}}">
+            <input type="hidden" name="VendorId" value="{{$vendor->Id}}">
             @if(isset($feedback))<input type="hidden" name="ParentId" value="{{$feedback->Id}}">@endif
 
         <div class="pdg_s15 pdg_t15">

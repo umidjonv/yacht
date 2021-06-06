@@ -18,7 +18,7 @@
 
     <link rel="stylesheet" href="{{asset('libs/datatables/jquery.dataTables.css')}}"/>
 
-    <title>Administrator management page</title>
+    <title>@lang('admin.admin_page_title')</title>
 
 </head>
 
@@ -115,6 +115,15 @@
                             @lang('admin.banner_edit_title')
                         </a>
                     </li>
+                </ul>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.feedback.index')}}">
+
+                            @lang('admin.feedback_list')
+                        </a>
+                    </li>
+
                 </ul>
 
 

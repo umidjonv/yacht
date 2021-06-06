@@ -129,12 +129,14 @@ return [
     'contact' => 'Contact',
     'email' => 'Email',
     'password' => 'Password',
+    'admin_page_title' => 'Administration management',
     'repassword' => 'Retype password',
     'feedback_title' => 'Feedback',
     'feedback_answer' => 'Answer',
     'feedback_have_you_send' => 'Can you send answer?',
     'feedback_send' => 'Send',
     'feedback_is_required' => 'Message is required',
+    'feedback_list' => 'List of feedback',
 
 
 

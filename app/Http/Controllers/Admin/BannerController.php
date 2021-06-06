@@ -15,6 +15,7 @@ use App\Models\Yacht;
 use App\Models\YachtImage;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Support\Str;
 use Validator;
@@ -46,6 +47,9 @@ class BannerController extends BaseController
 
     public function save(Request $request){
 
+        if(!Auth::check())
+            return redirect('/login');
+
         $preloadImages = array();
         $preloadImages = $request->preloaded;
 
@@ -61,8 +65,6 @@ class BannerController extends BaseController
         }else{
             Banner::truncate();
         }
-
-
 
         $index = 0;
 
