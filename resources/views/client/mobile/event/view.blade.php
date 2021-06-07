@@ -2,6 +2,7 @@
 
 
 @section('styles')
+    <link href="{{asset('libs/summernote/summernote.css')}}" rel="stylesheet"/>
 @endsection
 
 
@@ -51,7 +52,7 @@
                     <div class="w_100" style="margin-top:-100%; overflow:hidden;">
                         <div>
                             @foreach($images as $image)
-                                <img src="{{asset('/storage/events/').'/'.$image->Name}}" width="100%" alt="">
+                                <img src="{{asset('/storage/events/').'/'.$image->Name}}" width="100%" alt=""/>
                             @endforeach
                         </div>
                     </div>
@@ -62,15 +63,19 @@
 
             <div class="pdg_s15 pdg_t15">
                 <div class="jcr_grey2 jm_tsss2 j_bold lh_17">
-                    <div class="summernote hide">
+
+                    <textarea class="summernote">
                         {{$model->Description}}
-                    </div>
-                    <div class="description">
+
+                    </textarea>
+
+                    <div id="descriptionContent">
 
                     </div>
 
                 </div>
             </div>
+
             <!--// Specify outermost_margin -->
 
 
@@ -261,9 +266,25 @@
 
 
 @section('scripts')
+
     <script src="{{asset('libs/summernote/summernote.min.js')}}"></script>
     <script>
-         var html = $('.summernote').summernote('code');
-         $('.description').html(html);
+
+        var content = "{{$model->Description}}";
+        $(document).ready(function(){
+            $('.summernote').summernote({
+                toolbar:[],
+                airMode:true,
+                air: [
+                    ['picture', []],
+                    ['color', []],
+                    ['font', []]
+                ]
+            });
+
+
+        });
+
+
     </script>
 @endsection

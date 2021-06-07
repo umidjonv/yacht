@@ -58,11 +58,9 @@
     <script>
         let preloaded = [
                 @php
-                        @endphp
-                @foreach($event->images as $image)
-
-            {id:{{$image->Id}}, src: '{{asset('/storage/events/'.$image->Name)}}'},
-
+                @endphp
+            @foreach($event->images as $image)
+                {id:{{$image->Id}}, src: '{{asset('/storage/events/'.$image->Name)}}'},
             @endforeach
 
 
