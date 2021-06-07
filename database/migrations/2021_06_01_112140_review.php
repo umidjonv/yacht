@@ -20,7 +20,7 @@ class Review extends Migration
             $table->integer('UserId')->unsigned();
 
             $table->text('Message');
-            $table->integer('Rating')->nullable();
+            $table->float('Rating', 2,2)->nullable();
 
             $table->dateTime('UpdatedAt')->nullable();
             $table->dateTime('CreatedAt')->nullable();

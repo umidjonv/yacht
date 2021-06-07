@@ -5,18 +5,18 @@ namespace App\Models;
 
 
 use http\Client\Curl\User;
-use Products;
 
-class Favourite extends BaseModel
+
+class Rating extends BaseModel
 {
-    protected $table = 'favourites';
+    protected $table = 'rating_view';
     /**
      * @var mixed
      */
 
     public function product()
     {
-        return $this->belongsTo(Products::class, 'ProductId');
+        return $this->belongsTo(Product::class, 'ProductId');
     }
 
     public function user()

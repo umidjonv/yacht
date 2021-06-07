@@ -1,5 +1,16 @@
 @extends('client.layouts.mobile')
 
+@section('header_styles')
+    <link rel="stylesheet" href="{{asset('libs/rateit/rateit.css')}}">
+@endsection
+@section('styles')
+    <style>
+    .up_tl_wrap {
+        top: -180px;
+    }
+    </style>
+@endsection
+
 @section('content')
 <div class="jbg_grey02" style="position:relative; min-height:100%; padding-bottom:60px;">
 
@@ -106,49 +117,43 @@
         </div>
     </div>
     <!-- // map -->
-    <div class="pdg_t15 jbg_grey02">
-        <!-- title -->
-        <div class="pdg_s15 jcr_grey9 jm_tsss2" onclick="location.href='product_area.html'">
-            <font class="jcr_grey2 jm_tss1 j_bold pdg_r10">테마투어</font>요트를 더욱 특별하게 체험할 수 있어요 :)
-        </div>
-        <!-- // title -->
-    </div>
+{{--    <div class="pdg_t15 jbg_grey02">--}}
+{{--        <!-- title -->--}}
+{{--        <div class="pdg_s15 jcr_grey9 jm_tsss2" onclick="location.href='product_area.html'">--}}
+{{--            <font class="jcr_grey2 jm_tss1 j_bold pdg_r10">테마투어</font>요트를 더욱 특별하게 체험할 수 있어요 :)--}}
+{{--        </div>--}}
+{{--        <!-- // title -->--}}
+{{--    </div>--}}
     <div class="pdg_tb10 jbg_grey02">
         <div class="sliding01_container">
             <div class="sliding01_wrap">
+                @foreach($ratings as $rating)
+                    @php
+                    $product = $rating->product()->first();
+                    $image = $product->yacht()->first()->images()->first();
+
+                    @endphp
+
                 <!---->
                 <div class="sliding01_cell" onclick="location.href='theme_stay.html'">
-                    <img src="{{asset('mobile/client/images/pic/review_06.png')}}" width="100%" alt="" />
+                    @if(isset($image))
+                        <img src="{{asset('storage/yachts').'/'.$image->Name}}" width="100%" height="100%" alt="" />
+                    @else
+                        <img src="{{asset('storage/images/yacht.png')}}" width="100%" height="100%" alt="" />
+                    @endif
                     <div class="up_tl_wrap">
                         <div class="up_tl">
                             <div class="jcr_wht jm_tss1">
-                                요트숙박
+                                {{$product->Name}} <span class="rateit" data-rateit-value="2.5"></span>
                             </div>
                         </div>
                     </div>
+
                 </div>
+
+                @endforeach
                 <!---->
-                <div class="sliding01_cell" onclick="location.href='theme_basic.html'">
-                    <img src="{{asset('mobile/client/images/pic/review_06.png')}}" width="100%" alt="" />
-                    <div class="up_tl_wrap">
-                        <div class="up_tl">
-                            <div class="jcr_wht jm_tss1">
-                                요트체험
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!---->
-                <div class="sliding01_cell" onclick="location.href='event_view.html'">
-                    <img src="{{asset('mobile/client/images/pic/review_06.png')}}" width="100%" alt="" />
-                    <div class="up_tl_wrap">
-                        <div class="up_tl">
-                            <div class="jcr_wht jm_tss1">
-                                요트대회
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
             </div>
         </div>
     </div>
@@ -171,4 +176,9 @@
     <!-- // 하단 TAB 버튼 -->
 
 </div>
+@endsection
+@section('scripts')
+<script src="{{asset('libs/rateit/jquery.rateit.min.js')}}"></script>
+    <script></script>
+
 @endsection
