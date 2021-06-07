@@ -56,6 +56,8 @@ Route::namespace('Admin')->group(function(){
 
         Route::get  ('/member',      'MemberController@index')->name('admin.member');
         Route::get  ('/member/{id}',      'MemberController@view')->name('admin.member.view');
+        Route::post  ('/member/password',      'MemberController@change_password')->name('admin.member.change_password');
+
 
         Route::get  ('/reservation',                'ReservationController@index')->name('admin.reservation');
         Route::get  ('/reservation/{id}',                'ReservationController@view')->name('admin.reservation.view');
@@ -75,6 +77,7 @@ Route::namespace('Admin')->group(function(){
         Route::get('/banner/events/{id}',           'BannerController@events')->name('admin.banner.events');
         Route::get('/banner/detach/{id}',           'BannerController@detach_event')->name('admin.banner.event_detach');
         Route::post('/banner/attach',           'BannerController@attach_event')->name('admin.banner.attach');
+
 
         //Feedbacks
         Route::get('/feedback',           'FeedbackController@index')->name('admin.feedback.index');

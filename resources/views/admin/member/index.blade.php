@@ -3,22 +3,54 @@
 @section('content')
 
 
+    <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">@lang('admin.member_change_password')</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <form action="{{route('admin.member.change_password')}}" method="post">
+                        <div class="form-group">
+                            <label class="form-control-plaintext">@lang('admin.password')</label>
+                            <input type="password" name="password"/>
+
+                        </div>
+                        <div class="form-group">
+                            <label class="form-control-plaintext">@lang('admin.retype_password')</label>
+                            <input type="repassword" name="password"/>
+
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+
+                    <button type="submit" class="btn btn-primary">@lang('admin.save')</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="row">
 
         <div class="col">
 
 
-            <h2>Members list</h2>
+            <h2>@lang('admin.member_list')</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Username</th>
-                        <th>MembershipStatus</th>
-                        <th>CurrentPoint</th>
-                        <th>AccumulatedPoint</th>
-                        <th>ReservationsCount</th>
-                        <th>LastVisited</th>
+                        <th>@lang('admin.member_username')</th>
+                        <th>@lang('admin.member_membershipstatus')</th>
+                        <th>@lang('admin.member_currentpoint')</th>
+                        <th>@lang('admin.member_accumpoint')</th>
+                        <th>@lang('admin.member_reservpoint')</th>
+                        <th>@lang('admin.member_lastvisited')</th>
 
                     </tr>
                 </thead>
@@ -33,7 +65,11 @@
                             <td>{{$item->AccumulatedPoint}}</td>
                             <td>{{$item->ReservationCount}}</td>
                             <td>{{$item->LastVisited}}</td>
-                            <td><a href="{{route('admin.member.view',['Id'=>$item->Id])}}" class="btn btn-info"><span class="fa fa-eye"></span> </a> </td>
+                            <td>
+                                <a href="javascript:void(0)" class="btn btn-info" onclick="ChangeMemberStatus({{$item->Id}})"><span class="fa fa-eye"></span> </a>
+                                <a href="javascript:void(0)" class="btn btn-info" onclick="ChangePassword({{$item->Id}})"><span class="fa fa-key"></span> </a>
+                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>
@@ -48,17 +84,17 @@
     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script>
         $(document).ready(function(){
-            window.activateConfirm = function(itemId)
+            window.ChangeMemberStatus = function(itemId)
             {
                 Swal.fire({
                     icon: 'warning',
-                    text: 'Do you want activate?',
+                    text: '@lang('admin.change_member_status')',
                     showCancelButton: true,
-                    confirmButtonText: 'Activate',
+                    confirmButtonText: '@lang('admin.change_member_status_title')',
                     confirmButtonColor: '#e3342f',
                 }).then((result) => {
                     $.ajax({
-                        url:'{{url('/admin/vendor/activate')}}/'+itemId,
+                        url:'{{url('/admin/member/activate')}}/'+itemId,
                         method:'GET'
 
                     })
@@ -68,6 +104,29 @@
                             window.location.reload();
                         }
                     });
+                });
+            }
+
+            window.ChangePassword = function(itemId)
+            {
+                Swal.fire({
+                    icon: 'warning',
+                    text: '@lang('admin.member_change_password')',
+                    showCancelButton: true,
+                    confirmButtonText: '@lang('admin.member_change_password_title')',
+                    confirmButtonColor: '#e3342f',
+                }).then((result) => {
+                    $.ajax({
+                        url:'{{url('/admin/member/activate')}}/'+itemId,
+                        method:'GET'
+
+                    })
+                        .done(function(data){
+                            if(data.status == {{\App\Common\Enums\ResultStatus::Success}})
+                            {
+                                window.location.reload();
+                            }
+                        });
                 });
             }
         });

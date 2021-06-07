@@ -22,9 +22,11 @@ class ReservationController extends Controller
 
     public function prepare($id)
     {
-        $product = Product::find($id);
+        $product = Product::with('yachts')->find($id);
 
-        return view('client.mobile.reservation.prepare')->with(['model'=>$product]);
+        $yacht = $product->yacht()->first();
+
+        return view('client.mobile.reservation.prepare')->with(['model'=>$product, 'VendorId'=>$yacht->VendorId]);
     }
 
 
@@ -69,6 +71,7 @@ class ReservationController extends Controller
         $reservation->TotalAmount =  $request->input('TotalAmount');
         $reservation->ProductId =  $request->input('ProductId');
         $reservation->UserId =  $request->input('UserId');
+        $reservation->VendorId =  $request->input('VendorId');
 
         $reservation->save();
 

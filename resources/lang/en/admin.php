@@ -139,6 +139,19 @@ return [
     'feedback_list' => 'List of feedback',
 
 
+    'member_username' => 'Username',
+    'member_membershipstatus' => 'Membership',
+    'member_currentpoint' => 'Current point',
+    'member_accumpoint' => 'Accumulated point',
+    'member_lastvisited' => 'Last visited',
+    'change_member_status' => 'Will you change member status?',
+    'change_member_status_title' => 'Member',
+    'member_change_password' => 'Change password?',
+    'member_change_password_title' => 'Password',
+
+    'retype_password'=>'Retype password',
+
+
 
 
 

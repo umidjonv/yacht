@@ -26,5 +26,10 @@ class Vendor extends BaseModel
         return $this->belongsTo(User::class, 'UserId');
     }
 
+    public function reservations()
+    {
+        return $this->hasMany(Reservation::class, 'VendorId');
+    }
+
 
 }

@@ -18,7 +18,7 @@
 
     <div class="row bg-light">
         <div class="col-6">
-            <h2>Product information</h2>
+            <h2>@lang('admin.member_information')</h2>
 
             <form action="{{ route('admin.product.save', ['id'=>$id]) }}" method="post" >
                 {{csrf_field()}}
