@@ -3,7 +3,7 @@
 @section('content')
 
 
-    <div class="modal fade" id="changePassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modalPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -17,12 +17,12 @@
                     <form action="{{route('admin.member.change_password')}}" method="post">
                         <div class="form-group">
                             <label class="form-control-plaintext">@lang('admin.password')</label>
-                            <input type="password" name="password"/>
+                            <input type="password" name="password" class="form-control"/>
 
                         </div>
                         <div class="form-group">
                             <label class="form-control-plaintext">@lang('admin.retype_password')</label>
-                            <input type="repassword" name="password"/>
+                            <input type="repassword" name="password" class="form-control"/>
 
                         </div>
 
@@ -67,7 +67,7 @@
                             <td>{{$item->LastVisited}}</td>
                             <td>
                                 <a href="javascript:void(0)" class="btn btn-info" onclick="ChangeMemberStatus({{$item->Id}})"><span class="fa fa-eye"></span> </a>
-                                <a href="javascript:void(0)" class="btn btn-info" onclick="ChangePassword({{$item->Id}})"><span class="fa fa-key"></span> </a>
+                                <a href="javascript:void(0)" class="btn btn-info" name="passwordBtn" data-password-id="{{$item->Id}}"><span class="fa fa-key"></span> </a>
                             </td>
 
                         </tr>
@@ -107,28 +107,10 @@
                 });
             }
 
-            window.ChangePassword = function(itemId)
+            $('[name="passwordBtn"]').click(function()
             {
-                Swal.fire({
-                    icon: 'warning',
-                    text: '@lang('admin.member_change_password')',
-                    showCancelButton: true,
-                    confirmButtonText: '@lang('admin.member_change_password_title')',
-                    confirmButtonColor: '#e3342f',
-                }).then((result) => {
-                    $.ajax({
-                        url:'{{url('/admin/member/activate')}}/'+itemId,
-                        method:'GET'
-
-                    })
-                        .done(function(data){
-                            if(data.status == {{\App\Common\Enums\ResultStatus::Success}})
-                            {
-                                window.location.reload();
-                            }
-                        });
-                });
-            }
+                $('#modalPassword').modal('show');
+            });
         });
 
     </script>
