@@ -35,8 +35,6 @@ class YachtRequest extends FormRequest
             'activity.StartTime' => 'required|date_format:H:i',
             'activity.EndTime' => 'required|date_format:H:i',
             'image.*' => 'required|image|mimes:jpeg,png,jpg'
-
-
         ];
     }
 }

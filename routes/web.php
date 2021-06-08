@@ -1,5 +1,7 @@
 <?php
+
 use App\Http\Controllers\Admin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,7 +31,7 @@ Artisan::call('storage:link');
 
 
 //yacht methods
-Route::namespace('Admin')->group(function(){
+Route::namespace('Admin')->group(function () {
     Route::prefix('admin')->middleware(['auth', 'checkVendor'])->group(function () {
 
         Route::get('/', 'AdminController@index')->name('admin.index');
@@ -48,51 +50,59 @@ Route::namespace('Admin')->group(function(){
         Route::get('/vendor/activate/{id}', 'VendorController@activate')->name('admin.vendor.activate');
         Route::get('/vendor/yachts/{vendorId}', 'YachtController@by_vendor')->name('admin.vendor.yachts');
 
-        Route::get  ('/product',                'ProductController@index')->name('admin.product');
-        Route::get  ('/product/add',            'ProductController@add')->name('admin.product.add');
-        Route::get  ('/product/edit/{id}',      'ProductController@edit')->name('admin.product.edit');
-        Route::post ('/product/save',           'ProductController@save')->name('admin.product.save');
-        Route::get  ('/product/yachts',      'ProductController@get_yachts')->name('admin.product.get_yachts');
+        Route::get('/product', 'ProductController@index')->name('admin.product');
+        Route::get('/product/add', 'ProductController@add')->name('admin.product.add');
+        Route::get('/product/edit/{id}', 'ProductController@edit')->name('admin.product.edit');
+        Route::post('/product/save', 'ProductController@save')->name('admin.product.save');
+        Route::get('/product/yachts', 'ProductController@get_yachts')->name('admin.product.get_yachts');
 
-        Route::get  ('/member',      'MemberController@index')->name('admin.member');
-        Route::get  ('/member/{id}',      'MemberController@view')->name('admin.member.view');
-        Route::post  ('/member/password',      'MemberController@change_password')->name('admin.member.change_password');
+        Route::get('/member', 'MemberController@index')->name('admin.member');
+        Route::get('/member/{id}', 'MemberController@view')->name('admin.member.view');
+        Route::post('/member/password', 'MemberController@change_password')->name('admin.member.change_password');
 
 
-        Route::get  ('/reservation',                'ReservationController@index')->name('admin.reservation');
-        Route::get  ('/reservation/{id}',                'ReservationController@view')->name('admin.reservation.view');
+        Route::get('/reservation', 'ReservationController@index')->name('admin.reservation');
+        Route::get('/reservation/{id}', 'ReservationController@view')->name('admin.reservation.view');
 
         //Events
-        Route::get('/event',                  'EventController@index')->name('admin.event');
-        Route::get('/event/create',           'EventController@create')->name('admin.event.create');
-        Route::get('/event/edit/{event}',     'EventController@edit')->name('admin.event.edit');
-        Route::post('/event/store',           'EventController@store')->name('admin.event.store');
-        Route::post('/event/update/{event}',  'EventController@update')->name('admin.event.update');
+        Route::get('/event', 'EventController@index')->name('admin.event');
+        Route::get('/event/create', 'EventController@create')->name('admin.event.create');
+        Route::get('/event/edit/{event}', 'EventController@edit')->name('admin.event.edit');
+        Route::post('/event/store', 'EventController@store')->name('admin.event.store');
+        Route::post('/event/update/{event}', 'EventController@update')->name('admin.event.update');
 
         //Banners
-        Route::get('/banner',                  'BannerController@index')->name('admin.banner');
-        Route::get('/banner/edit',           'BannerController@edit')->name('admin.banner.edit');
-        Route::post('/banner/save',           'BannerController@save')->name('admin.banner.save');
-        Route::post('/banner/update',           'BannerController@update')->name('admin.banner.update');
-        Route::get('/banner/events/{id}',           'BannerController@events')->name('admin.banner.events');
-        Route::get('/banner/detach/{id}',           'BannerController@detach_event')->name('admin.banner.event_detach');
-        Route::post('/banner/attach',           'BannerController@attach_event')->name('admin.banner.attach');
+        Route::get('/banner', 'BannerController@index')->name('admin.banner');
+        Route::get('/banner/edit', 'BannerController@edit')->name('admin.banner.edit');
+        Route::post('/banner/save', 'BannerController@save')->name('admin.banner.save');
+        Route::post('/banner/update', 'BannerController@update')->name('admin.banner.update');
+        Route::get('/banner/events/{id}', 'BannerController@events')->name('admin.banner.events');
+        Route::get('/banner/detach/{id}', 'BannerController@detach_event')->name('admin.banner.event_detach');
+        Route::post('/banner/attach', 'BannerController@attach_event')->name('admin.banner.attach');
 
 
         //Feedbacks
-        Route::get('/feedback',           'FeedbackController@index')->name('admin.feedback.index');
+        Route::get('/feedback', 'FeedbackController@index')->name('admin.feedback.index');
 
-        Route::post('/feedback/save',           'FeedbackController@save')->name('admin.feedback.save');
+        Route::post('/feedback/save', 'FeedbackController@save')->name('admin.feedback.save');
 
 
-
+        Route::group(["prefix" => "mobile", "as" => "admin.mobile.", "namespace"=> "Mobile"], function () {
+            Route::group(["prefix" => "yacht", "as" => "yacht."], function() {
+                Route::get("", ["as" => "index", "uses" => "YachtController@index"]);
+                Route::get("register", ["as" => "register", "uses" => "YachtController@register"]);
+                Route::post("save", ["as" => "save", "uses" => "YachtController@save"]);
+                Route::get("edit/{yacht}", ["as" => "edit", "uses" => "YachtController@edit"]);
+                Route::put("update/{yacht}", ["as" => "update", "uses" => "YachtController@update"]);
+            });
+        });
 
 
     });
 
 });
 
-Route::namespace('Client')->group(function(){
+Route::namespace('Client')->group(function () {
 
     Route::prefix('client')->group(function () {
         Route::get('/', 'HomeController@index')->name('index');
@@ -156,4 +166,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-require __DIR__.'/mobile.php';
+require __DIR__ . '/mobile.php';
