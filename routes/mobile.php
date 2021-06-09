@@ -6,7 +6,7 @@ Route::namespace('Admin')->group(function(){
         Route::prefix('mobile')->group(function () {
             Route::get('/', 'AdminController@mobile_index')->name('admin.mobile.index');
 
-            Route::post('/attempt', 'LoginController@attempt')->name('admin.mobile.login.attempt');
+
             Route::get('/logout', 'LoginController@logout')->name('admin.mobile.login.logout');
 
 
@@ -19,6 +19,7 @@ Route::namespace('Admin')->group(function(){
     Route::group(['prefix'=> 'admin'], function () {
         Route::prefix('mobile')->group(function () {
             Route::get('/login', 'LoginController@index')->name('admin.mobile.login.index');
+            Route::post('/attempt', 'LoginController@attempt')->name('admin.mobile.login.attempt');
         });
     });
 

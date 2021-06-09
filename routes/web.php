@@ -87,6 +87,16 @@ Route::namespace('Admin')->group(function(){
 
         Route::post('/feedback/save',           'FeedbackController@save')->name('admin.feedback.save');
 
+        Route::group(["prefix" => "mobile", "as" => "admin.mobile.", "namespace"=> "Mobile"], function () {
+            Route::group(["prefix" => "yacht", "as" => "yacht."], function() {
+                Route::get("", ["as" => "index", "uses" => "YachtController@index"]);
+                Route::get("register", ["as" => "register", "uses" => "YachtController@register"]);
+                Route::post("save", ["as" => "save", "uses" => "YachtController@save"]);
+                Route::get("edit/{yacht}", ["as" => "edit", "uses" => "YachtController@edit"]);
+                Route::put("update/{yacht}", ["as" => "update", "uses" => "YachtController@update"]);
+            });
+        });
+
 
 
 
