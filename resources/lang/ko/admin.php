@@ -88,5 +88,6 @@ return [
     'product_reservation_remove' => '제거',
     'product_save' => '저장',
 
-
+    'admin.mobile.yacht_created_successfully'  => '',
+    'admin.mobile.yacht_edited_successfully'  => '',
 ];
