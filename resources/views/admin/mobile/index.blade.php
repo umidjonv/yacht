@@ -33,7 +33,7 @@
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_02.html'">
                     Yacht management
                 </div>
-                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_03.html'">
+                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
                     Product management
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_04.html'">
@@ -78,7 +78,7 @@
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_02.html'">
                             Yacht management
                         </div>
-                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_03.html'">
+                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
                             Product management
                         </div>
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_04.html'">
