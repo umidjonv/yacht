@@ -58,7 +58,7 @@ class YachtController extends Controller
             "Regularity" => 1,
         ]);
 
-        return redirect()->route("admin.mobile.yacht.index")->with("message", __("yacht created successfully"));
+        return redirect()->route("admin.mobile.yacht.index")->with("message", __("admin.mobile.yacht_created_successfully"));
     }
 
     /**
@@ -94,7 +94,7 @@ class YachtController extends Controller
             "EndTime" => $this->getTime($request->Open["To"]),
             "Regularity" => 1,
         ]);
-        return redirect()->route("admin.mobile.yacht.index")->with("message", __("edited successfully"));
+        return redirect()->route("admin.mobile.yacht.index")->with("message", __("admin.mobile.yacht_edited_successfully"));
     }
 
     /**
