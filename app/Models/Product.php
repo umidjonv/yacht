@@ -22,5 +22,10 @@ class Product extends BaseModel
         return $this->hasMany(Favourite::class, 'ProductId');
     }
 
+    public function rating()
+    {
+        return $this->hasOne(Rating::class, 'ProductId');
+    }
+
 
 }
