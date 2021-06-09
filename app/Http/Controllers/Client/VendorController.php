@@ -36,7 +36,6 @@ class VendorController extends Controller
         $validated = $request->validated();
 
         $name = strtolower($request->name);
-
         $userId = DB::table('users')->insertGetId(
             [
                 'name' => $name,

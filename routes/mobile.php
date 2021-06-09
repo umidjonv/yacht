@@ -13,6 +13,15 @@ Route::namespace('Admin')->group(function(){
             Route::get('/vendor/edit/{id}', 'VendorController@edit')->name('admin.mobile.vendor.edit');
             Route::post('/vendor/save', 'VendorController@save_mobile')->name('admin.mobile.vendor.save');
 
+            Route::prefix('product')->group(function () {
+                Route::get('/', 'ProductMobileController@index')->name('admin.mobile.product.index');
+                Route::get('/create', 'ProductMobileController@create')->name('admin.mobile.product.create');
+                Route::post('/store', 'ProductMobileController@store')->name('admin.mobile.product.store');
+                Route::get('/getYacht', 'ProductMobileController@getYacht')->name('admin.mobile.product.getyacht');
+            });
+
+
+
             Route::group(["as" => "admin.mobile.", "namespace"=> "Mobile"], function () {
                 Route::group(["prefix" => "yacht", "as" => "yacht."], function() {
                     Route::get("", ["as" => "index", "uses" => "YachtController@index"]);
@@ -22,6 +31,7 @@ Route::namespace('Admin')->group(function(){
                     Route::put("update/{yacht}", ["as" => "update", "uses" => "YachtController@update"]);
                 });
             });
+
         });
     });
     Route::group(['prefix'=> 'admin'], function () {
