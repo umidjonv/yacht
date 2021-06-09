@@ -17,16 +17,21 @@ use Illuminate\Validation\Validator;
 class YachtController extends Controller
 {
 
+
+    public function index()
+    {
+        return view("client.yacht.index");
+    }
+
+
     public function list($sort = SortOrder::popularity)
     {
         $products = Product::where('Type', 1)->with('yacht')-> get();
 
         switch($sort)
         {
-            case SortOrder::popularity:
-                $products = Product::where('Type', 1)->with('yacht')-> get();
-                break;
             case SortOrder::registration:
+            case SortOrder::popularity:
                 $products = Product::where('Type', 1)->with('yacht')-> get();
                 break;
             case SortOrder::low_price:
