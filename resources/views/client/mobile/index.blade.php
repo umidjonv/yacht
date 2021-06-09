@@ -166,9 +166,9 @@
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.product.my')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/list.svg')}}" alt="예약내역">
         </div>
-        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='sale.html'">
-            <img src="{{asset('mobile/client/images/SVG_tab/yacht.svg')}}" alt="매물정보">
-        </div>
+{{--        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='sale.html'">--}}
+{{--            <img src="{{asset('mobile/client/images/SVG_tab/yacht.svg')}}" alt="매물정보">--}}
+{{--        </div>--}}
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='my_page.html'">
             <img src="{{asset('mobile/client/images/SVG_tab/mypage.svg')}}" alt="마이페이지">
         </div>

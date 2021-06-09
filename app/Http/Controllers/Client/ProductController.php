@@ -28,16 +28,16 @@ class ProductController extends Controller
         switch($sort)
         {
             case SortOrder::popularity:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')-> get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->with('rating')-> get();
                 break;
             case SortOrder::registration:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->with('rating')->get();
                 break;
             case SortOrder::low_price:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->orderBy('Price', 'asc')->get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->with('rating')->orderBy('Price', 'asc')->get();
                 break;
             case SortOrder::high_price:
-                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->orderBy('Price', 'desc')->get();
+                $products = Product::where([['Type', 1],['Area', $area]])->with('yacht')->with('yacht.images')->with('rating')->orderBy('Price', 'desc')->get();
                 break;
         }
 

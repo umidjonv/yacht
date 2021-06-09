@@ -54,18 +54,18 @@
             <div class="pdg_s15 pdg_tb13 jbg_grey02">
                 <!-- 1st line -->
                 <div class="flx_side">
-                    <div class="w_50 pdg_r05">
+                    <div class="w_100 pdg_r05">
                         <fieldset class="input_border">
                             <input class="js_input_loca w_100 js_pop_open" name="" placeholder="@lang('client.area_list_state_province')" type="text">
                         </fieldset>
                     </div>
-                    <div class="w_50 pdg_l05">
-                        <fieldset class="input_border">
-                            <!-- 1. Entering the day of the week in the input value, please modify js
-                            2. Change in the order of month and year shown in the calendar year and month. -->
-                            <input class="js_input_date on w_100 datepicker" name="" placeholder="@lang('client.area_list_reservation_date')" type="text">
-                        </fieldset>
-                    </div>
+{{--                    <div class="w_50 pdg_l05">--}}
+{{--                        <fieldset class="input_border">--}}
+{{--                            <!-- 1. Entering the day of the week in the input value, please modify js--}}
+{{--                            2. Change in the order of month and year shown in the calendar year and month. -->--}}
+{{--                            <input class="js_input_date on w_100 datepicker" name="" placeholder="@lang('client.area_list_reservation_date')" type="text">--}}
+{{--                        </fieldset>--}}
+{{--                    </div>--}}
                 </div>
                 <script>
                     // $('.datepicker').pickadate({
