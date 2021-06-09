@@ -16,7 +16,7 @@ Route::namespace('Admin')->group(function(){
 
         });
     });
-    Route::group(['prefix'=> 'admin', 'middleware' => ['redirectIfNotAuthenticated', 'checkVendor']], function () {
+    Route::group(['prefix'=> 'admin'], function () {
         Route::prefix('mobile')->group(function () {
             Route::get('/login', 'LoginController@index')->name('admin.mobile.login.index');
         });
