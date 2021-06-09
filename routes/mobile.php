@@ -58,6 +58,10 @@ Route::namespace('Client')->group(function(){
 
             Route::get('/event/{id}', 'EventController@view')->name('client.mobile.event.view');
 
+            Route::get('/payment', 'PaymentController@index')->name('client.mobile.payment.index');
+            Route::post('/payment/complete', 'PaymentController@complete')->name('client.mobile.payment.complete');
+
+
 
 
         });
