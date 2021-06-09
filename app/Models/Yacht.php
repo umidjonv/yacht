@@ -31,7 +31,7 @@ class Yacht extends BaseModel
 
     public function vendor(): HasOne
     {
-        return $this->hasOne(Vendor::class, 'YachtId', 'Id');
+        return $this->hasOne(Vendor::class, 'Id', 'VendorId');
     }
 
     /**
