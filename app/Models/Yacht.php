@@ -6,18 +6,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Yacht extends BaseModel
 {
     protected $table = 'yachts';
 
-    /**
-     * @return BelongsTo
-     */
-    public function vendor(): BelongsTo
-    {
-        return $this->belongsTo(Vendor::class, 'VendorId');
-    }
 
     /**
      * @return HasMany
@@ -33,6 +27,11 @@ class Yacht extends BaseModel
     public function products(): HasMany
     {
         return $this->hasMany(Product::class, 'YachtId');
+    }
+
+    public function vendor(): HasOne
+    {
+        return $this->hasOne(Vendor::class, 'YachtId', 'Id');
     }
 
     /**

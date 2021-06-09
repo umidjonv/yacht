@@ -46,7 +46,7 @@
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
-{{--                                {{auth()}}--}}
+                                {{auth()->user()->vendor->CompanyName}}
                             </div>
                         </div>
                         <!-- -->

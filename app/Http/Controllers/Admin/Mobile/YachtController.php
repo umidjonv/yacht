@@ -24,7 +24,7 @@ class YachtController extends Controller
      */
     public function index()
     {
-        return view("admin.mobile.yacht.index")->with("yachts", Yacht::query()->with("Images")->get());
+        return view("admin.mobile.yacht.index");
     }
 
     public function register()
@@ -46,7 +46,7 @@ class YachtController extends Controller
             "Name" => $request->Name,
             "Area" => $request->Area,
             "Address" => $request->Postcode,
-            "VendorId" => 1,
+            "VendorId" => auth()->user()->vendor->Id,
             "Capacity" => $request->Capacity,
             "Length" => $request->Length
         ]);
@@ -85,7 +85,6 @@ class YachtController extends Controller
             "Name" => $request->Name,
             "Area" => $request->Area,
             "Address" => $request->Postcode,
-            "VendorId" => 1,
             "Capacity" => $request->Capacity,
             "Length" => $request->Length
         ]);

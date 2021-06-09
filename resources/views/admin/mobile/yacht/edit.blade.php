@@ -1,8 +1,8 @@
 @extends('admin.layouts.mobile')
 @section("content")
-{{--    @if($errors->any())--}}
-{{--        {{dd($errors->all())}}--}}
-{{--    @endif--}}
+    {{--    @if($errors->any())--}}
+    {{--        {{dd($errors->all())}}--}}
+    {{--    @endif--}}
     <div class="jbg_wht" style="position:relative; min-height:100%; padding-bottom:80px;">
         <!-- header -->
         <div class="jbg_header flx_side">
@@ -34,10 +34,11 @@
             <!-- //title -->
         </div>
         <!-- // Section -->
-        <form action="{{route("admin.mobile.yacht.update", $yacht->Id)}}" method="post" enctype="multipart/form-data" id="yacht-register-form">
-        {{csrf_field()}}
+        <form action="{{route("admin.mobile.yacht.update", $yacht->Id)}}" method="post" enctype="multipart/form-data"
+              id="yacht-register-form">
+            {{csrf_field()}}
             <input type="hidden" name="_method" value="put">
-        <!-- Section -->
+            <!-- Section -->
             <div class="pdg_s15">
                 <!-- List -->
                 <div class="jbg_wht">
@@ -50,7 +51,7 @@
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
-                                {{--                                {{auth()}}--}}
+                                {{auth()->user()->vendor->CompanyName}}
                             </div>
                         </div>
                         <!-- -->
@@ -61,7 +62,8 @@
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
-                                <input class="w_100 js_input02" name="Name" value="{{$yacht->Name}}" placeholder="요트명을 입력해주세요" type="text">
+                                <input class="w_100 js_input02" name="Name" value="{{$yacht->Name}}"
+                                       placeholder="요트명을 입력해주세요" type="text">
                             </div>
                         </div>
                         <!--
@@ -113,7 +115,8 @@
                                             <select name="Area" style="vertical-align:middle;">
                                                 <optgroup label="도">
                                                     @foreach($areas as $key => $area)
-                                                        <option value="{{$key}}" @if($key === $yacht->Area) selected @endif >{{$area}}</option>
+                                                        <option value="{{$key}}"
+                                                                @if($key === $yacht->Area) selected @endif >{{$area}}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
@@ -145,11 +148,16 @@
                                  style="display:table-cell; width:90px;">
                                 탑승위치
                             </div>
-                            <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"	style="display:table-cell; width:calc(100% - 90px);">
-                                <input type="text" name="Postcode" value="{{$yacht->Address}}" id="sample2_postcode" placeholder="우편번호" class="js_input03">
+                            <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
+                                 style="display:table-cell; width:calc(100% - 90px);">
+                                <input type="text" name="Postcode" value="{{$yacht->Address}}" id="sample2_postcode"
+                                       placeholder="우편번호" class="js_input03">
                                 <input type="button" onclick="sample2_execDaumPostcode()" value="검색"><br>
-                                <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
-                                    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
+                                <div id="layer"
+                                     style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+                                    <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer"
+                                         style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1"
+                                         onclick="closeDaumPostcode()" alt="닫기 버튼">
                                 </div>
                             </div>
                             <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -164,7 +172,7 @@
 
                                 function sample2_execDaumPostcode() {
                                     new daum.Postcode({
-                                        oncomplete: function(data) {
+                                        oncomplete: function (data) {
                                             // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                                             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -179,18 +187,18 @@
                                             }
                                             var inputValue = '';
                                             // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                                            if(data.userSelectedType === 'R'){
+                                            if (data.userSelectedType === 'R') {
                                                 // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                                                 // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                                                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                                                if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                                                     extraAddr += data.bname;
                                                 }
                                                 // 건물명이 있고, 공동주택일 경우 추가한다.
-                                                if(data.buildingName !== '' && data.apartment === 'Y'){
+                                                if (data.buildingName !== '' && data.apartment === 'Y') {
                                                     extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                                                 }
                                                 // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                                                if(extraAddr !== ''){
+                                                if (extraAddr !== '') {
                                                     extraAddr = ' (' + extraAddr + ')';
                                                 }
                                                 // 조합된 참고항목을 해당 필드에 넣는다.
@@ -214,9 +222,9 @@
                                             // (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
                                             element_layer.style.display = 'none';
                                         },
-                                        width : '100%',
-                                        height : '100%',
-                                        maxSuggestItems : 5
+                                        width: '100%',
+                                        height: '100%',
+                                        maxSuggestItems: 5
                                     }).embed(element_layer);
 
                                     // iframe을 넣은 element를 보이게 한다.
@@ -229,7 +237,7 @@
                                 // 브라우저의 크기 변경에 따라 레이어를 가운데로 이동시키고자 하실때에는
                                 // resize이벤트나, orientationchange이벤트를 이용하여 값이 변경될때마다 아래 함수를 실행 시켜 주시거나,
                                 // 직접 element_layer의 top,left값을 수정해 주시면 됩니다.
-                                function initLayerPosition(){
+                                function initLayerPosition() {
                                     var width = 300; //우편번호서비스가 들어갈 element의 width
                                     var height = 400; //우편번호서비스가 들어갈 element의 height
                                     var borderWidth = 5; //샘플에서 사용하는 border의 두께
@@ -239,8 +247,8 @@
                                     element_layer.style.height = height + 'px';
                                     element_layer.style.border = borderWidth + 'px solid';
                                     // 실행되는 순간의 화면 너비와 높이 값을 가져와서 중앙에 뜰 수 있도록 위치를 계산한다.
-                                    element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width)/2 - borderWidth) + 'px';
-                                    element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height)/2 - borderWidth) + 'px';
+                                    element_layer.style.left = (((window.innerWidth || document.documentElement.clientWidth) - width) / 2 - borderWidth) + 'px';
+                                    element_layer.style.top = (((window.innerHeight || document.documentElement.clientHeight) - height) / 2 - borderWidth) + 'px';
                                 }
                             </script>
                         </div>
@@ -253,8 +261,10 @@
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="j_inline pdg_r05" style="width:calc(100% - 35px);">
-                                    <input class="w_100 js_input02" name="Capacity" value="{{$yacht->Capacity}}" placeholder="인원을 입력해주세요" type="text">
-                                </div>인승
+                                    <input class="w_100 js_input02" name="Capacity" value="{{$yacht->Capacity}}"
+                                           placeholder="인원을 입력해주세요" type="text">
+                                </div>
+                                인승
                             </div>
                         </div>
                         <!-- -->
@@ -266,8 +276,10 @@
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="j_inline pdg_r05" style="width:calc(100% - 35px);">
-                                    <input class="w_100 js_input02" name="Length" value="{{$yacht->Length}}" placeholder="제원을 입력해주세요" type="text">
-                                </div>pt
+                                    <input class="w_100 js_input02" name="Length" value="{{$yacht->Length}}"
+                                           placeholder="제원을 입력해주세요" type="text">
+                                </div>
+                                pt
                             </div>
                         </div>
                         <!-- -->
@@ -280,7 +292,8 @@
                                  style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="flx_lft_m">
                                     <div class="lg_chk j_inline" style="width:22px;">
-                                        <input type="checkbox" name="AllDay" @if(old("AllDay")) checked @endif id="img_checkbox">
+                                        <input type="checkbox" name="AllDay" @if(old("AllDay")) checked
+                                               @endif id="img_checkbox">
                                         <label for="img_checkbox">
                                             <span></span>
                                         </label>
@@ -302,7 +315,8 @@
                                         @endphp
                                         <select name="Open[From][Hours]" style="vertical-align:middle;">
                                             @for($i=0;$i<24;$i++)
-                                                <option value="{{$i}}" @if($i == $matches[0][0]) selected @endif>{{$i}}</option>
+                                                <option value="{{$i}}"
+                                                        @if($i == $matches[0][0]) selected @endif>{{$i}}</option>
                                             @endfor
                                         </select>
                                     </div>
@@ -316,7 +330,8 @@
                                         <select name="Open[From][Minutes]" style="vertical-align:middle;">
                                             <optgroup label="분">
                                                 @for($i=0;$i<60;$i++)
-                                                    <option value="{{$i}}" @if($i == $matches[0][1]) selected @endif>{{$i}}</option>
+                                                    <option value="{{$i}}"
+                                                            @if($i == $matches[0][1]) selected @endif>{{$i}}</option>
                                                 @endfor
                                             </optgroup>
                                         </select>
@@ -335,7 +350,8 @@
                                         <select name="Open[To][Hours]" style="vertical-align:middle;">
                                             <optgroup label="시">
                                                 @for($i=0;$i<24;$i++)
-                                                    <option value="{{$i}}" @if($i == $matches[0][0]) selected @endif>{{$i}}</option>
+                                                    <option value="{{$i}}"
+                                                            @if($i == $matches[0][0]) selected @endif>{{$i}}</option>
                                                 @endfor
                                             </optgroup>
                                         </select>
@@ -350,7 +366,8 @@
                                         <select name="Open[To][Minutes]" style="vertical-align:middle;">
                                             <optgroup label="분">
                                                 @for($i=0;$i<60;$i++)
-                                                    <option value="{{$i}}" @if($i == $matches[0][1]) selected @endif>{{$i}}</option>
+                                                    <option value="{{$i}}"
+                                                            @if($i == $matches[0][1]) selected @endif>{{$i}}</option>
                                                 @endfor
                                             </optgroup>
                                         </select>

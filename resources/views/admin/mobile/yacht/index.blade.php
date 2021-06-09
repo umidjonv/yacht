@@ -1,3 +1,6 @@
+@php
+    $vendor = auth()->user()->vendor;
+@endphp
 @extends("admin.layouts.mobile")
 @section("content")
     <div class="jbg_grey4" style="position:relative; min-height:100%; padding-bottom:20px;">
@@ -27,7 +30,7 @@
                 <div class="pdg_r10" style="width:calc(100% - 80px);">
                     <div class="flx_lft_m login_border flx_side_m" style="height:43px;">
                         <div class="jm_tss1 jcr_grey3 j_bold">
-                            요트정보 <font class="jcr_red1 jm_ts1 j_bold">{{count($yachts)}}</font>건
+                            요트정보 <font class="jcr_red1 jm_ts1 j_bold">{{is_null($vendor) ? 0 : count($vendor->yachts)}}</font>건
                         </div>
                     </div>
                 </div>
@@ -45,53 +48,55 @@
         <!-- // Section -->
         <!-- Section -->
         <div class="pdg_s05 mgn_t20">
-        @foreach($yachts as $yacht)
-            <!-- List -->
-                <!-- List_cell -->
-                <div class="jbg_wht pdg_s15 pdg_t10 pdg_b20 mgn_b05 j_rd08">
-                    <div class="flx_side">
-                        <div style="width:calc(100% - 80px);">
-                            <div class="pdg_t10 flx_lft">
+        @if(!is_null($vendor))
+            @foreach($vendor->yachts as $yacht)
+                <!-- List -->
+                    <!-- List_cell -->
+                    <div class="jbg_wht pdg_s15 pdg_t10 pdg_b20 mgn_b05 j_rd08">
+                        <div class="flx_side">
+                            <div style="width:calc(100% - 80px);">
+                                <div class="pdg_t10 flx_lft">
                                 @if(!empty($yacht->Images->toArray()))
-                                <!-- thumbnail -->
-                                <div class="pdg_t03" style="width:84px;">
-                                    <div class="thumb_02 flx_c">
-                                        <img src="{{asset("storage/yachts/".$yacht->Images[0]->Name)}}" alt=""/>
+                                    <!-- thumbnail -->
+                                        <div class="pdg_t03" style="width:84px;">
+                                            <div class="thumb_02 flx_c">
+                                                <img src="{{asset("storage/yachts/".$yacht->Images[0]->Name)}}" alt=""/>
+                                            </div>
+                                        </div>
+                                        <!-- // thumbnail -->
+                                    @endif
+                                    <div class="pdg_l10">
+                                        <div class="cut_2 mgn_b10 jm_tss2 j_bold">
+                                            {{$yacht->Name}}
+                                        </div>
+                                        <div class="jm_tss1 jcr_grey1">
+                                            {{$yacht->Area}} {{$yacht->Address}}
+                                        </div>
+                                        <div class="jm_tss1 jcr_grey1">
+                                            {{$yacht->Capacity}}인승, {{$yacht->Length}}pt
+                                        </div>
                                     </div>
                                 </div>
-                                <!-- // thumbnail -->
-                                @endif
-                                <div class="pdg_l10">
-                                    <div class="cut_2 mgn_b10 jm_tss2 j_bold">
-                                        {{$yacht->Name}}
-                                    </div>
-                                    <div class="jm_tss1 jcr_grey1">
-                                        {{$yacht->Area}} {{$yacht->Address}}
-                                    </div>
-                                    <div class="jm_tss1 jcr_grey1">
-                                        {{$yacht->Capacity}}인승, {{$yacht->Length}}pt
-                                    </div>
+                            </div>
+                            <div class="flx_dn mgn_t10" style="margin-left:auto;">
+                                <!-- button -->
+                                <div class="mgn_b10 bt_sml02_wht" style="width:60px;"
+                                     onclick="location.href='{{route("admin.mobile.yacht.edit", $yacht->Id)}}'">
+                                    수정
                                 </div>
+                                <!--// button -->
+                                <!-- button -->
+                                <div class="bt_sml02_blu" style="width:60px;">
+                                    삭제
+                                </div>
+                                <!--// button -->
                             </div>
-                        </div>
-                        <div class="flx_dn mgn_t10" style="margin-left:auto;">
-                            <!-- button -->
-                            <div class="mgn_b10 bt_sml02_wht" style="width:60px;"
-                                 onclick="location.href='{{route("admin.mobile.yacht.edit", $yacht->Id)}}'">
-                                수정
-                            </div>
-                            <!--// button -->
-                            <!-- button -->
-                            <div class="bt_sml02_blu" style="width:60px;">
-                                삭제
-                            </div>
-                            <!--// button -->
                         </div>
                     </div>
-                </div>
-                <!-- // List_cell -->
-                <!-- List_cell -->
-            @endforeach
+                    <!-- // List_cell -->
+                    <!-- List_cell -->
+                @endforeach
+            @endif
         </div>
         <!-- // Section -->
     </div>
