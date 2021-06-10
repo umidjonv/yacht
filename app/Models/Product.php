@@ -21,9 +21,15 @@ class Product extends BaseModel
     {
         return $this->hasMany(Favourite::class, 'ProductId');
     }
-    
-    public function images() {
+
+    public function images() 
+    {
         return $this->hasMany(ProductImage::class, 'ProductId', 'Id');
+    }
+    
+    public function activities() 
+    {
+        return $this->hasMany(ProductActivity::class, 'ProductId', 'Id');
     }
 
     public function rating()

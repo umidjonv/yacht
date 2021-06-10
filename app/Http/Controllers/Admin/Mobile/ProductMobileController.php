@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Mobile;
 
 use App\Common\Arrays\Area;
 use Illuminate\Http\Request;
@@ -136,6 +136,14 @@ class ProductMobileController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::find($id);
+        $vendor = auth()->user()->vendor;
+        $area = Area::get();
+        return view('admin.mobile.product.edit',[
+            'vendor' => $vendor,
+            'areas' => $area,
+            'product' => $product
+        ]);
         //
     }
 
