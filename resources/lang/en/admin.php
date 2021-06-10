@@ -151,6 +151,14 @@ return [
     'member_change_password_title' => 'Password',
 
     'retype_password'=>'Retype password',
+    'send_feedback' => 'Send question',
+    'search' => 'Search',
+    'address' => 'Address',
+    'company_name' => 'Company name',
+    'terms_service' => 'Terms of service',
+    'terms_privacy' => 'Privacy statement',
+    'agreement_policy'=>'I agree with the terms of use and privacy policy',
+
 
 
 
