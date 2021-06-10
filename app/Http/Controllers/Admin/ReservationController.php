@@ -22,8 +22,7 @@ class ReservationController extends BaseController
     {
         $yachtd = new \App\Common\Enums\YachtDivision();
         $user = Auth::user();
-
-        if(!$user->check())
+        if(!auth()->check())
             return redirect('/login');
 
         if($user->type == UserType::user)
