@@ -4,6 +4,8 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Product extends BaseModel
 {
     protected $table = 'products';
@@ -31,5 +33,12 @@ class Product extends BaseModel
         return $this->hasOne(Rating::class, 'ProductId');
     }
 
+    /**
+     * @return HasMany
+     */
+    public function images(): HasMany
+    {
+        return $this->hasMany(ProductImages::class, 'ProductId', 'Id');
+    }
 
 }

@@ -5,12 +5,17 @@ namespace App\Http\Controllers\Admin;
 
 
 use App\Common\Enums\UserType;
+use App\Common\Enums\YachtDivision;
 use App\Common\JsonData;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductImages;
 use App\Models\Vendor;
 use App\Models\Yacht;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use phpDocumentor\Reflection\Types\Collection;
 use Validator;
@@ -58,7 +63,7 @@ class  ProductController extends BaseController
             }
         }
 
-        $yachtd = new \App\Common\Enums\YachtDivision();
+        $yachtd = new YachtDivision();
 
 
 
@@ -68,7 +73,6 @@ class  ProductController extends BaseController
     public function add()
     {
         $product = new Product();
-
         return view('admin.product.add')->with(['model'=>$product, 'yachts'=>$this->get_yachts()]);
     }
 
@@ -86,14 +90,11 @@ class  ProductController extends BaseController
 
     /**
      * @param Request $request
-     * @return \Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     * @return Application|RedirectResponse|Redirector
      */
     public function save(Request $request)
     {
-        //return dd($request->all());
-
-
-        $validator = \Validator::make($request->all(), [
+        $validator = Validator::make($request->all(), [
             'Name' => 'required|max:255',
             'Division' => 'required',
             'Area' => 'required',
@@ -104,8 +105,9 @@ class  ProductController extends BaseController
             'PriceChild'=> 'required',
             'YachtId'=> 'required',
             'Price'=> 'required',
+            'images'    => 'array',
+            'images.*'  => 'image|max:10240'
         ]);
-
         if ($validator->fails()) {
             return redirect()
                 ->route('admin.product.add')
@@ -132,17 +134,19 @@ class  ProductController extends BaseController
         $product->Location = $request->input('Location');
         $product->Price = $request->input('Price');
         $product->YachtId = $request->input('YachtId');
+        $product->save();
 
 
-
-
-
-
-        if($product->save())
-        {
-
+        if ($files = $request->file('images')) {
+            foreach($files as $file) {
+                $f_name = "IMG_".date("Y-m-d_H-i-s").".".strtolower($file->getClientOriginalExtension());
+                $file->storeAs("public/product", $f_name);
+                ProductImages::query()->create([
+                    'ProductId' => $product->Id,
+                    'Name'  => $f_name,
+                ]);
+            }
         }
-
         return redirect('/admin/product');
 
 
