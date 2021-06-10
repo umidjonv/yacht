@@ -37,12 +37,25 @@
         <div class="col-6">
             <h2>@lang('admin.product_info')</h2>
 
-            <form action="{{ route('admin.product.save', ['id'=>$id]) }}" method="post" >
+            <form action="{{ route('admin.product.save', ['id'=>$id]) }}" method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
                 <input type="hidden" value="{{ is_null($model) ? '0' : $model->Id }}" name="Id" />
 
                 <input type="hidden" value="{{old('Division', $model->Division)}}" name="div" />
                 <div class="p-2 bg-white">
+                    <div class="form-group">
+                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_load_images')</label>
+                        <div class="input-images">
+                            {{--                            <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">--}}
+                            {{--                        @foreach($model->images as $image)--}}
+                            {{--                                <img src="{{asset('/storage/yachts/'.$image->Name)}}" alt="">--}}
+                            {{--                            @endforeach--}}
+                            <div class="uploaded-image">
+
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_division')</label>
                         <div class="form-check form-check-inline">
@@ -282,7 +295,34 @@
 
         });
     </script>
+    <script>
 
+        let preloaded = [
+                @php
+                        @endphp
+                @foreach($model->images as $image)
+
+            {id:{{$image->Id}}, src: '{{asset('/storage/product/'.$image->Name)}}'},
+
+            @endforeach
+
+
+
+        ];
+        $('.input-images').imageUploader({
+            preloaded:preloaded,
+
+            //imagesInputName:"image[]"
+        });
+
+
+
+        $('.input-images-2').imageUploader({
+            preloaded: preloaded,
+            imagesInputName: 'photos',
+            preloadedInputName: 'old'
+        });
+    </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         // Search for an address
