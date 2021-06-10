@@ -30,7 +30,7 @@
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" >
                     <a href="{{route('admin.mobile.vendor.edit', ['id'=> auth()->user()->id])}}">Information management </a>
                 </div>
-                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_02.html'">
+                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{route("admin.mobile.yacht.index")}}'">
                     Yacht management
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
@@ -75,7 +75,7 @@
             <div class="pdg_s20">
                 <div class="pdg_t15">
                     <div class="flx_side_m jtab_menu_wrap01">
-                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_02.html'">
+                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{route("admin.mobile.yacht.index")}}'">
                             Yacht management
                         </div>
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{ route('admin.mobile.product.index') }}'">

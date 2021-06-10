@@ -145,7 +145,8 @@ return [
     'member_accumpoint' => 'Accumulated point',
     'member_lastvisited' => 'Last visited',
     'change_member_status' => 'Will you change member status?',
-    'change_member_status_title' => 'Member',
+    'change_member_status_activate' => 'Activate',
+    'change_member_status_deactivate' => 'Deactivate',
     'member_change_password' => 'Change password?',
     'member_change_password_title' => 'Password',
 
@@ -174,6 +175,7 @@ return [
     'product_display_text' => 'Display',
     'product_search_text' => 'Enter search product name',
     'product_redister_text' => 'Register'
+
 
 
 

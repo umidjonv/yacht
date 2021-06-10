@@ -57,6 +57,9 @@ Route::namespace('Admin')->group(function(){
         Route::get  ('/member',      'MemberController@index')->name('admin.member');
         Route::get  ('/member/{id}',      'MemberController@view')->name('admin.member.view');
         Route::post  ('/member/password',      'MemberController@change_password')->name('admin.member.change_password');
+        Route::get  ('/member/activate/{id}',      'MemberController@activate')->name('admin.member.activate');
+        Route::get  ('/member/deactivate/{id}',      'MemberController@deactivate')->name('admin.member.deactivate');
+
 
 
         Route::get  ('/reservation',                'ReservationController@index')->name('admin.reservation');
@@ -83,6 +86,8 @@ Route::namespace('Admin')->group(function(){
         Route::get('/feedback',           'FeedbackController@index')->name('admin.feedback.index');
 
         Route::post('/feedback/save',           'FeedbackController@save')->name('admin.feedback.save');
+
+
 
 
 

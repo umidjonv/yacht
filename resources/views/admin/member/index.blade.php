@@ -14,7 +14,10 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="{{route('admin.member.change_password')}}" method="post">
+                    <form action="{{route('admin.member.change_password')}}" method="post" id="change_password_form">
+                        <input type="hidden" name="user_id"/>
+                        {{csrf_field()}}
+
                         <div class="form-group">
                             <label class="form-control-plaintext">@lang('admin.password')</label>
                             <input type="password" name="password" class="form-control"/>
@@ -22,15 +25,14 @@
                         </div>
                         <div class="form-group">
                             <label class="form-control-plaintext">@lang('admin.retype_password')</label>
-                            <input type="repassword" name="password" class="form-control"/>
+                            <input type="password" name="repassword" class="form-control"/>
 
                         </div>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-
-                    <button type="submit" class="btn btn-primary">@lang('admin.save')</button>
+                    <a href="javascript:void(0)"  class="btn btn-primary" id="change_password">@lang('admin.save')</a>
                 </div>
             </div>
         </div>
@@ -38,6 +40,9 @@
     <div class="row">
 
         <div class="col">
+            @foreach($errors->all() as $error)
+                <span class="text-danger">- {{$error}}</span>
+            @endforeach
 
 
             <h2>@lang('admin.member_list')</h2>
@@ -65,9 +70,10 @@
                             <td>{{$item->AccumulatedPoint}}</td>
                             <td>{{$item->ReservationCount}}</td>
                             <td>{{$item->LastVisited}}</td>
+
                             <td>
-                                <a href="javascript:void(0)" class="btn btn-info" onclick="ChangeMemberStatus({{$item->Id}})"><span class="fa fa-eye"></span> </a>
-                                <a href="javascript:void(0)" class="btn btn-info" name="passwordBtn" data-password-id="{{$item->Id}}"><span class="fa fa-key"></span> </a>
+                                <a href="javascript:void(0)" class="btn btn-info" onclick="ChangeMemberStatus({{$item->Id}}, {{$item->MembershipStatus}})"><span class="fa fa-eye"></span> </a>
+                                <a href="javascript:void(0)" class="btn btn-info" name="passwordBtn" data-password-id="{{$item->user()->first()->id}}"><span class="fa fa-key"></span> </a>
                             </td>
 
                         </tr>
@@ -84,22 +90,34 @@
     <script type="text/javascript" src="{{ asset('js/sweetalert.min.js') }}"></script>
     <script>
         $(document).ready(function(){
-            window.ChangeMemberStatus = function(itemId)
+            window.ChangeMemberStatus = function(itemId, status)
             {
+                var url = '{{url('/admin/member/activate')}}/'+itemId;
+                var message = '@lang('admin.change_member_status_activate')';
+
+                if(status == 1)
+                {
+                    url = '{{url('/admin/member/deactivate')}}/'+itemId;
+                    message = '@lang('admin.change_member_status_deactivate')';
+                }
+
                 Swal.fire({
                     icon: 'warning',
                     text: '@lang('admin.change_member_status')',
                     showCancelButton: true,
-                    confirmButtonText: '@lang('admin.change_member_status_title')',
+                    confirmButtonText: message,
                     confirmButtonColor: '#e3342f',
                 }).then((result) => {
+
+
                     $.ajax({
-                        url:'{{url('/admin/member/activate')}}/'+itemId,
+
+                        url:url,
                         method:'GET'
 
                     })
                     .done(function(data){
-                        if(data.status == {{\App\Common\Enums\ResultStatus::Success}})
+                        if(data == {{\App\Common\Enums\ResultStatus::Success}})
                         {
                             window.location.reload();
                         }
@@ -109,7 +127,13 @@
 
             $('[name="passwordBtn"]').click(function()
             {
+                var id = $(this).attr('data-password-id');
                 $('#modalPassword').modal('show');
+                $('[name="user_id"]').val(id);
+            });
+
+            $('#change_password').click(function(){
+                $('#change_password_form').submit();
             });
         });
 

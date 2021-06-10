@@ -4,25 +4,44 @@
 namespace App\Models;
 
 
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+
 class Yacht extends BaseModel
 {
     protected $table = 'yachts';
+
+
     /**
-     * @var mixed
+     * @return HasMany
      */
-
-
-    public function vendor()
+    public function images(): HasMany
     {
-        return $this->belongsTo(Vendor::class, 'VendorId');
-    }
-
-    public function images() {
         return $this->hasMany(YachtImage::class, 'YachtId', 'Id');
     }
-    
-    public function products(){
-        return $this->hasMany(Product::class, 'YachtId','Id');
+
+    /**
+     * @return HasMany
+     */
+    public function products(): HasMany
+    {
+        return $this->hasMany(Product::class, 'YachtId');
+    }
+
+    public function vendor(): HasOne
+    {
+        return $this->hasOne(Vendor::class, 'Id', 'VendorId');
+    }
+
+
+    /**
+     * @return HasMany
+     */
+    public function activities(): HasMany
+    {
+        return $this->hasMany(Activity::class, "YachtId");
+
     }
 
 }

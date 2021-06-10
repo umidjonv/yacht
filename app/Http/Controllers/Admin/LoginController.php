@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-use Illuminate\Validation\Validator;
+use Validator;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Auth;
@@ -40,11 +40,13 @@ class LoginController extends BaseController
         $user = null;
         $validator = null;
 
+//        return dd($request->all());
         if (str_contains($request->name, '@')) {
             $validator = Validator::make($request->all(), [
                 'name' => 'unique:users,email|email|required',
                 'password' => 'required'
             ]);
+
 
             $returned = $this->authenticateEmail($request->name, $request->password);
 
@@ -60,7 +62,7 @@ class LoginController extends BaseController
 
         }
 
-        //return dd($request->name);
+        //return dd($returned);
 
         if($returned)
         {

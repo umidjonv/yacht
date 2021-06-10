@@ -5,10 +5,13 @@
         <div style="width:112px;">
             <div class="thumb_01 flx_c">
                 @php
-                $yacht = $item->yacht()->first();
-                $favour = $item->favourite()->first();
+                    $user= auth()->user();
+                    $yacht = $item->yacht()->first();
+                    $favour = $item->favourite()->where('UserId', $user->id)->first();
+                    $image = $yacht->images()->first();
+                    $rating = $item->rating()->first();
                 @endphp
-                <img src="{{url('/storage/yachts/'.$yacht->images()->first()->Name)}}" alt="" onclick="location.href='{{route('client.mobile.product.view', ['Id' => $item->Id])}}'" />
+                <img src=" {{isset($image)?url('/storage/yachts/'.$image->Name):url('/storage/images/yacht.png')}}" alt="" onclick="location.href='{{route('client.mobile.product.view', ['Id' => $item->Id])}}'" />
                 <!-- pick -->
                 <div class="up_bt02_wrap">
                     <div class="up_bt02 js_btn_toggle {{$favour!=null?"on":""}}" name="favour" data-id="{{$item->Id}}">
@@ -36,13 +39,16 @@
                     <div class="star_icon on">
                     </div>
                     <div class="jcr_grey2 jm_tsss2 j_bold" style="width:25px;">
-                        4.2
+                        @if(isset($rating))
+                            {{$rating->Rating}}
+                        @else
+                            0
+                        @endif
+
                     </div>
                     <div class="comment">
                     </div>
-                    <div class="jcr_grey2 jm_tsss2 j_bold">
-                        999
-                    </div>
+
                 </div>
                 <div class="js_money02">
                     {{$item->Price}}
@@ -54,7 +60,9 @@
     <!-- // list_cell -->
 @endforeach
 
+@section('scripts')
 <script>
+
     $('[name="favour"]').click(function(){
 
        var classValue = $(this).attr('class');
@@ -83,3 +91,4 @@
     });
 
 </script>
+@endsection

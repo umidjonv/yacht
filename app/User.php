@@ -4,6 +4,8 @@ namespace App;
 
 use App\Models\Favourite;
 use App\Models\Vendor;
+
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -18,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'contact'
     ];
 
     /**
@@ -30,12 +32,18 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @return HasOne
+     */
     public function vendor(): HasOne
     {
         return $this->hasOne(Vendor::class, 'UserId', "id");
     }
 
-    public function favourites()
+    /**
+     * @return HasMany
+     */
+    public function favourites(): HasMany
     {
         return $this->hasMany(Favourite::class, 'UserId');
     }
