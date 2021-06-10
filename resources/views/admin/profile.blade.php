@@ -61,7 +61,7 @@
                                 <div class="col-xs-6">
                                     <label for="email"><h4>@lang('admin.email')</h4></label>
                                     <input type="email" class="form-control" name="email" id="email"
-                                           placeholder="you@email.com" {{auth()->user()->email}} >
+                                           placeholder="you@email.com" value="{{auth()->user()->email}}">
                                 </div>
                             </div>
 
