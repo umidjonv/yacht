@@ -23,7 +23,7 @@
                     </div>
                 </div>
                 <div class="flx_c jm_ts2 jcr_wht j_bold" style="height:60px;">
-                    상품관리
+                    @lang("admin.product_management")
                 </div>
                 <div class="flx_rgt_m" style="width:90px; height:60px;">
                 </div>
@@ -35,7 +35,7 @@
                 <!-- title -->
                 <div class="w_100 pdg_b10">
                     <div class="jcr_grey1 jm_ts2 j_bold">
-                        상품 수정/등록
+                        @lang("admin.product_admin_create_header")
                     </div>
                 </div>
                 <!-- //title -->
@@ -88,7 +88,7 @@
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">
                                 <div>
-                                    <div class="rbox_sel on">진열</div>
+                                    <div class="rbox_sel on">@lang('admin.product_displayed')</div>
                                     <input type="hidden" name="IsDisplayed" value="1">
                                     {{-- <div class="rbox_sel">미진열</div> --}}
                                 </div>
@@ -109,23 +109,25 @@
                                             <select name="YachtId" style="vertical-align:middle;" id="yachtList">
                                                 <optgroup label="@lang('admin.product_name')">
                                                     <option value=""></option> 
-                                                    @foreach ($yachts as $yacht)
-                                                        <option value="{{ $yacht->Id }}">{{ $yacht->Name }}</option>    
-                                                    @endforeach
+                                                    @if(!is_null($vendor))
+                                                        @foreach ($vendor->yachts as $yacht)
+                                                            <option value="{{ $yacht->Id }}">{{ $yacht->Name }}</option>    
+                                                        @endforeach
+                                                    @endif
                                                 </optgroup>
                                             </select>
                                         </div>
                                     </div>
                                     <!-- / select -->
                                 </div>
-                                <span><span>30</span> @lang("admin.product_seater_txt"), <span>40</span> @lang("admin.product_seater_txt")<span>
+                                <span><span>30</span> @lang("admin.product_seater_txt"), <span>40</span> @lang("admin.product_length_txt")<span>
                             </div>
                         </div>
                         <!-- -->
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                 style="display:table-cell; width:90px;">
-                                @lang('admin.product_yacht_list')
+                                @lang('admin.product_yacht_name')
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">
@@ -147,7 +149,7 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                 style="display:table-cell; width:90px;">
-                                @lang('admin.product_pro')
+                                @lang('admin.product_budget')
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">
@@ -183,7 +185,7 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px dashed #ccc;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                 style="display:table-cell; width:90px; vertical-align: middle;">
-                                이미지
+                                @lang("admin.product_image_text")
                             </div>
                             <div class="pdg_s10 jm_tsss2 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">

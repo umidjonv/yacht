@@ -20,8 +20,9 @@ class Yacht extends BaseModel
     public function images() {
         return $this->hasMany(YachtImage::class, 'YachtId', 'Id');
     }
+    
     public function products(){
-        return $this->hasMany(Product::class, 'YachtId');
+        return $this->hasMany(Product::class, 'YachtId','Id');
     }
 
 }

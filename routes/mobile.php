@@ -17,6 +17,7 @@ Route::namespace('Admin')->group(function(){
                 Route::get('/create', 'ProductMobileController@create')->name('admin.mobile.product.create');
                 Route::post('/store', 'ProductMobileController@store')->name('admin.mobile.product.store');
                 Route::get('/getYacht', 'ProductMobileController@getYacht')->name('admin.mobile.product.getyacht');
+                Route::get('/edit/{id}', 'ProductMobileController@edit')->name('admin.mobile.product.edit');
             });
 
         });

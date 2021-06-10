@@ -19,7 +19,11 @@ class ProductMobileController extends Controller
      */
     public function index()
     {
-        return view('admin.mobile.product.index');
+        
+        $vendor = auth()->user()->vendor;
+        return view('admin.mobile.product.index',[
+            'vendor' => $vendor
+        ]);
         //
     }
 
@@ -30,10 +34,11 @@ class ProductMobileController extends Controller
      */
     public function create()
     {
-        $yachts = Yacht::all();
+        
+        $vendor = auth()->user()->vendor;
         $area = Area::get();
         return view('admin.mobile.product.create',[
-            'yachts' => $yachts,
+            'vendor' => $vendor,
             'areas' => $area
         ]);
         //
