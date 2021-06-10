@@ -24,10 +24,6 @@ class Product extends BaseModel
         return $this->hasMany(Favourite::class, 'ProductId');
     }
     
-    public function images() {
-        return $this->hasMany(ProductImage::class, 'ProductId', 'Id');
-    }
-
     public function rating()
     {
         return $this->hasOne(Rating::class, 'ProductId');
