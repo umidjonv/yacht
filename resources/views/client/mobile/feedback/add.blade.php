@@ -80,20 +80,12 @@
         </div>
         <!-- // input -->
         <!-- // input area -->
-        <!-- view_more -->
-        <div class="pdg_s15">
-            <!-- bt_mid -->
-            <div class="bt_mid03 j_inline" style="padding:5px 30px;">
-                Attachments
-            </div><!-- // bt_mid -->
-        </div>
-        <!-- // view_more -->
 
         <!-- fixed Bottom Button -->
         <div class="btm_bt_wrap02" style="padding:12px 15px 12px;">
             <!-- button -->
             <button class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold w-100" style="padding:19px 0; border-radius:0px;" type="submit">
-                Inquiry registration
+                @lang('admin.send_feedback')
             </button>
             <!--// button -->
         </div>
