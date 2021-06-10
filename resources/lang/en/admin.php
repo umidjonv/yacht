@@ -153,6 +153,30 @@ return [
     'retype_password'=>'Retype password',
 
 
+    //admin mobile product
+
+    'product_yacht_selection' => 'Yacht selection',
+    'product_yacht_name' => 'Product name',
+    'product_seater_txt' => 'seater',
+    'product_length_txt' => 'pt',
+    'product_name_placeholder' => 'Name please enter',
+    'product_introduction' => 'Breif introduction',
+    'product_introduction_placeholder' => 'Introduction contents',
+    'product_budget' => 'Budget',
+    'product_image_text' => 'Image',
+    'product_yacht_location' => 'Yacht loacation',
+    'product_yacht_booking_time' => 'Booking time',
+    'product_yacht_details' => 'Details',
+    'product_yacht_details_placeholder' => 'Details content',
+    'product_admin_create_header' => 'Product/modify registration ',
+    'product_management' => 'Product management ',
+    'product_modified' => 'Modify', 
+    'product_delete' => 'Delete',
+    'product_display_text' => 'Display',
+    'product_search_text' => 'Enter search product name',
+    'product_redister_text' => 'Register'
+
+
 
 
 

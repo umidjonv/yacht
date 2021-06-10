@@ -34,12 +34,14 @@ class Yacht extends BaseModel
         return $this->hasOne(Vendor::class, 'Id', 'VendorId');
     }
 
+
     /**
      * @return HasMany
      */
     public function activities(): HasMany
     {
         return $this->hasMany(Activity::class, "YachtId");
+
     }
 
 }

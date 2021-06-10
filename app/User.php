@@ -4,6 +4,7 @@ namespace App;
 
 use App\Models\Favourite;
 use App\Models\Vendor;
+
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Notifications\Notifiable;
