@@ -54,7 +54,7 @@
                         <th>@lang('admin.member_membershipstatus')</th>
                         <th>@lang('admin.member_currentpoint')</th>
                         <th>@lang('admin.member_accumpoint')</th>
-                        <th>@lang('admin.member_reservpoint')</th>
+
                         <th>@lang('admin.member_lastvisited')</th>
 
                     </tr>
@@ -68,7 +68,7 @@
                             <td>{{$item->MembershipStatus == true ? 'active':'withdrawal' }}</td>
                             <td>{{$item->CurrentPoint}}</td>
                             <td>{{$item->AccumulatedPoint}}</td>
-                            <td>{{$item->ReservationCount}}</td>
+
                             <td>{{$item->LastVisited}}</td>
 
                             <td>
@@ -105,6 +105,7 @@
                     icon: 'warning',
                     text: '@lang('admin.change_member_status')',
                     showCancelButton: true,
+                    cancelButtonText: '@lang('admin.text_cancel')',
                     confirmButtonText: message,
                     confirmButtonColor: '#e3342f',
                 }).then((result) => {

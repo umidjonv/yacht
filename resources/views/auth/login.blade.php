@@ -17,7 +17,12 @@
 @section('content')
 <div class="col-md-12 d-flex justify-content-center">
             <div class="panel panel-default p-4 rounded">
-                <div class="panel-heading">@lang('auth.login_title')</div>
+                <label class="h4">@lang('auth.login_title')</label>
+                <div class="float-right">
+                    <a class="btn btn-link" href="{{ route('vendor_register') }}">
+                        @lang('admin.register_company')
+                    </a>
+                </div>
 
                 <div class="panel-body justify-content-center">
                     <form class="form-horizontal" method="POST" action="{{ route('login') }}">
@@ -59,6 +64,7 @@
                                     </label>
                                 </div>
                             </div>
+
                         </div>
 
                         <div class="form-group">

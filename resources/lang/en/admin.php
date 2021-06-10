@@ -158,6 +158,9 @@ return [
     'terms_service' => 'Terms of service',
     'terms_privacy' => 'Privacy statement',
     'agreement_policy'=>'I agree with the terms of use and privacy policy',
+    'register_vendor_complete' => 'You registered, you will be notified of activation',
+    'register_company' => 'Company registration',
+
 
 
 
@@ -182,7 +185,21 @@ return [
     'product_delete' => 'Delete',
     'product_display_text' => 'Display',
     'product_search_text' => 'Enter search product name',
-    'product_redister_text' => 'Register'
+    'product_redister_text' => 'Register',
+
+    //sent to translate
+
+    'date_created' => 'Created date',
+    'time' => 'Time',
+    'feedback' => 'Feedback',
+    'reservation_payment' => 'Payment amount',
+    'reservation_total_amount' => 'Total Amount',
+    'reservation_paid' => 'Paid or not',
+    'reservation_paid_yes' => 'Paid',
+    'reservation_paid_not' => 'Not paid',
+    'text_cancel' => 'Cancel',
+
+    'feedback_send_answer' => 'Send answer'
 
 
 

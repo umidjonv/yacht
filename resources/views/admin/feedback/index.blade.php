@@ -91,7 +91,7 @@ $user = auth()->user();
                 </div>
                 <div class="modal-footer">
 
-                    <a href="javascript:void(0)" type="button" class="btn btn-primary" onclick="sendAnswer();" >Send answer</a>
+                    <a href="javascript:void(0)" type="button" class="btn btn-primary" onclick="sendAnswer();" >@lang('admin.send_answer')</a>
                 </div>
             </form>
         </div>
