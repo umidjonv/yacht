@@ -14,12 +14,16 @@ class Product extends BaseModel
 
     public function yacht()
     {
-        return $this->belongsTo(Yacht::class, 'YachtId');
+        return $this->belongsTo(Yacht::class, 'YachtId','Id');
     }
 
     public function favourite()
     {
         return $this->hasMany(Favourite::class, 'ProductId');
+    }
+    
+    public function images() {
+        return $this->hasMany(ProductImage::class, 'ProductId', 'Id');
     }
 
     public function rating()
