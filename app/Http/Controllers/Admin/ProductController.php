@@ -17,6 +17,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use phpDocumentor\Reflection\Types\Collection;
 use Validator;
 
@@ -25,13 +26,13 @@ class  ProductController extends BaseController
     public function get_yachts()
     {
         $user = Auth::user();
-        if($user==null)
+        if ($user == null)
             return response()->json([
                 'message' => "user is not auhenticated"], 500);
 
         $vendor = Vendor::where('UserId', $user->id)->with('yachts')->first();
 
-        if($vendor==null)
+        if ($vendor == null)
             return response()->json([
                 'message' => "cannot find vendor"], 500);
 
@@ -47,15 +48,13 @@ class  ProductController extends BaseController
     {
         $products = collect();
 
-        if(Auth::user()->type == UserType::admin)
-        {
+        if (Auth::user()->type == UserType::admin) {
             $products = Product::all();
-        }else{
+        } else {
             $vendor = Vendor::where('UserId', Auth::user()->id)->first();
 
-            $yachts = Yacht::where('VendorId', $vendor->Id)-> with('products')->get();
-            foreach ($yachts as $yacht)
-            {
+            $yachts = Yacht::where('VendorId', $vendor->Id)->with('products')->get();
+            foreach ($yachts as $yacht) {
                 $product = $yacht->products()->get();
 
                 //dd($product);
@@ -66,26 +65,24 @@ class  ProductController extends BaseController
         $yachtd = new YachtDivision();
 
 
-
-        return view('admin.product.index')->with(['model'=>$products]);
+        return view('admin.product.index')->with(['model' => $products]);
     }
 
     public function add()
     {
         $product = new Product();
-        return view('admin.product.add')->with(['model'=>$product, 'yachts'=>$this->get_yachts()]);
+        return view('admin.product.add')->with(['model' => $product, 'yachts' => $this->get_yachts()]);
     }
 
     public function edit($id)
     {
         $product = Product::find($id);
 
-        if($product==null)
-        {
+        if ($product == null) {
             return abort(404);
         }
 
-        return view('admin.product.add')->with(['model'=>$product, 'yachts'=>$this->get_yachts()]);
+        return view('admin.product.add')->with(['model' => $product, 'yachts' => $this->get_yachts()]);
     }
 
     /**
@@ -99,14 +96,14 @@ class  ProductController extends BaseController
             'Division' => 'required',
             'Area' => 'required',
 //            'IsDisplayed' => 'required',
-            'CapacityAdult'=> 'integer',
+            'CapacityAdult' => 'integer',
             'CapacityChild' => 'integer',
-            'PriceAdult'=> 'required',
-            'PriceChild'=> 'required',
-            'YachtId'=> 'required',
-            'Price'=> 'required',
-            'images'    => 'array',
-            'images.*'  => 'image|max:10240'
+            'PriceAdult' => 'required',
+            'PriceChild' => 'required',
+            'YachtId' => 'required',
+            'Price' => 'required',
+            'images' => 'array',
+            'images.*' => 'image|max:10240'
         ]);
         if ($validator->fails()) {
             return redirect()
@@ -117,8 +114,7 @@ class  ProductController extends BaseController
 
         $product = new Product();
 
-        if($request->Id>0)
-        {
+        if ($request->Id > 0) {
             $product = Product::find($request->Id);
         }
 
@@ -137,18 +133,38 @@ class  ProductController extends BaseController
         $product->save();
 
 
+        $this->deleteImage($product, $request->preloaded);
         if ($files = $request->file('images')) {
-            foreach($files as $file) {
-                $f_name = "IMG_".date("Y-m-d_H-i-s").".".strtolower($file->getClientOriginalExtension());
+            foreach ($files as $file) {
+                $f_name = "IMG_" . uniqid() . "_" . date("Y-m-d_H-i-s") . "." . strtolower($file->getClientOriginalExtension());
                 $file->storeAs("public/product", $f_name);
                 ProductImages::query()->create([
                     'ProductId' => $product->Id,
-                    'Name'  => $f_name,
+                    'Name' => $f_name,
                 ]);
             }
         }
+
         return redirect('/admin/product');
 
 
+    }
+
+    public function deleteImage(Product $product, $preloaded)
+    {
+        if (!is_null($preloaded)) {
+            $product_images = ProductImages::query()
+                ->where('ProductId', $product->Id)
+                ->whereNotIn('Id', $preloaded)
+                ->get();
+        } else {
+            $product_images = ProductImages::query()
+                ->where('ProductId', $product->Id)
+                ->get();
+        }
+        foreach ($product_images as $image) {
+            Storage::delete("public/product/{$image}");
+            ProductImages::query()->where("Id", $image->Id)->delete();
+        }
     }
 }

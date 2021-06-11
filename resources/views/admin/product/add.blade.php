@@ -314,13 +314,15 @@
 
             //imagesInputName:"image[]"
         });
-
-
-
         $('.input-images-2').imageUploader({
             preloaded: preloaded,
             imagesInputName: 'photos',
             preloadedInputName: 'old'
+        });
+        $(function() {
+            $(document).on('click', '.delete-image', function() {
+                console.log($(this))
+            });
         });
     </script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
