@@ -28,22 +28,22 @@
             </div>
             <div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" >
-                    <a href="{{route('admin.mobile.vendor.edit', ['id'=> auth()->user()->id])}}">Information management </a>
+                    <a href="{{route('admin.mobile.vendor.edit', ['id'=> auth()->user()->id])}}">@lang("admin.information_management")</a>
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{route("admin.mobile.yacht.index")}}'">
-                    Yacht management
+                    @lang("admin.yacht_management")
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
-                    Product management
+                    @lang("admin.product_management")
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_04.html'">
-                    Reservation management
+                    @lang("admin.reservation_management")
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_05.html'">
-                    Inquiry management
+                    @lang("admin.inquiry_management")
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_06.html'">
-                    calculate
+                    @lang("calculate")
                 </div>
             </div>
             <!-- // contents -->
@@ -76,13 +76,13 @@
                 <div class="pdg_t15">
                     <div class="flx_side_m jtab_menu_wrap01">
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{route("admin.mobile.yacht.index")}}'">
-                            Yacht management
+                            @lang("admin.yacht_management")
                         </div>
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
-                            Product management
+                            @lang("admin.product_management")
                         </div>
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_04.html'">
-                            Reservation management
+                            @lang("admin.reservation_management")
                         </div>
                     </div>
                 </div>
@@ -94,13 +94,13 @@
                 <!-- List_cell -->
                 <div class="jbg_wht pdg_s20 pdg_t20 pdg_b10 mgn_b05 j_rd08">
                     <div class="pdg_b05 mgn_b15 line_bt04 jm_ts2 j_bold">
-                        Product management
+                        @lang("admin.product_management")
                     </div>
                     <!-- -->
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Waiting for approval
+                                @lang('admin.waiting_for_approve')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -113,7 +113,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                All products
+                                @lang('admin.all_product')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -126,7 +126,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Products on sale
+                                @lang('admin.product_on_sale')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -138,7 +138,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Waiting for answer Q&amp;A
+                                @lang('admin.waiting_q_a')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -152,13 +152,13 @@
                 <!-- List_cell -->
                 <div class="jbg_wht pdg_s20 pdg_t20 pdg_b10 mgn_b05 j_rd08">
                     <div class="pdg_b05 mgn_b15 line_bt04 jm_ts2 j_bold">
-                        Reservation management
+                        @lang("admin.reservation_management")
                     </div>
                     <!-- -->
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Reservation acceptance
+                                @lang('admin.reservation_acceptance')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -171,7 +171,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                reservation confirm
+                                @lang('admin.reservation_confirm')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -184,7 +184,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Completed
+                                @lang("admin.completed")
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -197,7 +197,7 @@
                     <div class="flx_side">
                         <div style="width:calc(100%-80px);">
                             <div class="mgn_b10 jm_tss2">
-                                Cancellation request
+                                @lang('admin.cancel_request')
                             </div>
                         </div>
                         <div style="width:80px;">
@@ -214,7 +214,7 @@
             <div class="pdg_s20 pdg_t15">
                 <!-- button -->
                 <div class="flx_c jbg_btn01 jm_tss2 jcr_wht j_bold j_rd04" style="padding:15px 0;" onclick="location.href='schedule.html'">
-                    Reservation schedule
+                    @lang("admin.reserve_schedule")
                 </div>
                 <!--// button -->
             </div>

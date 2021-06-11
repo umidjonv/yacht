@@ -13,13 +13,13 @@ Route::namespace('Admin')->group(function(){
             Route::get('/vendor/edit/{id}', 'VendorController@edit')->name('admin.mobile.vendor.edit');
             Route::post('/vendor/save', 'VendorController@save_mobile')->name('admin.mobile.vendor.save');
 
-            Route::prefix('product')->group(function () {
-                Route::get('/', 'ProductMobileController@index')->name('admin.mobile.product.index');
-                Route::get('/create', 'ProductMobileController@create')->name('admin.mobile.product.create');
-                Route::post('/store', 'ProductMobileController@store')->name('admin.mobile.product.store');
-                Route::get('/getYacht', 'ProductMobileController@getYacht')->name('admin.mobile.product.getyacht');
-                Route::get('/edit/{id}', 'ProductMobileController@edit')->name('admin.mobile.product.edit');
-            });
+            // Route::prefix('product')->group(['as' => 'admin.mobile.','namespace'=>'Mobile'],function () {
+            //     Route::get('/', 'ProductMobileController@index')->name('product.index');
+            //     Route::get('/create', 'ProductMobileController@create')->name('product.create');
+            //     Route::post('/store', 'ProductMobileController@store')->name('product.store');
+            //     Route::get('/getYacht', 'ProductMobileController@getYacht')->name('product.getyacht');
+            //     Route::get('/edit/{id}', 'ProductMobileController@edit')->name('admin.mobile.product.edit');
+            // });
 
 
 
@@ -31,6 +31,17 @@ Route::namespace('Admin')->group(function(){
                     Route::get("edit/{yacht}", ["as" => "edit", "uses" => "YachtController@edit"]);
                     Route::put("update/{yacht}", ["as" => "update", "uses" => "YachtController@update"]);
                 });
+                Route::group(["prefix" => "product", "as" => "product."], function() {
+                    Route::get('/', 'ProductMobileController@index')->name('index');
+                    Route::get('/create', 'ProductMobileController@create')->name('create');
+                    Route::post('/store', 'ProductMobileController@store')->name('store');
+                    Route::get('/getYacht', 'ProductMobileController@getYacht')->name('getyacht');
+                    Route::get('/edit/{id}', 'ProductMobileController@edit')->name('edit');
+                    Route::post('/removeImage', 'ProductMobileController@removeImage')->name('removeImage');
+                    Route::post('/update/{id}', 'ProductMobileController@update')->name('update');
+                    Route::post('/destroy/{id}', 'ProductMobileController@destroy')->name('destroy');
+                });
+
             });
 
         });

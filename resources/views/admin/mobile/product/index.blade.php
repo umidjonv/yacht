@@ -3,6 +3,7 @@
 
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- gnb -->
 
     @if (!auth()->check())
@@ -113,7 +114,7 @@
 									</div>
 									<!--// button -->
 									<!-- button -->
-									<div class="bt_sml02_blu" style="width:60px;">
+									<div class="bt_sml02_blu" style="width:60px;" onclick="deleteElem(this,'{{route('admin.mobile.product.destroy',$product->Id)}}')">
 										@lang("admin.product_delete")
 									</div>
 									<!--// button -->
@@ -137,4 +138,24 @@
 
 
 
+@endsection
+
+@section("scripts")
+	<script>
+		function deleteElem(elem,route){
+			$.ajax({
+				headers: {
+				'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+				},
+				method:'post',
+				url: route,
+				success:function(res){
+					$(elem).parent().parent().parent().remove();
+				},
+				error:function(xhr){
+					console.log(xhr.responseText);
+				}
+			});
+        }
+	</script>
 @endsection
