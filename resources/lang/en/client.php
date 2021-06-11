@@ -113,6 +113,12 @@ return [
     'feedback_private' => 'Private',
     'feedback_title' => 'Title',
 
+//must sent
+    'current_reservation_tab' => 'Current reservation',
+    'last_reservation_tab' => 'Last reservation',
+    'reservation_time' => 'Reservation time',
+    'reserved' => 'Reserved',
+    'cancel' => 'Cancel',
 
 
 
