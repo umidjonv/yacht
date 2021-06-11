@@ -204,4 +204,8 @@ return [
 
     'admin.mobile.yacht_created_successfully'  => '',
     'admin.mobile.yacht_edited_successfully'  => '',
+
+    #profile
+
+    'profile.updated_successfully'  => 'Updated successfully'
 ];

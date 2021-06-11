@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Admin\Mobile;
 
 use App\Common\Arrays\Area;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use App\Models\ProductActivity;
 use App\Models\ProductImage;
 use App\Models\Yacht;
 use Illuminate\Support\Str;
@@ -95,6 +96,12 @@ class ProductMobileController extends Controller
                 'ProductId' => $product->Id
             ]);
         }
+        foreach ((array) $request->ReservationTime as $time) {
+            ProductActivity::create([
+                'Time' => $time,
+                'ProductId' => $product->Id
+            ]);
+        }
 
         return redirect(route("admin.mobile.product.index"));
     }
@@ -136,7 +143,27 @@ class ProductMobileController extends Controller
      */
     public function edit($id)
     {
+        $product = Product::find($id);
+        $vendor = auth()->user()->vendor;
+        $area = Area::get();
+        return view('admin.mobile.product.edit',[
+            'vendor' => $vendor,
+            'areas' => $area,
+            'product' => $product
+        ]);
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function removeImage(Request $request)
+    {
+        $result = ProductImage::destroy($request->id);
+        return response($result,200);
     }
 
     /**
@@ -148,6 +175,58 @@ class ProductMobileController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validator = \Validator::make($request->all(), [
+            'Name' => 'required|max:255',
+            'Division' => 'required',
+            'Area' => 'required',
+    //            'IsDisplayed' => 'required',
+            'CapacityAdult'=> 'integer',
+            'CapacityChild' => 'integer',
+            'PriceAdult'=> 'required',
+            'PriceChild'=> 'required',
+            'YachtId'=> 'required',
+            'Price'=> 'required',
+        ]);
+        if ($validator->fails()) {
+            return redirect()
+                ->route('admin.mobile.product.edit',$id)
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        $product = Product::find($id);
+
+        $product->Name = $request->input('Name');
+        $product->Division = $request->input('Division');
+        $product->IsDisplayed = $request->input('IsDisplayed');
+        $product->Area = $request->input('Area');
+        $product->CapacityAdult = $request->input('CapacityAdult');
+        $product->CapacityChild = $request->input('CapacityChild');
+        $product->Introduction = $request->input('Introduction');
+        $product->PriceAdult = $request->input('PriceAdult');
+        $product->PriceChild = $request->input('PriceChild');
+        $product->Location = $request->input('Location');
+        $product->Price = $request->input('Price');
+        $product->YachtId = $request->input('YachtId');
+        $product->save();
+        foreach ((array) $request->file('images') as $image) {
+            $f_name = $this->get_image_name($image->getClientOriginalExtension());
+
+            $image->storeAs('public/products', $f_name);
+            ProductImage::create([
+                'Name' => $f_name,
+                'ProductId' => $product->Id
+            ]);
+        }
+        ProductActivity::where("ProductId",$product->Id)->delete();
+        foreach ((array) $request->ReservationTime as $time) {
+            ProductActivity::create([
+                'Time' => $time,
+                'ProductId' => $product->Id
+            ]);
+        }
+        
+        return redirect(route("admin.mobile.product.index"));
         //
     }
 
@@ -159,6 +238,8 @@ class ProductMobileController extends Controller
      */
     public function destroy($id)
     {
+        $res = Product::destroy($id);
+        return response($res,200);
         //
     }
 }

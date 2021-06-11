@@ -26,9 +26,11 @@
                 <!-- <div class=" pdg_r10">
                     <img src="../resources/images/icon/heart_big.png" width="20px" alt="" />
                 </div> -->
-                <div class=" pdg_r15" onclick="location.href='my_pick.html'">
-                    <img src="{{asset('mobile/client/images//icon/heart_big.png')}}" height="17px" alt="" />
+                <div class=" pdg_r15" onclick="location.href='{{route('client.mobile.logout')}}'">
+
+                    <img src="{{asset('mobile/client/images/icon/logout.png')}}" width="20px;"  />
                 </div>
+
             </div>
         </div>
     </header>
@@ -66,52 +68,52 @@
             </div>
         </div>
         <div class="w_25"><!-- 목포 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1030'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>2, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_03.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 여수 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1040'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>3, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_04.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 통영 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1050'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>4, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_05.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 거제 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1060'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>5, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_06.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 부산 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=10b0'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>6, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_07.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 포항 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1070'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>7, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_08.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 강릉 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1080'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>8, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_09.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 속초 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=1090'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>9, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_10.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 제주 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=10a0'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>10, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_11.svg')}}" />
             </div>
         </div>
         <div class="w_25"><!-- 기타 -->
-            <div class="pdg_10 flx_c" onclick="location.href='/shop/list.php?ca_id=10c0'">
+            <div class="pdg_10 flx_c" onclick="location.href='{{route('client.mobile.product.list', ['area'=>11, 'sort'=>\App\Common\Enums\UI\SortOrder::popularity])}}'">
                 <img src="{{asset('mobile/client/images/SVG_map/map_12.svg')}}" />
             </div>
         </div>

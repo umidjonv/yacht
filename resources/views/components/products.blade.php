@@ -1,3 +1,4 @@
+@if(count($model) != 0 )
 @foreach($model as $item)
     <!-- list_cell -->
     <div class="w_100 flx_lft pdg_b10 pdg_t15 line_bt01">
@@ -92,3 +93,12 @@
 
 </script>
 @endsection
+
+@else
+    <div class="row mt-4">
+        <div class="col" style="text-align: center">
+            <h2 class="h2">@lang('admin.no_data_list')</h2>
+        </div>
+    </div>
+
+@endif

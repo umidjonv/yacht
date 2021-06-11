@@ -2,14 +2,16 @@
 
 @section("styles")
     <style>
-        .allDay{
+        .allDay {
             position: relative;
-            top:40px;
+            top: 40px;
         }
-        .allDay.hide{
+
+        .allDay.hide {
             visibility: hidden;
         }
-        .blockTitle{
+
+        .blockTitle {
             font-size: large;
             font-weight: bold;
             position: relative;
@@ -17,7 +19,8 @@
             top: 15px;
 
         }
-        .blockTitle.check{
+
+        .blockTitle.check {
 
         }
 
@@ -35,12 +38,14 @@
         <div class="col-6">
             <h2>@lang('admin.yacht_info')</h2>
 
-            <form action="{{ $id == 0 ? route('admin.yacht.store') : route('admin.yacht.update', ['id'=>$id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ $id == 0 ? route('admin.yacht.store') : route('admin.yacht.update', ['id'=>$id]) }}"
+                  method="post" enctype="multipart/form-data">
                 {{csrf_field()}}
-                <input type="hidden" value="{{ is_null($model) ? '0' : $model->Id }}" name="Id" />
+                <input type="hidden" value="{{ is_null($model) ? '0' : $model->Id }}" name="Id"/>
                 <div class="p-2 bg-white">
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_company')</label>
+                        <label class="form-control-plaintext"><span
+                                    class="text-danger">*</span> @lang('admin.yacht_company')</label>
                         <select class="form-control" name="VendorId" value="{{old('VendorId', $model->VendorId)}}">
                             <option value="0">@lang('admin.yacht_select')</option>
                             @foreach($vendors as $vendor)
@@ -53,16 +58,18 @@
                         </select>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_name')</label>
+                        <label class="form-control-plaintext"><span
+                                    class="text-danger">*</span> @lang('admin.yacht_name')</label>
                         <input type="text" class="form-control" name="Name" value="{{old('Name', $model->Name)}}"/>
                     </div>
                     <div class="form-group">
-                        <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_load_images')</label>
+                        <label class="form-control-plaintext"><span
+                                    class="text-danger">*</span> @lang('admin.yacht_load_images')</label>
                         <div class="input-images">
-{{--                            <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">--}}
-{{--                        @foreach($model->images as $image)--}}
-{{--                                <img src="{{asset('/storage/yachts/'.$image->Name)}}" alt="">--}}
-{{--                            @endforeach--}}
+                            {{--                            <input type="file" name="image[]" multiple class="custom-file-input" id="customFile" accept="image/jpeg, image/png, image/jpg">--}}
+                            {{--                        @foreach($model->images as $image)--}}
+                            {{--                                <img src="{{asset('/storage/yachts/'.$image->Name)}}" alt="">--}}
+                            {{--                            @endforeach--}}
                             <div class="uploaded-image">
 
                             </div>
@@ -71,144 +78,172 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.yacht_address')</label>
+                        <label class="form-control-plaintext"><span
+                                    class="text-danger">*</span> @lang('admin.yacht_address')</label>
 
                         <div class="input-group mb-3">
                             <input class="form-control" name="Area" id="Area" value="{{old('Area', $model->Area)}}">
                             <div class="input-group-append">
-                                <a href="javascript:void(0)" class="btn btn-primary" id="SearchAddress" ><i class="fa fa-search"></i> </a>
+                                <a href="javascript:void(0)" class="btn btn-primary" id="SearchAddress"><i
+                                            class="fa fa-search"></i> </a>
                             </div>
                         </div>
 
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" name="Address" id="Address" value="{{old('Address', $model->Address)}}"/>
+                        <input type="text" class="form-control" name="Address" id="Address"
+                               value="{{old('Address', $model->Address)}}"/>
                     </div>
                     <div class="form-group">
                         <label class="form-control-plaintext">@lang('admin.yacht_capacity')</label>
-                        <input type="number" class="form-control" name="Capacity" value="{{ old('Capacity', $model->Capacity) }}"/>
+                        <input type="number" class="form-control" name="Capacity"
+                               value="{{ old('Capacity', $model->Capacity) }}"/>
                     </div>
 
                     <div class="form-group">
                         <label class="form-control-plaintext">@lang('admin.yacht_length')</label>
-                        <input type="number" class="form-control" name="Length" value="{{ old('Length', $model->Length) }}"/>
+                        <input type="number" class="form-control" name="Length"
+                               value="{{ old('Length', $model->Length) }}"/>
                     </div>
                 </div>
 
                 <div class="form-group">
                     <div class="blockTitle">
-                        <label  class="form-control-plaintext ">@lang('admin.yacht_activity')</label>
+                        <label class="form-control-plaintext ">@lang('admin.yacht_activity')</label>
                     </div>
                 </div>
                 <div class="p-2 bg-white">
 
                     <div class="form-group row">
                         <div class="col-sm-3">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.yacht_start_activity')</label>
-                            <input type="text" class="form-control" name="activity[StartTime]" id="startTime" value="{{ old('activity.StartTime',$activity->StartTime)}}"/>
+                            <label class="form-control-plaintext"><span
+                                        class="text-danger">*</span> @lang('admin.yacht_start_activity')</label>
+                            <input type="text" class="form-control" name="activity[StartTime]" id="startTime"
+                                   value="{{ old('activity.StartTime',$activity->StartTime)}}"/>
                         </div>
                         <div class="col-sm-3">
-                            <label class="form-control-plaintext" ><span class="text-danger">*</span> @lang('admin.yacht_end_activity')</label>
-                            <input type="text" class="form-control" name="activity[EndTime]" id="endTime" value="{{ is_null($activity) ? '': $activity->EndTime}}"/>
+                            <label class="form-control-plaintext"><span
+                                        class="text-danger">*</span> @lang('admin.yacht_end_activity')</label>
+                            <input type="text" class="form-control" name="activity[EndTime]" id="endTime"
+                                   value="{{ is_null($activity) ? '': $activity->EndTime}}"/>
                         </div>
                         <div class="col-sm-2">
                             <div class="form-check-inline allDay">
-                                <input type="checkbox" class="form-check-input" name="activity[IsAllDay]" id="activity[IsAllDay]" >
-                                <label class="form-check-label" for="activity[IsAllDay]">@lang('admin.yacht_allday')</label>
+                                <input type="checkbox" class="form-check-input" name="activity[IsAllDay]"
+                                       id="activity[IsAllDay]">
+                                <label class="form-check-label"
+                                       for="activity[IsAllDay]">@lang('admin.yacht_allday')</label>
                             </div>
                         </div>
 
                     </div>
                     <div class="form-group row">
-                    <div class="col-sm-4">
-                        <label class="form-control-plaintext"  for="activity[Regularity]"><span class="text-danger">*</span> @lang('admin.yacht_regularity')</label>
-                        <select class="form-control"  id="regularity" name="activity[Regularity]" value="{{ is_null($activity) ? '': $activity->Regularity}}">
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Regular }}">@lang('admin.yacht_regular')</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekdays }}">@lang('admin.yacht_weekdays')</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekends }}">@lang('admin.yacht_weekends')</option>
-                            <option value="{{ \App\Common\Enums\ScheduleFrequency::ByDay }}">@lang('admin.yacht_bydays')</option>
-                        </select>
-
-
-                    </div>
-
-                    <div class="col-sm-8">
-                        <div class="allDay hide" id="days">
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][1]" id="activity[ByDay][1]" >
-                                <label class="form-check-label" for="activity[ByDay][1]">@lang('weekdays.monday')</label>
-                            </div>
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][2]" id="activity[ByDay][2]" >
-                                <label class="form-check-label" for="activity[ByDay][2]">@lang('weekdays.tuesday')</label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][3]" id="activity[ByDay][3]" >
-                                <label class="form-check-label" for="activity[ByDay][3]">@lang('weekdays.wednesday')</label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][4]" id="activity[ByDay][4]" >
-                                <label class="form-check-label" for="activity[ByDay][4]">@lang('weekdays.thursday')</label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][5]" id="activity[ByDay][5]" >
-                                <label class="form-check-label" for="activity[ByDay][5]">@lang('weekdays.friday')</label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][6]" id="activity[ByDay][6]" >
-                                <label class="form-check-label" for="activity[ByDay][6]">@lang('weekdays.saturday')</label>
-                            </div>
-
-                            <div class="form-check-inline">
-                                <input type="checkbox" class="form-check-input" name="activity[ByDay][7]" id="activity[ByDay][7]">
-                                <label class="form-check-label" for="activity[ByDay][7]">@lang('weekdays.sunday')</label>
-                            </div>
+                        <div class="col-sm-4">
+                            <label class="form-control-plaintext" for="activity[Regularity]"><span
+                                        class="text-danger">*</span> @lang('admin.yacht_regularity')</label>
+                            <select class="form-control" id="regularity" name="activity[Regularity]">
+                                <option value="{{ \App\Common\Enums\ScheduleFrequency::Regular }}"
+                                        @if((!is_null($activity) && $activity->Regularity == \App\Common\Enums\ScheduleFrequency::Regular) || ( is_null($activity) &&old("activity.Regularity") == \App\Common\Enums\ScheduleFrequency::Regular)) selected @endif>@lang('admin.yacht_regular')</option>
+                                <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekdays }}"
+                                        @if((!is_null($activity) && $activity->Regularity == \App\Common\Enums\ScheduleFrequency::Weekdays) || ( is_null($activity) &&old("activity.Regularity") == \App\Common\Enums\ScheduleFrequency::Weekdays)) selected @endif>@lang('admin.yacht_weekdays')</option>
+                                <option value="{{ \App\Common\Enums\ScheduleFrequency::Weekends }}"
+                                        @if((!is_null($activity) && $activity->Regularity == \App\Common\Enums\ScheduleFrequency::Weekends) || ( is_null($activity) &&old("activity.Regularity") == \App\Common\Enums\ScheduleFrequency::Weekends)) selected @endif>@lang('admin.yacht_weekends')</option>
+                                <option value="{{ \App\Common\Enums\ScheduleFrequency::ByDay }}"
+                                        @if((!is_null($activity) && $activity->Regularity == \App\Common\Enums\ScheduleFrequency::ByDay) || ( is_null($activity) &&old("activity.Regularity") == \App\Common\Enums\ScheduleFrequency::ByDay)) selected @endif>@lang('admin.yacht_bydays')</option>
+                            </select>
                         </div>
 
+                        <div class="col-sm-8">
+                            <div class="allDay hide" id="days">
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][1]"
+                                           id="activity[ByDay][1]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][1]">@lang('weekdays.monday')</label>
+                                </div>
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][2]"
+                                           id="activity[ByDay][2]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][2]">@lang('weekdays.tuesday')</label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][3]"
+                                           id="activity[ByDay][3]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][3]">@lang('weekdays.wednesday')</label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][4]"
+                                           id="activity[ByDay][4]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][4]">@lang('weekdays.thursday')</label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][5]"
+                                           id="activity[ByDay][5]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][5]">@lang('weekdays.friday')</label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][6]"
+                                           id="activity[ByDay][6]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][6]">@lang('weekdays.saturday')</label>
+                                </div>
+
+                                <div class="form-check-inline">
+                                    <input type="checkbox" class="form-check-input" name="activity[ByDay][7]"
+                                           id="activity[ByDay][7]">
+                                    <label class="form-check-label"
+                                           for="activity[ByDay][7]">@lang('weekdays.sunday')</label>
+                                </div>
+                            </div>
+
+                        </div>
+
+
                     </div>
-
-
-                </div>
                 </div>
 
-{{--                <div class="form-group">--}}
-{{--                    <div class="checkbox blockTitle">--}}
+                {{--                <div class="form-group">--}}
+                {{--                    <div class="checkbox blockTitle">--}}
 
-{{--                        <input type="checkbox" class="form-check-input" id="IsSchedule"/>--}}
-{{--                        <label for="IsSchedule" class="form-check-label ">Temporary schedule</label>--}}
+                {{--                        <input type="checkbox" class="form-check-input" id="IsSchedule"/>--}}
+                {{--                        <label for="IsSchedule" class="form-check-label ">Temporary schedule</label>--}}
 
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
-{{--                <div class="p-2 bg-white">--}}
+                {{--                <div class="p-2 bg-white">--}}
 
-{{--                    <div class="form-group row" id="schedule">--}}
+                {{--                    <div class="form-group row" id="schedule">--}}
 
-{{--                        <div class="col-sm-4">--}}
+                {{--                        <div class="col-sm-4">--}}
 
-{{--                            <label class="form-control-plaintext">Start date</label>--}}
-{{--                            <input type="text" class="form-control" name="schedule[StartDate]" id="startDate"/>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-4">--}}
-{{--                            <label class="form-control-plaintext" >End date</label>--}}
-{{--                            <input type="text" class="form-control" name="schedule[EndDate]" id="endDate"/>--}}
-{{--                        </div>--}}
-{{--                        <div class="col-sm-4">--}}
-{{--                            <label class="form-control-plaintext" >Type</label>--}}
-{{--                            <div class="form-check-inline">--}}
+                {{--                            <label class="form-control-plaintext">Start date</label>--}}
+                {{--                            <input type="text" class="form-control" name="schedule[StartDate]" id="startDate"/>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-sm-4">--}}
+                {{--                            <label class="form-control-plaintext" >End date</label>--}}
+                {{--                            <input type="text" class="form-control" name="schedule[EndDate]" id="endDate"/>--}}
+                {{--                        </div>--}}
+                {{--                        <div class="col-sm-4">--}}
+                {{--                            <label class="form-control-plaintext" >Type</label>--}}
+                {{--                            <div class="form-check-inline">--}}
 
-{{--                                <select class="form-control" name="schedule[IsActive]">--}}
-{{--                                    <option>Active</option>--}}
-{{--                                    <option>Inactive</option>--}}
-{{--                                </select>--}}
-{{--                            </div>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
+                {{--                                <select class="form-control" name="schedule[IsActive]">--}}
+                {{--                                    <option>Active</option>--}}
+                {{--                                    <option>Inactive</option>--}}
+                {{--                                </select>--}}
+                {{--                            </div>--}}
+                {{--                        </div>--}}
+                {{--                    </div>--}}
+                {{--                </div>--}}
 
                 <div class="form-group">
                     <input type="submit" class="btn btn-primary" value="Save"/>
@@ -234,23 +269,24 @@
     <script>
 
         let preloaded = [
-            @php
-            @endphp
+                @php
+                        @endphp
                 @foreach($model->images as $image)
 
-                    {id:{{$image->Id}}, src: '{{asset('/storage/yachts/'.$image->Name)}}'},
+            {
+                id: {{$image->Id}}, src: '{{asset('/storage/yachts/'.$image->Name)}}'
+            },
 
-                @endforeach
+            @endforeach
 
 
 
         ];
         $('.input-images').imageUploader({
-            preloaded:preloaded,
+            preloaded: preloaded,
 
             //imagesInputName:"image[]"
         });
-
 
 
         $('.input-images-2').imageUploader({
@@ -290,32 +326,31 @@
         //     $endTime.open();
         // });
 
-        $('#startDate').click(function(){
+        $('#startDate').click(function () {
             $startDate.open();
         });
 
-        $('#endDate').click(function(){
+        $('#endDate').click(function () {
             $endDate.open();
         });
 
     </script>
     <script>
-        $(document).ready(function(){
-            $("#regularity").on('change', function(){
-                if($(this).val() === "{{\App\Common\Enums\ScheduleFrequency::ByDay}}"){
-                    $('#days').attr("class","allDay");
-                }else{
-                    $('#days').attr("class","allDay hide");
+        $(document).ready(function () {
+            $("#regularity").on('change', function () {
+                if ($(this).val() === "{{\App\Common\Enums\ScheduleFrequency::ByDay}}") {
+                    $('#days').attr("class", "allDay");
+                } else {
+                    $('#days').attr("class", "allDay hide");
                 }
             });
 
             $('#schedule').hide();
 
-            $('#IsSchedule').on('change', function(){
-                if(this.checked)
-                {
+            $('#IsSchedule').on('change', function () {
+                if (this.checked) {
                     $('#schedule').show();
-                }else{
+                } else {
                     $('#schedule').hide();
 
                 }
@@ -332,13 +367,13 @@
         //     //Make the element containing the iframe invisible.
         //     element_wrap.style.display = 'none';
         // }
-        $(document).ready(function(){
-            $('#SearchAddress').click(function(){
+        $(document).ready(function () {
+            $('#SearchAddress').click(function () {
                 // 현재 scroll 위치를 저장해놓는다.
                 var currentScroll = Math.max(document.body.scrollTop, document.documentElement.scrollTop);
                 var addWindow = new daum.Postcode({
 
-                    oncomplete: function(data) {
+                    oncomplete: function (data) {
                         // 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                         // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -354,18 +389,18 @@
                         }
 
                         // 사용자가 선택한 주소가 도로명 타입일때 참고항목을 조합한다.
-                        if(data.userSelectedType === 'R'){
+                        if (data.userSelectedType === 'R') {
                             // 법정동명이 있을 경우 추가한다. (법정리는 제외)
                             // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
-                            if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                            if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
                                 extraAddr += data.bname;
                             }
                             // 건물명이 있고, 공동주택일 경우 추가한다.
-                            if(data.buildingName !== '' && data.apartment === 'Y'){
+                            if (data.buildingName !== '' && data.apartment === 'Y') {
                                 extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                             }
                             // 표시할 참고항목이 있을 경우, 괄호까지 추가한 최종 문자열을 만든다.
-                            if(extraAddr !== ''){
+                            if (extraAddr !== '') {
                                 extraAddr = ' (' + extraAddr + ')';
                             }
                             // 조합된 참고항목을 해당 필드에 넣는다.
@@ -396,7 +431,6 @@
                         // 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
 
 
-
                     },
                     // 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
                     // onresize : function(size) {
@@ -405,7 +439,7 @@
                     // width : '100%',
                     // height : '100%'
                 }).open({
-                    autoClose:true
+                    autoClose: true
 
                 });
 
@@ -414,8 +448,6 @@
                 //element_wrap.style.display = 'block';
             });
         });
-
-
 
 
     </script>

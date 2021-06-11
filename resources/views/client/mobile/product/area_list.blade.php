@@ -11,7 +11,7 @@
         <div class="jbg_wht pdg_s15" style="position:fixed; width:100%; height:auto; bottom:0;">
             <!-- List of cities in the region (province) -->
             @foreach(\App\Common\Arrays\Area::get() as $key => $value)
-                <div class="line_bt01 flx_c" style="height:48px;" value="{{$key}}">
+                <div class="line_bt01 flx_c" style="height:48px;" value="{{$key}}" onclick="SelectArea('{{ route('client.mobile.product.list', ['area'=>$key, 'sort'=>$sort])}}')">
                     <div class="pop_val w_100 js_align_c jcr_grey2 jm_tss1 j_bold">{{$value}}</div>
                 </div>
             @endforeach
@@ -32,7 +32,7 @@
         <header id="header">
             <div class="jbg_wht flx_side" style="border-bottom:0px solid #ccc;">
                 <div class="flx_lft_m" style="width:65px; height:60px;">
-                    <div class=" pdg_l15" onclick="location.href='javascript:history.go(-1);'">
+                    <div class=" pdg_l15" onclick="location.href='{{route('client.mobile.index')}}'">
                         <img src="{{asset('mobile/client/images/icon/arrow_back.png')}}" height="20px" alt="" />
                     </div>
                 </div>
@@ -145,8 +145,15 @@
             <!-- outermost_margin designation -->
         </div>
     </div>
+    <script>
+        function SelectArea(url)
+        {
+            window.location = url;
+        }
+    </script>
 @endsection
 
 
 @section('scripts')
+
 @endsection

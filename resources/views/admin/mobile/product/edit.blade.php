@@ -3,12 +3,14 @@
 
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- gnb -->
 
     @if (!auth()->check())
         <script>window.location = "{{route('admin.mobile.login.index')}}";</script>
     @else
 
+    
         <div class="jbg_wht" style="position:relative; min-height:100%; padding-bottom:76px;">
 
             <!-- header -->
@@ -42,7 +44,7 @@
             </div>
             <!-- // Section -->
             <!-- Section -->
-            <form action="{{ route('admin.mobile.product.store') }}" method="post" enctype="multipart/form-data" id="form">
+            <form action="{{ route('admin.mobile.product.update',$product->Id) }}" method="post" enctype="multipart/form-data" id="form">
                 {{csrf_field()}}
             <div class="pdg_s15">
                 <!-- List -->
@@ -58,16 +60,16 @@
                                 style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="form-group">
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="Division" id="division.tour"  value="{{\App\Common\Enums\YachtDivision::tour}}">
+                                        <input class="form-check-input" type="radio" name="Division" id="division.tour" {{ $product->Division == \App\Common\Enums\YachtDivision::tour ? 'checked' : ''}}  value="{{\App\Common\Enums\YachtDivision::tour}}">
                                         <label class="form-check-label" for="division.tour">@lang('admin.product_tour')</label>
             
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="Division" id="division.lodgement"  value="{{\App\Common\Enums\YachtDivision::lodgement}}">
+                                        <input class="form-check-input" type="radio" name="Division" id="division.lodgement" {{ $product->Division == \App\Common\Enums\YachtDivision::lodgement ? 'checked' : '' }} value="{{\App\Common\Enums\YachtDivision::lodgement}}">
                                         <label class="form-check-label" for="division.lodgement">@lang('admin.product_lodgement')</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="Division" id="division.theme"  value="{{\App\Common\Enums\YachtDivision::theme}}"/>
+                                        <input class="form-check-input" type="radio" name="Division" id="division.theme" {{ $product->Division == \App\Common\Enums\YachtDivision::theme ? 'checked' : '' }} value="{{\App\Common\Enums\YachtDivision::theme}}"/>
                                         <label class="form-check-label" for="division.theme">@lang('admin.product_theme')</label>
                                     </div>
             
@@ -111,7 +113,7 @@
                                                     <option value=""></option> 
                                                     @if(!is_null($vendor))
                                                         @foreach ($vendor->yachts as $yacht)
-                                                            <option value="{{ $yacht->Id }}">{{ $yacht->Name }}</option>    
+                                                            <option value="{{ $yacht->Id }}" {{ $yacht->Id == $product->YachtId ? "selected" : "" }} >{{ $yacht->Name }}</option>    
                                                         @endforeach
                                                     @endif
                                                 </optgroup>
@@ -120,7 +122,7 @@
                                     </div>
                                     <!-- / select -->
                                 </div>
-                                <span><span>30</span> @lang("admin.product_seater_txt"), <span>40</span> @lang("admin.product_length_txt")<span>
+                                <span><span>{{ $product->yacht->Capacity }}</span> @lang("admin.product_seater_txt"), <span>{{ $product->yacht->Length }}</span> @lang("admin.product_length_txt")<span>
                             </div>
                         </div>
                         <!-- -->
@@ -131,7 +133,7 @@
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">
-                                <input class="w_100 js_input02" name="Name" placeholder="@lang('admin.product_name_placeholder')" type="text">
+                                <input class="w_100 js_input02" name="Name" value="{{ $product->Name }}" placeholder="@lang('admin.product_name_placeholder')" type="text">
                             </div>
                         </div>
                         <!-- -->
@@ -142,7 +144,7 @@
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                 style="display:table-cell; width:calc(100% - 90px);">
-                                <textarea class="w_100 js_txtarea" name="Introduction" rows="3" placeholder="@lang('admin.product_introduction_placeholder')" value="" style="padding:5px;"></textarea>
+                                <textarea class="w_100 js_txtarea" name="Introduction" rows="3" placeholder="@lang('admin.product_introduction_placeholder')" value="" style="padding:5px;"> {{ $product->Introduction }}</textarea>
                             </div>
                         </div>
                         <!-- -->
@@ -157,26 +159,26 @@
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_adults')</label>
-                                        <input type="text" class="form-control js_input02" name="CapacityAdult"  value=""/>
+                                        <input type="text" class="form-control js_input02" name="CapacityAdult"  value="{{ $product->CapacityAdult }}"/>
                                     </div>
                                     <div class="col-6">
                                         <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_children')</label>
-                                        <input type="text" class="form-control" name="CapacityChild" value=""/>
+                                        <input type="text" class="form-control" name="CapacityChild" value="{{ $product->CapacityChild }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <div class="col-6">
                                         <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_adult_price')</label>
-                                        <input type="text" class="form-control" name="PriceAdult" value="" />
+                                        <input type="text" class="form-control" name="PriceAdult" value="{{ $product->PriceAdult }}" />
                                     </div>
                                     <div class="col-6">
                                         <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_child_price')</label>
-                                        <input type="text" class="form-control" name="PriceChild" value=""/>
+                                        <input type="text" class="form-control" name="PriceChild" value="{{ $product->PriceChild }}"/>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="form-control-plaintext"><span class="text-danger">*</span> @lang('admin.product_price')</label>
-                                    <input type="text" class="form-control" name="Price" id="Price"  value="" />
+                                    <input type="text" class="form-control" name="Price" id="Price"  value="{{ $product->Price }}" />
                                 </div>
                                 
                             </div>
@@ -205,17 +207,20 @@
                                     <div class="w_100" style="height:130px; padding-top:10px; ">
                                         <div style="display:table-row;" id="imageListSection">
                                             <!-- image -->
-
-                                            {{-- <div class="jbg_wht" style="display:table-cell;">
-                                                <div style="padding:0 10px 0 0;">
-                                                        <div style="border:1px solid #ddd; padding:5px;">
-                                                        <div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">
-                                                            <img src="{{ asset('mobile/admin/images/review_05.png') }}" height="76px">
-                                                        </div>
-                                                        <div class="flx_c pdg_t05 jcr_grey2 jm_tsss2">삭제</div>
+                                            @if(!empty($product->images->toArray()))
+                                                @foreach ($product->images as $image)
+                                                    <div class="jbg_wht" style="display:table-cell;">
+                                                        <div style="padding:0 10px 0 0;">
+                                                                <div style="border:1px solid #ddd; padding:5px;">
+                                                                <div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">
+                                                                    <img src="{{ asset('storage/products/'.$image->Name) }}" height="76px">
+                                                                </div>
+                                                                <div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete" onclick="removeImage({{$image->Id}},this   )">@lang("admin.product_delete")</div>
+                                                            </div>
+                                                        </div>                                   
                                                     </div>
-                                                </div>                                   
-                                            </div> --}}
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                         <!-- / sliding image -->
@@ -238,7 +243,7 @@
                                             <select name="Area" style="vertical-align:middle;">
                                                 <optgroup label="">
                                                     @foreach ($areas as $key => $area)
-                                                        <option value="{{ $key }}">{{ $area }}</option>
+                                                        <option value="{{ $key }}" {{ $product->Area == $key ? "selected" : "" }}>{{ $area }}</option>
                                                     @endforeach
                                                 </optgroup>
                                             </select>
@@ -318,7 +323,12 @@
                                 <!-- add skedule -->
                                 <div class="flx_side" style="padding-top:10px; border-top:1px dashed #ccc;">
                                     <div style="width:70%; height:140px; background-color:#fff; overflow-y: scroll; border:1px solid #ccc;" id="timeList">
-                                                       
+                                        @foreach ($product->activities as $activity)
+                                            <div class="res_time" onclick="TimeSelection(this)"> 
+                                                <span>{{ $activity->Time }}</span>
+                                                <input type="hidden" value="{{$activity->Time}}" name="ReservationTime[]" />
+                                            </div>
+                                        @endforeach
                                     </div>
 
                                     <div>                                   
@@ -386,10 +396,26 @@
             });
 
         }
-
+        
         $(document).on("click",".delete", function(){
-            $(this).parent().parent().parent().remove();
         });
+
+        function removeImage(id,elem){
+                $.ajax({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method:'post',
+                    url: "{{route('admin.mobile.product.removeImage')}}",
+                    data: "id="+id,
+                    success:function(res){
+                        $(elem).parent().parent().parent().remove();
+                    },
+                    error:function(xhr){
+                        console.log(xhr.responseText);
+                    }
+                });
+        }
         
         $(document).ready(function(){
             $("#saveBtn").click(function(){
@@ -400,37 +426,37 @@
                 $("#uploadImageInput").click();
             });
             var imagesPreview = function(input, placeToInsertImagePreview) {
-                $(placeToInsertImagePreview).html("");
-                if (input.files) {
-                    var filesAmount = input.files.length;
 
-                    for (i = 0; i < filesAmount; i++) {
-                        var reader = new FileReader();
+            if (input.files) {
+                var filesAmount = input.files.length;
 
-                        reader.onload = function(event) {
-                            var listElem = '<div class="jbg_wht" style="display:table-cell;">'+
-                                        '<div style="padding:0 10px 0 0;">'+
-                                            '<div style="border:1px solid #ddd; padding:5px;"   >'+
-                                                '<div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">'+
-                                                    '<img src="'+ event.target.result + '" height="76px">'+
-                                                '</div>'+
-                                            '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete">@lang("admin.product_delete")</div>'+
-                                        '</div>'+
-                                    '</div>'+                                   
-                                '</div>';
-                            
-                            $(listElem).appendTo(placeToInsertImagePreview);
-                        }
-                        reader.readAsDataURL(input.files[i]);
-                
+                for (i = 0; i < filesAmount; i++) {
+                    var reader = new FileReader();
+
+                    reader.onload = function(event) {
+                        var listElem = '<div class="jbg_wht" style="display:table-cell;">'+
+                                    '<div style="padding:0 10px 0 0;">'+
+                                        '<div style="border:1px solid #ddd; padding:5px;"   >'+
+                                            '<div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">'+
+                                                '<img src="'+ event.target.result + '" height="76px">'+
+                                            '</div>'+
+                                        '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete">@lang("admin.product_delete")</div>'+
+                                    '</div>'+
+                                '</div>'+                                   
+                            '</div>';
+                        
+                        $(listElem).appendTo(placeToInsertImagePreview);
                     }
+                    reader.readAsDataURL(input.files[i]);
+
                 }
+            }
 
             };
             $("#uploadImageInput").change(function(){
+
+            imagesPreview(this, '#imageListSection');
                 
-                imagesPreview(this, '#imageListSection');
-                    
             });
 
             $('#addTime').click(function(){
@@ -439,7 +465,7 @@
                 var time = hour +':'+ minute;
                 var item = '<div class="res_time" onclick="TimeSelection(this)"> '+
                                 '<span>' + time + '</span>'+
-                                '<input type="text" style="display:none;" value="'+time+'" name="ReservationTime[]" />'+
+                                '<input type="hidden" value="'+time+'" name="ReservationTime[]" />'+
                             '</div>';
                 var itemExist = false;
                     

@@ -22,7 +22,7 @@ class ReservationController extends Controller
 
     public function prepare($id)
     {
-        $product = Product::with('yachts')->find($id);
+        $product = Product::with('yacht')->find($id);
 
         $yacht = $product->yacht()->first();
 
@@ -83,7 +83,10 @@ class ReservationController extends Controller
 
     public function payment($id)
     {
+
+
         $reservation = Reservation::where('Id', $id)->with('product')->first();
+
         $member = Member::where('UserId', $reservation->UserId)->first();
         $product = $reservation->product()->first();
         $yacht = $product->yacht()->first();

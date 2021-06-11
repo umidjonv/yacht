@@ -164,7 +164,7 @@ return [
 
 
 
-    //admin mobile product
+    //admin mobile product create/update
 
     'product_yacht_selection' => 'Yacht selection',
     'product_yacht_name' => 'Product name',
@@ -180,12 +180,14 @@ return [
     'product_yacht_details' => 'Details',
     'product_yacht_details_placeholder' => 'Details content',
     'product_admin_create_header' => 'Product/modify registration ',
-    'product_management' => 'Product management ',
+
+    //admin mobile product index
     'product_modified' => 'Modify', 
     'product_delete' => 'Delete',
     'product_display_text' => 'Display',
     'product_search_text' => 'Enter search product name',
     'product_redister_text' => 'Register',
+
 
     //sent to translate
 
@@ -200,6 +202,23 @@ return [
     'text_cancel' => 'Cancel',
 
     'feedback_send_answer' => 'Send answer'
+
+    //admin mobile 
+    'reservation_management' => 'Reservation management',
+    'inquiry_management' => 'Inquiry management',
+    'information_management' => 'Information management',
+    'waiting_for_approve' => 'Waiting for approval',
+    'all_product' => 'All products',
+    'product_on_sale' => 'Products on sale',
+    'waiting_q_a' => 'Waiting for answer Q&amp;A',
+    'reservation_acceptance' => 'Reservation acceptance',
+    'reservation_confirm' => 'Reservation confirm',
+    'completed' => 'Completed',
+    'cancel_request' => 'Cancellation request',
+    'reserve_schedule' => 'Reservation schedule',
+
+    'no_data_list' => 'There is no data, choose another area',
+
 
 
 

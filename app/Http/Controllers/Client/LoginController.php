@@ -97,7 +97,7 @@ class LoginController extends BaseController
     {
         Auth::logout();
 
-        return redirect()->route('client.mobile.auth.login');
+        return redirect()->route('client.mobile.login');
     }
 
 
