@@ -190,7 +190,7 @@
         <!-- fixed Bottom Button -->
         <div class="btm_bt_wrap02 btm_bt_fix" style="padding:12px 15px 12px;">
             <!-- button -->
-            <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" onclick="location.href='product_booking_fns.html'">
+            <div class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;">
                 @lang('client.make_payment')
             </div>
             <!--// button -->

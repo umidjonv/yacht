@@ -34,6 +34,7 @@ Route::namespace('Admin')->group(function(){
 
         Route::get('/', 'AdminController@index')->name('admin.index');
         Route::get('/profile', 'AdminController@profile')->name('admin.profile');
+        Route::put('/profile/update/{user}', 'AdminController@update')->name('admin.profile.update');
 
         Route::get('/logout', 'LoginController@logout_admin')->name('admin.logout');
 

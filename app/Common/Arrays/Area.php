@@ -6,10 +6,9 @@ namespace App\Common\Arrays;
 
 class Area
 {
-    private static $area = array("Area 1", "Area 2", "Area 3",
-                                "Area 4", "Area 5", "Area 6",
-                                "Area 7", "Area 8", "Area 9",
-                                "Area 10", "Area 11", "Area 12");
+    private static $area = array('인천',    '화성',   '목포',    '여수',
+                                '통영',    '거제',   '부산',     '포항',
+                                '강릉',    '속초',   '제주',     '기타');
 
     public static function get()
     {

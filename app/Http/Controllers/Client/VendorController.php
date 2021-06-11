@@ -41,6 +41,7 @@ class VendorController extends Controller
                 'name' => $name,
                 'email' => $request->email,
                 'password' => bcrypt($request->Password),
+                'contact'   => $request->Contact,
             ]
         );
 
