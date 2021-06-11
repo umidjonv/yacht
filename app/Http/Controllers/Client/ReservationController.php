@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Reservation;
 use App\Models\Vendor;
 use App\User;
+use Carbon\Carbon;
 use \Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -107,6 +108,38 @@ class ReservationController extends Controller
         dd($request->all());
     }
 
+    public function list()
+    {
+        $date = Carbon::now();
+        $user = Auth::user();
+        $reservations = Reservation::with('product')->where('UserId', $user->id);
+
+        $current = $reservations->where(function ($query) {
+            $query->where('IsPayed', 1)
+                ->orWhere('IsReserved', 1);
+        })->where('ReservationDate', '>', $date->toDateTimeString())->get();
+
+        $completed = $reservations->where(function ($query) {
+            $query->where('IsPayed', 1)
+                ->orWhere('IsReserved', 1);
+        })->where('ReservationDate', '<', $date->toDateTimeString())->get();
+
+        DB::enableQueryLog(); // Enable query log
+
+
+
+        //return dd($date->toDateTimeString());
+
+        return view('client.mobile.reservation.list')->with(['current'=>$current, 'completed'=>$completed]);
+    }
+
+    public function view($id)
+    {
+        $reservation = Reservation::find($id);
+
+        return view('client.mobile.reservation.view')->with(['model'=>$reservation]);
+
+    }
 
 
 }

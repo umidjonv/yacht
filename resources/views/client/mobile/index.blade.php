@@ -132,14 +132,14 @@
                 @foreach($ratings as $rating)
                     @php
                     $product = $rating->product()->first();
-                    $image = $product->yacht()->first()->images()->first();
+                    $image = $product->images()->first();
 
                     @endphp
 
                 <!---->
-                <div class="sliding01_cell" onclick="location.href='theme_stay.html'">
+                <div class="sliding01_cell" onclick="location.href='{{route('client.mobile.product.view', ['id'=>$product->Id])}}'">
                     @if(isset($image))
-                        <img src="{{asset('storage/yachts').'/'.$image->Name}}" width="100%" height="100%" alt="" />
+                        <img src="{{asset('storage/product').'/'.$image->Name}}" width="100%" height="100%" alt="" />
                     @else
                         <img src="{{asset('storage/images/yacht.png')}}" width="100%" height="100%" alt="" />
                     @endif
@@ -165,7 +165,7 @@
         <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.index')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/home_on.svg')}}" alt="홈">
         </div>
-        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.product.my')}}'">
+        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='{{route('client.mobile.reservation.list')}}'">
             <img src="{{asset('mobile/client/images/SVG_tab/list.svg')}}" alt="예약내역">
         </div>
 {{--        <div class="w_25 flx_c " style="height:60px;" onclick="location.href='sale.html'">--}}

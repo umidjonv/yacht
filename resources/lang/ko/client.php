@@ -14,15 +14,15 @@ return [
 
     'welcome_title' => '환영합니다',
     'login_id'=> '아이디 (이메일)',
-    'password'=> '암호',
+    'password'=> '비밀번호',
     'login'=> '로그인',
-    'sign_up' => '가입하기',
+    'sign_up' => '회원가입',
     'find_id' => '아이디 찾기',
-    'forgot_password'=>' 비밀번 찾기',
+    'forgot_password'=>' 비밀번호 찾기',
     'quick_login' => '빠른 로그인',
 
     //auth.register1
-    'agreement' => '협정',
+    'agreement' => '동의',
     'agree_with' => '에 동의합니다 ...',
     'register_terms' => '서비스 약관',
     'register_privacy_statement' => '개인 정보 보호',
@@ -33,19 +33,19 @@ return [
 
     'register_title' => '등록',
     'register_id' => '아이디 (이메일)',
-    'register_retry_password' => '재시도 암호',
+    'register_retry_password' => '비밀번호 재시도',
     'register_contact' => '연락처',
     'register_contact_activation' => '코드 받기',
-    'register_code_not_match' => '코드가 일치하지 않습니다.',
-    'register_sign_up' => '가입하기',
+    'register_code_not_match' => '일치하지 않습니다.',
+    'register_sign_up' => '가입',
     'register_welcome_sign_up' => '환영합니다 :) 로그인 해주세요',
 
     //product.area_list
-    'area_list_high_price' => '높은 가격',
-    'area_list_low_price' => '낮은/가격',
-    'area_list_registration_order' => '등록',
-    'area_list_popularity' => '인기',
-    'area_list_state_province' => '주 /도',
+    'area_list_high_price' => '높은가격순',
+    'area_list_low_price' => '낮은가격순',
+    'area_list_registration_order' => '등록순',
+    'area_list_popularity' => '인기순',
+    'area_list_state_province' => '시/도',
     'area_list_reservation_date' => '예약일',
 
     //product.list
@@ -67,7 +67,7 @@ return [
 
     'product_view_top_reviews' => '총 리뷰',
     'product_view_seats' => '좌석',
-    'product_view_details' => '상세한',
+    'product_view_details' => '상세정보',
     'product_view_qa' => 'Q&A',
     'product_view_review' => '리뷰',
     'product_view_refund_title' => '환불 정책 안내',
@@ -81,7 +81,7 @@ return [
     'product_view_feedback_waiting' => '답변을 기다리는 중',
     'product_view_feedback_answered' => '답변',
     'product_view_feedback_view_more' => '더보기',
-    'product_view_review_write' => '리뷰를 쓰다',
+    'product_view_review_write' => '리뷰 작성',
     'product_view_make_reservation' => '예약',
 
     //reservation.prepare
@@ -93,7 +93,7 @@ return [
     'adults' => '성인',
     'adults_description' => '중학생 <br/>이상',
     'children' => '어린이',
-    'children_description' => '36 개월 이상 초등학교 <br/> 학생',
+    'children_description' => '36 개월 이상 초등학생 이하',
     'payment' => '결제',
 
     'payment_method' => '결제 방법',
@@ -101,11 +101,11 @@ return [
     'bank_transfer' => '실시간 은행 송금',
     'payment_amount' => '결제 금액',
     'product_amount' => '상품 금액',
-    'used_points' => '사용한 포인트',
+    'used_points' => '사용 포인트',
     'use_points' => '포인트 사용',
     'total_payment_amount' => '총 결제 금액',
-    'retained_points' => '유지 포인트',
-    'make_payment' => '결제 하기',
+    'retained_points' => '남은 포인트',
+    'make_payment' => '결제',
 
 
 
