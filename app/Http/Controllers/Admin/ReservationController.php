@@ -11,6 +11,7 @@ use App\Models\Product;
 use App\Models\Reservation;
 use App\Models\Vendor;
 use App\Models\Yacht;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -22,12 +23,13 @@ class ReservationController extends BaseController
     {
         $yachtd = new \App\Common\Enums\YachtDivision();
         $user = Auth::user();
-        if(!auth()->check())
-            return redirect('/login');
+
+        $vendor = User::where('id', $user->id)->with('vendor')->first();
+        $vendor_id = $vendor->vendor()->first()->Id;
 
         if($user->type == UserType::user)
         {
-            $reservations = Reservation::where('VendorId', $user->id)->get();
+            $reservations = Reservation::where('VendorId', $vendor_id)->get();
 
         }else
         {

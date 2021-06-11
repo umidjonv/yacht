@@ -9,7 +9,7 @@
         <div class="col-2"></div>
         <div class="col-8">
             <div class="row text-center p-3">
-                <h3>Aplication for entry</h3>
+                <h3>입국 신청</h3>
                 <hr class="mt-2" align="center" width="100%" size="5" color="#fafafa" />
             </div>
             <form class="form" action="/client/vendor/register/save" method="post">
@@ -18,7 +18,7 @@
                 <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label class="form-control-plaintext"><span class="text-danger">*</span>ID</label>
+                            <label class="form-control-plaintext"><span class="text-danger">*</span>신분증</label>
                             <input class="form-control" type="text" name="name" value="{{old('name')}}"/>
                         </div>
                         <div class="form-group">
@@ -54,8 +54,13 @@
                     <div class="form-row">
                         <input class="form-control col-sm-9" type="text" name="Address" id="Area" value="{{old('Address')}}" />
                         <a href="javascript:void(0)" class="btn btn-primary col-sm-2 ml-4" id="SearchAddress">@lang('admin.search')</a>
+
                     </div>
                 </div>
+                <div id="wrap">
+
+                </div>
+
                 <div class = "mt-3">
 
                     <div class="row">

@@ -5,19 +5,19 @@
     <div class="row">
         <div class="col">
 
-            <h2>Reservation list</h2>
+            <h2>@lang('admin.reservation_list')</h2>
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Product name</th>
-                        <th>Date</th>
-                        <th>Time</th>
-                        <th>Adults</th>
-                        <th>Childs</th>
-                        <th>Payment Amount</th>
-                        <th>Total Amount</th>
-                        <th>Payed or not</th>
+                        <th>@lang('admin.product_name')</th>
+                        <th>@lang('admin.date_created')</th>
+                        <th>@lang('admin.time')</th>
+                        <th>@lang('admin.product_adults')</th>
+                        <th>@lang('admin.product_children')</th>
+                        <th>@lang('admin.reservation_payment')</th>
+                        <th>@lang('admin.reservation_total_amount')</th>
+                        <th>@lang('admin.reservation_paid')</th>
 
                         <th></th>
 
@@ -34,10 +34,10 @@
                             <td>{{$item->Childs}}</td>
                             <td>{{$item->PaymentAmount}}</td>
                             <td>{{$item->TotalAmount}}</td>
-                            <td>{{$item->IsPayed?"Payed":"Not payed"}}</td>
+                            <td>{{$item->IsPayed?__('admin.reservation_paid_yes'):__('admin.reservation_paid_not')}}</td>
 
 
-                            <td><a href="{{route('admin.reservation.view',['Id'=>$item->Id])}}" class="btn btn-info"><span class="fa fa-eye"></span> </a> </td>
+{{--                            <td><a href="{{route('admin.reservation.view',['Id'=>$item->Id])}}" class="btn btn-info"><span class="fa fa-eye"></span> </a> </td>--}}
                         </tr>
                     @endforeach
                 </tbody>

@@ -116,15 +116,18 @@
                         </a>
                     </li>
                 </ul>
+                <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+                    <span class="fa fa-comments"> @lang('admin.feedback')</span>
+
+                </h6>
+
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.feedback.index')}}">
-
-                            @lang('admin.feedback_list')
-                        </a>
+                        <a class="nav-link" href="{{ route('admin.feedback.index')}}">  @lang('admin.feedback_list')</a>
                     </li>
 
                 </ul>
+
 
 
             </div>

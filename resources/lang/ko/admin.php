@@ -88,6 +88,120 @@ return [
     'product_reservation_remove' => '제거',
     'product_save' => '저장',
 
+    'yacht_bydays' => '일별',
+    'product_save' => '저장',
+//---sent to translate
+
+
+    //event
+    'events' => '이벤트 관리',
+    'event_list' => '이벤트 목록',
+    'event_image' => "이미지",
+    'event_title' => '표제',
+    'event_short_description' => '간단한 설명',
+    'event_date' => '행사 날',
+    'event_actions' => '행동',
+    'event_add' => '추가',
+
+
+    //yacht
+    'yacht_image' => "이미지",
+
+    'banner_management' => '배너 관리',
+    'banner_link' => '링크',
+    'banner_image' =>  '이미지',
+    'banner_list' => '배너 목록',
+    'banner_order' => '주문',
+    'banner_event' => '행사',
+    'banner_edit_title' => '배너 편집',
+    'banner_load_image' => '이미지로드',
+    'banner_delete' => '삭제',
+    'banner_save' => '저장',
+    'banner_change' => '변경',
+    'banner_attached' => '첨부',
+    'banner_select_event' => '행사 선택',
+    'banner_detach' => '파견',
+
+    //admin
+    'save' => '저장',
+    'profile' => '프로필',
+    'upload_photo' => '다른 사진 업로드...',
+    'id' => 'ID',
+    'contact' => '연락처',
+    'email' => '이메일',
+    'password' => '암호',
+    'admin_page_title' => '행정 관리',
+    'repassword' => '비밀번호 재 입력',
+    'feedback_title' => '피드백',
+    'feedback_answer' => '답변',
+    'feedback_have_you_send' => '답변을 보낼 수 있습니까?',
+    'feedback_send' => '보내기',
+    'feedback_is_required' => '메시지가 필요합니다',
+    'feedback_list' => '피드백 목록',
+
+
+    'member_username' => '사용자 이름',
+    'member_membershipstatus' => '멤버십',
+    'member_currentpoint' => '현재위치',
+    'member_accumpoint' => '누적 포인트',
+    'member_lastvisited' => '마지막 방문',
+    'change_member_status' => '회원 상태를 변경 하시겠습니까?',
+    'change_member_status_activate' => '활성',
+    'change_member_status_deactivate' => '비활성',
+    'member_change_password' => '비밀번호 변경?',
+    'member_change_password_title' => '암호',
+
+    'retype_password'=>'비밀번호 재 입력',
+    'send_feedback' => '질문 보내기',
+    'search' => '검색',
+    'address' => '주소',
+    'company_name' => '회사 이름',
+    'terms_service' => '서비스 약관',
+    'terms_privacy' => '개인 정보 보호 정책',
+    'agreement_policy'=>'이용 약관 및 개인 정보 보호 정책에 동의합니다.',
+
+
+
+    //admin mobile product
+
+    'product_yacht_selection' => '요트 선택',
+    'product_yacht_name' => '상품명',
+    'product_seater_txt' => '좌석',
+    'product_length_txt' => 'pt',
+    'product_name_placeholder' => '이름을 입력하세요',
+    'product_introduction' => '간단한 소개',
+    'product_introduction_placeholder' => '소개 내용',
+    'product_budget' => '예산',
+    'product_image_text' => '이미지',
+    'product_yacht_location' => '요트 위치',
+    'product_yacht_booking_time' => '예약 시간',
+    'product_yacht_details' => '세부',
+    'product_yacht_details_placeholder' => '세부 내용',
+    'product_admin_create_header' => '제품 / 수정 등록 ',
+    'product_management' => '제품 관리 ',
+    'product_modified' => '수정',
+    'product_delete' => 'Delete',
+    'product_display_text' => '표시',
+    'product_search_text' => '검색 제품 이름 입력',
+    'product_redister_text' => '등록',
+
+
+    'register_vendor_complete' => '등록하면 활성화 알림을 받게됩니다.',
+    'register_company' => '회사 등록',
+
+    'date_created'=> '만든 날짜',
+    'time'=> '시간',
+    'feedback'=> 'Feedback',
+    'reservation_payment'=> '결제 금액',
+    'reservation_total_amount'=> '총액',
+    'reservation_paid'=> '유료 여부',
+    'reservation_paid_yes'=> '유료',
+    'reservation_paid_not'=> '미지급',
+
+    'feedback_send_answer'=> '답변 보내기',
+    'text_cancel'=> '취소',
+
+
     'admin.mobile.yacht_created_successfully'  => '',
     'admin.mobile.yacht_edited_successfully'  => '',
 

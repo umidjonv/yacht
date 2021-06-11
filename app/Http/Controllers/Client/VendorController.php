@@ -35,13 +35,16 @@ class VendorController extends Controller
 
         $validated = $request->validated();
 
+        //return dd($request->all());
+
         $name = strtolower($request->name);
         $userId = DB::table('users')->insertGetId(
             [
                 'name' => $name,
                 'email' => $request->email,
                 'password' => bcrypt($request->Password),
-                'contact'   => $request->Contact,
+                'contact' =>  $request->Contact,
+
             ]
         );
 
