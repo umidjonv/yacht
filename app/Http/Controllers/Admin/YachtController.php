@@ -13,6 +13,7 @@ use App\Models\Yacht;
 use App\Models\YachtImage;
 use Illuminate\Http\Request;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Validator;
 use phpDocumentor\Reflection\Types\Integer;
 use Illuminate\Support\Str;
@@ -21,14 +22,16 @@ class YachtController extends Controller
 {
     use Notifiable;
 
-    public function index(){
+    public function index()
+    {
         $data = Yacht::with('images')->get();
 
 
         return view('admin.yacht.index')->with('data', $data);
     }
 
-    public function by_vendor($vendorId){
+    public function by_vendor($vendorId)
+    {
 
 
         $data = Yacht::where('VendorId', $vendorId)->with('vendor')->get();
@@ -39,30 +42,32 @@ class YachtController extends Controller
         return view('admin.yacht.index')->with('data', $data);
     }
 
-    public function add(){
+    public function add()
+    {
         $vendors = Vendor::all();
         $model = new Yacht();
         $activity = new Activity();
 
-        return view('admin.yacht.add')->with(['vendors'=> $vendors, 'model'=>$model, 'activity'=>$activity]);
+        return view('admin.yacht.add')->with(['vendors' => $vendors, 'model' => $model, 'activity' => $activity]);
     }
 
-    public function change($id){
+    public function change($id)
+    {
         $vendors = Vendor::all();
-            $model = Yacht::find($id);
+        $model = Yacht::find($id);
 
-        if($model != null)
-        {
+        if ($model != null) {
             $activity = Activity::where('YachtId', $model->Id)->first();
-        }else{
+        } else {
             $activity = new Activity();
         }
 
 
-        return view('admin.yacht.add')->with(['vendors'=> $vendors, 'model'=>$model, 'activity'=>$activity]);
+        return view('admin.yacht.add')->with(['vendors' => $vendors, 'model' => $model, 'activity' => $activity]);
     }
 
-    public function store(YachtRequest $request){
+    public function store(YachtRequest $request)
+    {
         $validated = $request->validated();
 
         $yacht = new Yacht();
@@ -74,7 +79,7 @@ class YachtController extends Controller
         $yacht->Capacity = $request->Capacity;
 
         $yacht->save();
-        foreach ((array) $request->file('images') as $image) {
+        foreach ((array)$request->file('images') as $image) {
             $f_name = $this->get_image_name($image->getClientOriginalExtension());
 
             $image->storeAs('public/yachts', $f_name);
@@ -85,8 +90,7 @@ class YachtController extends Controller
         }
 
 
-        if($yacht->Id>0)
-        {
+        if ($yacht->Id > 0) {
             $activity = new Activity();
             $activity->StartTime = $request->input('activity.StartTime');
             $activity->EndTime = $request->input('activity.EndTime');
@@ -94,7 +98,7 @@ class YachtController extends Controller
             $activity->YachtId = $yacht->Id;
             $activity->save();
 
-            if($request->IsSchedule) {
+            if ($request->IsSchedule) {
 
                 Validator::make($request->all(), [
                     'schedule.StartDate' => 'date_format:d.m.Y',
@@ -120,10 +124,8 @@ class YachtController extends Controller
     {
         $deleteimage = array();
 
-        foreach ($fromModel as $image)
-        {
-            if($fromView == null||!in_array($image->Id,  $fromView))
-            {
+        foreach ($fromModel as $image) {
+            if ($fromView == null || !in_array($image->Id, $fromView)) {
                 $deleteimage[] = $image->Id;
             }
         }
@@ -134,20 +136,21 @@ class YachtController extends Controller
 
     private function get_image_name($ext)
     {
-        return 'IMG_'.date('Y-m-d H-i-s', time()).'.'.rand(0,999).'.'.Str::lower($ext);
+        return 'IMG_' . date('Y-m-d H-i-s', time()) . '.' . rand(0, 999) . '.' . Str::lower($ext);
     }
 
     private function delete_images($images)
     {
-        foreach ($images as $image)
-        {
-            YachtImage::where('Id', $image)->delete();
+        foreach ($images as $image) {
+            $file = YachtImage::where('Id', $image)->first();
+            Storage::delete("public/yachts/{$file->Name}");
+            $file->delete();
         }
 
     }
 
-    public function update(YachtRequest $request, $id){
-
+    public function update(YachtRequest $request, $id)
+    {
         //return dd($request->all());
         $validated = $request->validated();
 
@@ -171,8 +174,7 @@ class YachtController extends Controller
         $this->delete_images($deleteImages);
 
 
-
-        foreach ((array) $request->file('images') as $image) {
+        foreach ((array)$request->file('images') as $image) {
             $f_name = $this->get_image_name($image->getClientOriginalExtension());
             $image->storeAs('public/yachts', $f_name);
 
@@ -182,11 +184,10 @@ class YachtController extends Controller
             ]);
         }
 
-        if($yacht!=null && $yacht->Id>0)
-        {
+        if ($yacht != null && $yacht->Id > 0) {
             $activity = Activity::where('YachtId', $yacht->Id)->first();
 
-            if($activity == null)
+            if ($activity == null)
                 $activity = new Activity();
 
             $activity->StartTime = $request->input('activity.StartTime');
@@ -195,7 +196,7 @@ class YachtController extends Controller
 
             $activity->save();
 
-            if($request->IsSchedule) {
+            if ($request->IsSchedule) {
 
                 Validator::make($request->all(), [
                     'schedule.StartDate' => 'date_format:d.m.Y',
@@ -209,7 +210,7 @@ class YachtController extends Controller
                 $schedule->EndDate = $request->schedule->EndDate;
 
                 $schedule->save();
-            }else{
+            } else {
                 Schedule::where('YachtId', $yacht->Id)->delete();
             }
 
