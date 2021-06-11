@@ -91,6 +91,7 @@ Route::namespace('Client')->group(function(){
     Route::group(['prefix' => 'client'], function(){
         Route::prefix('mobile')->group(function () {
             Route::get('/login', 'LoginController@index')->name('client.mobile.login');
+            Route::get('/logout', 'LoginController@logout')->name('client.mobile.logout');
             Route::post('/attempt', 'LoginController@attempt')->name('client.mobile.login.attempt');
             Route::get('/register1', 'LoginController@register1')->name('client.mobile.register1');
             Route::get('/register2', 'LoginController@register2')->name('client.mobile.register2');
