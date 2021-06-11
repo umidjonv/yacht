@@ -201,7 +201,7 @@ return [
     'reservation_paid_not' => 'Not paid',
     'text_cancel' => 'Cancel',
 
-    'feedback_send_answer' => 'Send answer'
+    'feedback_send_answer' => 'Send answer',
 
     //admin mobile 
     'reservation_management' => 'Reservation management',
