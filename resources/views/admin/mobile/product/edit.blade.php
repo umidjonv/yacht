@@ -3,6 +3,7 @@
 
 
 @section('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- gnb -->
 
     @if (!auth()->check())
@@ -43,7 +44,7 @@
             </div>
             <!-- // Section -->
             <!-- Section -->
-            <form action="{{ route('admin.mobile.product.store') }}" method="post" enctype="multipart/form-data" id="form">
+            <form action="{{ route('admin.mobile.product.update',$product->Id) }}" method="post" enctype="multipart/form-data" id="form">
                 {{csrf_field()}}
             <div class="pdg_s15">
                 <!-- List -->
@@ -214,7 +215,7 @@
                                                                 <div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">
                                                                     <img src="{{ asset('storage/products/'.$image->Name) }}" height="76px">
                                                                 </div>
-                                                                <div class="flx_c pdg_t05 jcr_grey2 jm_tsss2">@lang("admin.product_delete")</div>
+                                                                <div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete" onclick="removeImage({{$image->Id}},this   )">@lang("admin.product_delete")</div>
                                                             </div>
                                                         </div>                                   
                                                     </div>
@@ -322,7 +323,12 @@
                                 <!-- add skedule -->
                                 <div class="flx_side" style="padding-top:10px; border-top:1px dashed #ccc;">
                                     <div style="width:70%; height:140px; background-color:#fff; overflow-y: scroll; border:1px solid #ccc;" id="timeList">
-                                                       
+                                        @foreach ($product->activities as $activity)
+                                            <div class="res_time" onclick="TimeSelection(this)"> 
+                                                <span>{{ $activity->Time }}</span>
+                                                <input type="hidden" value="{{$activity->Time}}" name="ReservationTime[]" />
+                                            </div>
+                                        @endforeach
                                     </div>
 
                                     <div>                                   
@@ -390,17 +396,27 @@
             });
 
         }
-        function readURL(input) {
-            if (input.files[0]) {
-                var reader = new FileReader();
+        
+        $(document).on("click",".delete", function(){
+        });
 
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
+        function removeImage(id,elem){
+                $.ajax({
+                    headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    method:'post',
+                    url: "{{route('admin.mobile.product.removeImage')}}",
+                    data: "id="+id,
+                    success:function(res){
+                        $(elem).parent().parent().parent().remove();
+                    },
+                    error:function(xhr){
+                        console.log(xhr.responseText);
+                    }
+                });
         }
+        
         $(document).ready(function(){
             $("#saveBtn").click(function(){
                 $("#form").submit();
@@ -409,28 +425,38 @@
             $("#uploadImage").click(function(){
                 $("#uploadImageInput").click();
             });
+            var imagesPreview = function(input, placeToInsertImagePreview) {
 
-            $("#uploadImageInput").change(function(){
-                var listElem = "";
-                var elems = $(this)[0].files;
-                for(i = 0; i < elems.length;i++){
-                    var elem = elems[i];
+            if (input.files) {
+                var filesAmount = input.files.length;
+
+                for (i = 0; i < filesAmount; i++) {
                     var reader = new FileReader();
-                    reader.onload = function (e) {
-                        listElem += '<div class="jbg_wht" style="display:table-cell;">'+
-                                        '<div style="padding:0 10px 0 0;">'+
-                                            '<div style="border:1px solid #ddd; padding:5px;">'+
-                                                '<div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">'+
-                                                    '<img src="'+ e.target.result + '" height="76px">'+
-                                                '</div>'+
-                                            '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2">삭제</div>'+
-                                        '</div>'+
-                                    '</div>'+                                   
-                                '</div>';
+
+                    reader.onload = function(event) {
+                        var listElem = '<div class="jbg_wht" style="display:table-cell;">'+
+                                    '<div style="padding:0 10px 0 0;">'+
+                                        '<div style="border:1px solid #ddd; padding:5px;"   >'+
+                                            '<div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">'+
+                                                '<img src="'+ event.target.result + '" height="76px">'+
+                                            '</div>'+
+                                        '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete">@lang("admin.product_delete")</div>'+
+                                    '</div>'+
+                                '</div>'+                                   
+                            '</div>';
+                        
+                        $(listElem).appendTo(placeToInsertImagePreview);
                     }
-                    $("#imageListSection").append(listElem);    
-                    reader.readAsDataURL(elem);
+                    reader.readAsDataURL(input.files[i]);
+
                 }
+            }
+
+            };
+            $("#uploadImageInput").change(function(){
+
+            imagesPreview(this, '#imageListSection');
+                
             });
 
             $('#addTime').click(function(){
@@ -438,7 +464,7 @@
                 var minute = $('#timeMinute').val();
                 var time = hour +':'+ minute;
                 var item = '<div class="res_time" onclick="TimeSelection(this)"> '+
-                                '<span>' + time + '</span>'
+                                '<span>' + time + '</span>'+
                                 '<input type="hidden" value="'+time+'" name="ReservationTime[]" />'+
                             '</div>';
                 var itemExist = false;

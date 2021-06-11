@@ -37,6 +37,9 @@ Route::namespace('Admin')->group(function(){
                     Route::post('/store', 'ProductMobileController@store')->name('store');
                     Route::get('/getYacht', 'ProductMobileController@getYacht')->name('getyacht');
                     Route::get('/edit/{id}', 'ProductMobileController@edit')->name('edit');
+                    Route::post('/removeImage', 'ProductMobileController@removeImage')->name('removeImage');
+                    Route::post('/update/{id}', 'ProductMobileController@update')->name('update');
+                    Route::post('/destroy/{id}', 'ProductMobileController@destroy')->name('destroy');
                 });
 
             });

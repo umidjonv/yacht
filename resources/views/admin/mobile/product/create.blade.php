@@ -386,17 +386,11 @@
             });
 
         }
-        function readURL(input) {
-            if (input.files[0]) {
-                var reader = new FileReader();
 
-                reader.onload = function (e) {
-                    $('#blah').attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
-        }
+        $(document).on("click",".delete", function(){
+            $(this).parent().parent().parent().remove();
+        });
+        
         $(document).ready(function(){
             $("#saveBtn").click(function(){
                 $("#form").submit();
@@ -406,7 +400,7 @@
                 $("#uploadImageInput").click();
             });
             var imagesPreview = function(input, placeToInsertImagePreview) {
-
+                $(placeToInsertImagePreview).html("");
                 if (input.files) {
                     var filesAmount = input.files.length;
 
@@ -420,14 +414,15 @@
                                                 '<div class="jbg_grey5" style="  width:72px; height:72px; overflow:hidden;">'+
                                                     '<img src="'+ event.target.result + '" height="76px">'+
                                                 '</div>'+
-                                            '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2">@lang("admin.product_delete")</div>'+
+                                            '<div class="flx_c pdg_t05 jcr_grey2 jm_tsss2 delete">@lang("admin.product_delete")</div>'+
                                         '</div>'+
                                     '</div>'+                                   
                                 '</div>';
+                            
+                            $(listElem).appendTo(placeToInsertImagePreview);
                         }
-
                         reader.readAsDataURL(input.files[i]);
-                            $(placeToInsertImagePreview).appen(listElem);
+                
                     }
                 }
 
@@ -443,8 +438,8 @@
                 var minute = $('#timeMinute').val();
                 var time = hour +':'+ minute;
                 var item = '<div class="res_time" onclick="TimeSelection(this)"> '+
-                                '<span>' + time + '</span>'
-                                '<input type="hidden" value="'+time+'" name="ReservationTime[]" />'+
+                                '<span>' + time + '</span>'+
+                                '<input type="text" style="display:none;" value="'+time+'" name="ReservationTime[]" />'+
                             '</div>';
                 var itemExist = false;
                     
