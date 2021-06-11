@@ -136,7 +136,7 @@ class  ProductController extends BaseController
         $this->deleteImage($product, $request->preloaded);
         if ($files = $request->file('images')) {
             foreach ($files as $file) {
-                $f_name = "IMG_".uniqid()."_" . date("Y-m-d_H-i-s") . "." . strtolower($file->getClientOriginalExtension());
+                $f_name = "IMG_" . uniqid() . "_" . date("Y-m-d_H-i-s") . "." . strtolower($file->getClientOriginalExtension());
                 $file->storeAs("public/product", $f_name);
                 ProductImages::query()->create([
                     'ProductId' => $product->Id,
@@ -157,19 +157,14 @@ class  ProductController extends BaseController
                 ->where('ProductId', $product->Id)
                 ->whereNotIn('Id', $preloaded)
                 ->get();
-            foreach ($product_images as $image) {
-                Storage::delete("public/product/{$image}");
-                ProductImages::query()->where("Id", $image->Id)->delete();
-            }
-        }
-        else {
+        } else {
             $product_images = ProductImages::query()
                 ->where('ProductId', $product->Id)
                 ->get();
-            foreach ($product_images as $image) {
-                Storage::delete("public/product/{$image->Name}");
-                ProductImages::query()->where("Id", $image->Id)->delete();
-            }
+        }
+        foreach ($product_images as $image) {
+            Storage::delete("public/product/{$image}");
+            ProductImages::query()->where("Id", $image->Id)->delete();
         }
     }
 }
