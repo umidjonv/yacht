@@ -124,12 +124,6 @@ class ReservationController extends Controller
                 ->orWhere('IsReserved', 1);
         })->where('ReservationDate', '<', $date->toDateTimeString())->get();
 
-        DB::enableQueryLog(); // Enable query log
-
-
-
-        //return dd($date->toDateTimeString());
-
         return view('client.mobile.reservation.list')->with(['current'=>$current, 'completed'=>$completed]);
     }
 

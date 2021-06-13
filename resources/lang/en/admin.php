@@ -216,6 +216,7 @@ return [
     'reserve_schedule' => 'Reservation schedule',
 
     'no_data_list' => 'There is no data, choose another area',
+    'send_answer' => 'Send answer',
 
 
 

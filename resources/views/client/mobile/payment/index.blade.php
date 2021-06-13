@@ -11,46 +11,64 @@
 
 @section('content')
     @php
+        $product = $reservation->product()->first();
+
+            /*
+        *******************************************************
+        * <Payment Request Parameter>
+        * The sample page only shows basic (required) parameters.
+        *******************************************************
+        */
+
+        $merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // merchantKey
+        $MID         = "nicepay00m"; // merchantID
+        $goodsName   = $product->Name; // goodsName
+        $price       = 835;//$reservation->TotalAmount; // amount of payment
+        $buyerName   = $user->name; // buyer name
+        $buyerTel	 = $user->contact; // buyer contact
+        $buyerEmail  = $user->email; // buyer email
+        $moid        = $reservation->Id; // order id
+        //$returnURL	 = ""; // absolute path, mobile payment only
+
         /*
-    *******************************************************
-    * <Payment Request Parameter>
-    * The sample page only shows basic (required) parameters.
-    *******************************************************
-    */
-
-    $merchantKey = "EYzu8jGGMfqaDEp76gSckuvnaHHu+bC4opsSN6lHv3b2lurNYkVXrZ7Z1AoqQnXI3eLuaUFyoRNC6FkrzVjceg=="; // merchantKey
-    $MID         = "nicepay00m"; // merchantID
-    $goodsName   = "나이스페이"; // goodsName
-    $price       = "1004"; // amount of payment
-    $buyerName   = "나이스"; // buyer name
-    $buyerTel	 = "01000000000"; // buyer contact
-    $buyerEmail  = "happy@day.co.kr"; // buyer email
-    $moid        = "mnoid1234567890"; // order id
-    $returnURL	 = ""; // absolute path, mobile payment only
-
-    /*
-    *******************************************************
-    * <Hash encryption> (do not modify)
-    *******************************************************
-    */
-    $ediDate = date("YmdHis");
-    $hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
+        *******************************************************
+        * <Hash encryption> (do not modify)
+        *******************************************************
+        */
+        $ediDate = date("YmdHis");
+        $hashString = bin2hex(hash('sha256', $ediDate.$MID.$price.$merchantKey, true));
 
     @endphp
 
     <div class="jbg_wht" style="position:relative; min-height:100%; padding-bottom:70px;">
+        <!-- header -->
+        <div class="jbg_wht flx_side" style="border-bottom:0px solid #ccc;">
+            <div class="flx_lft_m" style="width:65px; height:60px;">
+                <div class=" pdg_l15" onclick="location.href='javascript:history.go(-1);'">
+                    <img src="{{asset('mobile/client/images/icon/arrow_back.png')}}" height="20px" alt="" />
+                </div>
+            </div>
+            <div class="flx_c" style="height:60px;">
+                <div class="jcr_grey2 jm_tss1 j_bold" style="height:17px;">
+                    @lang('client.make_payment')
+                </div>
+            </div>
+            <div class="flx_rgt_m" style="width:65px; height:60px;">
+                <!--<div class="pdg_r10">
+                <img src="../resources/images/icon/share.png" height="20px" alt="" />
+                </div>
+                <div class="pdg_r15">
+                <img src="../resources/images/icon/heart_big.png" height="20px" alt="" />
+                </div>-->
+            </div>
+        </div>
+        <!-- // header -->
     <form name="payForm" method="post" action="{{route('client.mobile.payment.complete')}}">
 
-        <div class="pdg_s15 pdg_b15">
-            <fieldset class="mgn_t10 login_border">
-                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                <div style="height:35px;">
-                    <input class="w_100 js_input00" type="text" name="PayMethod" value="">
+        {{csrf_field()}}
 
-                </div>
-            </fieldset>
 
-        </div>
+
         <div class="pdg_s15 pdg_b15">
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
@@ -61,36 +79,22 @@
             </fieldset>
 
         </div>
+        <input type="hidden" name="PayMethod" value="" class="w_100 js_input00">
+
         <div class="pdg_s15 pdg_b15">
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="PayMethod" value="" class="w_100 js_input00">
+                    <input type="text" name="Amt" value="{{(int)$price}}" class="w_100 js_input00">
 
                 </div>
             </fieldset>
 
         </div>
-        <div class="pdg_s15 pdg_b15">
-            <fieldset class="mgn_t10 login_border">
-                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                <div style="height:35px;">
-                    <input type="text" name="Amt" value="{{$price}}" class="w_100 js_input00">
 
-                </div>
-            </fieldset>
+                    <input type="hidden" name="MID" value="{{$MID}}" class="w_100 js_input00">
 
-        </div>
-        <div class="pdg_s15 pdg_b15">
-            <fieldset class="mgn_t10 login_border">
-                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                <div style="height:35px;">
-                    <input type="text" name="MID" value="{{$MID}}" class="w_100 js_input00">
 
-                </div>
-            </fieldset>
-
-        </div>
         <div class="pdg_s15 pdg_b15">
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
@@ -131,17 +135,9 @@
             </fieldset>
 
         </div>
-        <div class="pdg_s15 pdg_b15">
-            <fieldset class="mgn_t10 login_border">
-                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                <div style="height:35px;">
 
-                    <input type="text" name="VbankExpDate" value="" class="w_100 js_input00">
+                    <input type="hidden" name="VbankExpDate" value="" class="w_100 js_input00">
 
-                </div>
-            </fieldset>
-
-        </div>
         <input type="hidden" name="ReturnURL" value="{{route('client.mobile.payment.complete')}}"> <!-- ReturnURL [Mobile only]-->
 
         <input type="hidden" name="NpLang" value="EN"/> <!-- EN:English, CN:Chinese, KO:Korean -->
@@ -155,10 +151,20 @@
         <input type="hidden" name="SignData" value="{{$hashString}}"/>	<!-- EncryptData -->
         <div class="pdg_s15 pdg_b15">
             <div style="height:35px;">
-            <a href="javascript:void(0)" class="btn_blue w_100 js_input00" onClick="nicepayStart();">REQUEST</a>
+
             </div>
         </div>
     </form>
+
+        <!-- fixed Bottom Button -->
+        <div class="btm_bt_wrap02 btm_bt_fix" style="padding:12px 15px 12px;">
+            <!-- button -->
+            <a class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" href="javascript:void(0)"  onClick="nicepayStart();">
+                REQUEST
+            </a>
+            <!--// button -->
+        </div>
+        <!-- // fixed Bottom Button -->
 
     </div>
 @endsection

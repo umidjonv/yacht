@@ -72,6 +72,8 @@ Route::namespace('Client')->group(function(){
             Route::post('/reservation/save', 'ReservationController@save')->name('client.mobile.reservation.save');
             Route::get('/reservation/times', 'ReservationController@get_times')->name('client.mobile.reservation.get_times');
             Route::get('/reservation/payment/{id}', 'ReservationController@payment')->name('client.mobile.reservation.payment');
+
+
             Route::get('/reservation/list/', 'ReservationController@list')->name('client.mobile.reservation.list');
             Route::get('/reservation/view/{id}', 'ReservationController@view')->name('client.mobile.reservation.view');
             Route::get('/product/favourite/{id}', 'ProductController@set_favourite')->name('client.mobile.product.set_favourite');
@@ -82,9 +84,9 @@ Route::namespace('Client')->group(function(){
 
             Route::get('/event/{id}', 'EventController@view')->name('client.mobile.event.view');
 
-            Route::get('/payment', 'PaymentController@index')->name('client.mobile.payment.index');
+            Route::get('/payment/{id}', 'PaymentController@index')->name('client.mobile.payment.index');
             Route::post('/payment/complete', 'PaymentController@complete')->name('client.mobile.payment.complete');
-
+            Route::post('/payment/success', 'PaymentController@success')->name('client.mobile.payment.success');
 
 
 

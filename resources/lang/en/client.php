@@ -119,6 +119,8 @@ return [
     'reservation_time' => 'Reservation time',
     'reserved' => 'Reserved',
     'cancel' => 'Cancel',
+    'make_payment' =>'Make a payment',
+
 
 
 
