@@ -36,7 +36,7 @@
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
                     @lang("admin.product_management")
                 </div>
-                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_04.html'">
+                <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='{{route('admin.mobile.reservation.index')}}'">
                     @lang("admin.reservation_management")
                 </div>
                 <div class="pdg_tb15 line_bt01 jm_ts2 bg_arrow02" style="padding-left:13%;" onclick="location.href='menu_05.html'">
@@ -81,7 +81,7 @@
                         <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{ route('admin.mobile.product.index') }}'">
                             @lang("admin.product_management")
                         </div>
-                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='menu_04.html'">
+                        <div class="w_333 flx_c jtab_menu01" onclick="location.href='{{route('admin.mobile.reservation.index')}}'">
                             @lang("admin.reservation_management")
                         </div>
                     </div>
