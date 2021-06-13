@@ -30,7 +30,7 @@
                 <div class="pdg_r10" style="width:calc(100% - 80px);">
                     <div class="flx_lft_m login_border flx_side_m" style="height:43px;">
                         <div class="jm_tss1 jcr_grey3 j_bold">
-                            요트정보 <font class="jcr_red1 jm_ts1 j_bold">{{is_null($vendor) ? 0 : count($vendor->yachts)}}</font>건
+                            {{__("admin.yacht_information")}} <font class="jcr_red1 jm_ts1 j_bold">{{is_null($vendor) ? 0 : count($vendor->yachts)}}</font>{{__("admin.yacht_architecture")}}
                         </div>
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                     <!-- button -->
                     <div class="flx_c jbg_btn01 jm_tsss2 jcr_wht j_bold j_rd04" style="height: 43px"
                          onclick="location.href='{{route("admin.mobile.yacht.register")}}'">
-                        등록
+                        {{__("admin.yacht_register")}}
                     </div>
                     <!--// button -->
                 </div>
@@ -82,12 +82,12 @@
                                 <!-- button -->
                                 <div class="mgn_b10 bt_sml02_wht" style="width:60px;"
                                      onclick="location.href='{{route("admin.mobile.yacht.edit", $yacht->Id)}}'">
-                                    수정
+                                    {{__("admin.yacht_edit")}}
                                 </div>
                                 <!--// button -->
                                 <!-- button -->
                                 <div class="bt_sml02_blu" style="width:60px;">
-                                    삭제
+                                    {{__("admin.yacht_delete")}}
                                 </div>
                                 <!--// button -->
                             </div>

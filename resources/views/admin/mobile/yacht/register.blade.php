@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="flx_c jm_ts2 jcr_wht j_bold" style="height:60px;">
-                요트관리
+                {{__("admin.yacht_mobile_yacht_management")}}
             </div>
             <div class="flx_rgt_m" style="width:90px; height:60px;">
             </div>
@@ -25,7 +25,7 @@
             <!-- title -->
             <div class="w_100 pdg_b10">
                 <div class="jcr_grey1 jm_ts2 j_bold">
-                    정보수정/등록
+                    {{__("admin.yacht_registration")}}
                 </div>
             </div>
             <!-- //title -->
@@ -42,7 +42,7 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                업체명
+                                {{__("admin.yacht_company_name")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
@@ -53,11 +53,11 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                요트명
+                                {{__("admin.yacht_yacht_description")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
-                                <input class="w_100 js_input02" name="Name" value="{{old("Name")}}" placeholder="요트명을 입력해주세요" type="text">
+                                <input class="w_100 js_input02" name="Name" value="{{old("Name")}}" placeholder="{{__("admin.yacht_enter_yacht_name")}}" type="text">
                             </div>
                         </div>
                         <!--
@@ -139,11 +139,11 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                탑승위치
+                                {{__("admin.yacht_boarding_location")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"	style="display:table-cell; width:calc(100% - 90px);">
-                                <input type="text" name="Postcode" value="{{old("Postcode")}}" id="sample2_postcode" placeholder="우편번호" class="js_input03">
-                                <input type="button" onclick="sample2_execDaumPostcode()" value="검색"><br>
+                                <input type="text" name="Postcode" value="{{old("Postcode")}}" id="sample2_postcode" placeholder="{{__('admin.yacht_postcode')}}" class="js_input03">
+                                <input type="button" onclick="sample2_execDaumPostcode()" value="{{__("admin.yacht_search")}}"><br>
                                 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
                                     <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
                                 </div>
@@ -244,25 +244,26 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                정원
+                                {{__("admin.yacht_mobile_capacity")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="j_inline pdg_r05" style="width:calc(100% - 35px);">
-                                    <input class="w_100 js_input02" name="Capacity" value="{{old("Capacity")}}" placeholder="인원을 입력해주세요" type="text">
-                                </div>인승
+                                    <input class="w_100 js_input02" name="Capacity" value="{{old("Capacity")}}" placeholder="{{__("admin.yacht_mobile_enter_capacity")}}" type="text">
+                                </div>
+                                {{__("admin.yacht_mobile_seats")}}
                             </div>
                         </div>
                         <!-- -->
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                제원
+                                {{__("admin.yacht_mobile_length")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
                                 <div class="j_inline pdg_r05" style="width:calc(100% - 35px);">
-                                    <input class="w_100 js_input02" name="Length" value="{{old("Length")}}" placeholder="제원을 입력해주세요" type="text">
+                                    <input class="w_100 js_input02" name="Length" value="{{old("Length")}}" placeholder="{{__("admin.yacht_mobile_enter_length")}}" type="text">
                                 </div>pt
                             </div>
                         </div>
@@ -270,7 +271,7 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px dashed #ccc;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                운영시간
+                                {{__("admin.yacht_mobile_work_time")}}
                             </div>
                             <div class="pdg_s10 pdg_tb10 jm_tsss2 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
@@ -282,7 +283,7 @@
                                         </label>
                                     </div>
                                     <div class="j_inline jcr_grey1 jm_tss1 pdg_l05">
-                                        종일 (선택)
+                                        {{__("yacht_mobile_work_time_all_time")}}
                                     </div>
                                 </div>
                             </div>
@@ -353,11 +354,11 @@
                         <div class="w_100 flx_side_m" style="display:table; border-bottom:1px solid #eee;">
                             <div class="pdg_10 js_align_c jbg_grey5 jm_tss1 jcr_blu"
                                  style="display:table-cell; width:90px;">
-                                정기휴무
+                                {{__("yacht_mobile_regular_holidays")}}
                             </div>
                             <div class="flx_lft_m pdg_s10 pdg_tb10 jm_tss1 jcr_grey1"
                                  style="display:table-cell; width:calc(100% - 90px);">
-                                매주
+                                {{__("yacht_mobile_weekly")}}
                                 <div class="j_inline pdg_l10">
                                     <!-- select -->
                                     <div class="input_border">
@@ -479,7 +480,7 @@
             <div class="flx_lft btm_bt_wrap02" onclick="document.querySelector('#yacht-register-form').submit()">
                 <div class="w_100 flx_c jbg_header jm_tss1 jcr_wht" style="height:50px;">
                     <div class="jm_ts2 jcr_wht">
-                        저장
+                        {{__("admin.yacht_mobile_save")}}
                     </div>
                 </div>
             </div>
