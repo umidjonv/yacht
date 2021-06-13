@@ -73,7 +73,7 @@
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="GoodsName" value="{{$goodsName}}"  class="w_100 js_input00">
+                    <input type="text" readonly name="GoodsName" value="{{$goodsName}}"  class="w_100 js_input00">
 
                 </div>
             </fieldset>
@@ -85,31 +85,21 @@
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="Amt" value="{{(int)$price}}" class="w_100 js_input00">
+                    <input type="text" readonly name="Amt" value="{{(int)$price}}" class="w_100 js_input00">
 
                 </div>
             </fieldset>
 
         </div>
 
-                    <input type="hidden" name="MID" value="{{$MID}}" class="w_100 js_input00">
+                    <input type="hidden"  name="MID" value="{{$MID}}" class="w_100 js_input00">
 
 
         <div class="pdg_s15 pdg_b15">
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="Moid" value="{{$moid}}" class="w_100 js_input00">
-
-                </div>
-            </fieldset>
-
-        </div>
-        <div class="pdg_s15 pdg_b15">
-            <fieldset class="mgn_t10 login_border">
-                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
-                <div style="height:35px;">
-                    <input type="text" name="BuyerName" value="{{$buyerName}}" class="w_100 js_input00">
+                    <input type="text" readonly name="Moid" value="{{$moid}}" class="w_100 js_input00">
 
                 </div>
             </fieldset>
@@ -119,7 +109,7 @@
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="BuyerEmail" value="{{$buyerEmail}}" class="w_100 js_input00">
+                    <input type="text" readonly name="BuyerName" value="{{$buyerName}}" class="w_100 js_input00">
 
                 </div>
             </fieldset>
@@ -129,7 +119,17 @@
             <fieldset class="mgn_t10 login_border">
                 <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
                 <div style="height:35px;">
-                    <input type="text" name="BuyerTel" value="{{$buyerTel}}" class="w_100 js_input00">
+                    <input type="text" readonly name="BuyerEmail" value="{{$buyerEmail}}" class="w_100 js_input00">
+
+                </div>
+            </fieldset>
+
+        </div>
+        <div class="pdg_s15 pdg_b15">
+            <fieldset class="mgn_t10 login_border">
+                <legend class="jm_tsss0 jcr_grey9" style="width:0px; padding:0 0; height:15px;"></legend>
+                <div style="height:35px;">
+                    <input type="text" readonly name="BuyerTel" value="{{$buyerTel}}" class="w_100 js_input00">
 
                 </div>
             </fieldset>
@@ -160,7 +160,7 @@
         <div class="btm_bt_wrap02 btm_bt_fix" style="padding:12px 15px 12px;">
             <!-- button -->
             <a class="flx_c jbg_ylw jm_tss1 jcr_wht j_bold" style="box-shadow: 0 4px 6px #0000001F; padding:19px 0; border-radius:0px;" href="javascript:void(0)"  onClick="nicepayStart();">
-                REQUEST
+                @lang('admin.request_payment')
             </a>
             <!--// button -->
         </div>

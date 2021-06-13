@@ -217,6 +217,7 @@ return [
 
     'no_data_list' => 'There is no data, choose another area',
     'send_answer' => 'Send answer',
+    'request_payment' => 'Make a payment',
 
 
 

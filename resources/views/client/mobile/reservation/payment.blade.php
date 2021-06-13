@@ -80,6 +80,7 @@
             <input type="hidden" name="TotalAmount" value="{{$model->TotalAmount}}"  />
             <input type="hidden" name="PaymentAmount" />
             <input type="hidden" name="BalancePoints" />
+            <input type="hidden" name="ID" />
             <input type="hidden" name="AccumulatedPoint" value="{{$member->AccumulatedPoint}}" />
 
 {{--            <div class="pdg_b20">--}}

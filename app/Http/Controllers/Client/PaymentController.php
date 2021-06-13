@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Client;
 
 
+use App\Common\Enums\ReservationConstants;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
 use App\Models\Feedback;
@@ -80,6 +81,9 @@ class PaymentController extends Controller
                 $response = $this->reqPost($data, $nextAppURL);
                 $result = $this->jsonRespDump($response, $merchantKey);
 
+                //change status of booking
+                $this->paymentSuccess($moid);
+
                 return view('client.mobile.payment.success')->with(['result'=>$result]);
             }catch(Exception $e){
                 $e->getMessage();
@@ -150,7 +154,8 @@ class PaymentController extends Controller
     {
         $reservation = Reservation::find($id);
         $reservation->IsPayed = true;
-        //$reservation->
+        $reservation->Status = ReservationConstants::PAYED;
+        $reservation->save();
     }
 
     

@@ -4,6 +4,7 @@
 namespace App\Http\Controllers\Client;
 
 
+use App\Common\Enums\ReservationConstants;
 use App\Common\Enums\UI\SortOrder;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VendorRequest;
@@ -73,6 +74,7 @@ class ReservationController extends Controller
         $reservation->ProductId =  $request->input('ProductId');
         $reservation->UserId =  $request->input('UserId');
         $reservation->VendorId =  $request->input('VendorId');
+        $reservation->Status =  ReservationConstants::NEW;
 
         $reservation->save();
 
