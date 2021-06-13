@@ -22,18 +22,18 @@ return [
     'member_list' => '회원 목록',
     'reservations' => '예약',
     'reservation_list' => '예약 목록',
-
+    'won' => '원',
 
 
     //dashboard
-    'dashboard'=>'대시 보드',
+    'dashboard' => '대시 보드',
     'share' => '공유',
     'export' => '수출',
     'this_week' => '이번 주',
 
     //vendors.index
     'pindex_vendor_list_title' => '요트 소유자',
-    'pindex_name'=>'이름',
+    'pindex_name' => '이름',
     'pindex_representative' => '대표자 명',
     'pindex_contact' => '연락처',
     'pindex_email' => '이메일',
@@ -41,9 +41,9 @@ return [
     'pindex_active' => '활성',
     'pindex_view_yacht' => '요트보기',
     'pindex_agree_activate' => '소유자를 활성 하시겠습니까?',
-	
-	//yacht.index,add
-    'yacht_list' =>'요트 목록',
+
+    //yacht.index,add
+    'yacht_list' => '요트 목록',
     'yacht_name' => '명',
     'yacht_company' => '회사 명',
     'yacht_address' => '주소',
@@ -88,8 +88,6 @@ return [
     'product_reservation_remove' => '제거',
     'product_save' => '저장',
 
-    'yacht_bydays' => '일별',
-    'product_save' => '저장',
 //---sent to translate
 
 
@@ -107,33 +105,33 @@ return [
     //yacht
     'yacht_image' => "이미지",
     'yacht_information' => "요트정보",
-    'yacht_architecture'    => "건",
-    'yacht_register'    => "등록",
-    'yacht_edit'    => "수정",
-    'yacht_delete'  => "삭제",
+    'yacht_architecture' => "건",
+    'yacht_register' => "등록",
+    'yacht_edit' => "수정",
+    'yacht_delete' => "삭제",
     'yacht_mobile_yacht_management' => "요트관리",
-    'yacht_registration'    => "정보수정/등록",
-    'yacht_company_name'    => "업체명",
-    'yacht_yacht_description'   => "요트명",
-    'yacht_enter_yacht_name'    => "요트명을 입력해주세요",
-    'yacht_location'    => "요트위치",
-    'yacht_boarding_location'   => "탑승위치",
-    'yacht_postcode'    => "우편번호",
-    'yacht_search'  => "검색",
-    'yacht_mobile_capacity'  => "정원",
-    'yacht_mobile_enter_capacity'  => "인원을 입력해주세요",
-    'yacht_mobile_seats'    => "인승",
-    'yacht_mobile_length'   => "제원",
+    'yacht_registration' => "정보수정/등록",
+    'yacht_company_name' => "업체명",
+    'yacht_yacht_description' => "요트명",
+    'yacht_enter_yacht_name' => "요트명을 입력해주세요",
+    'yacht_location' => "요트위치",
+    'yacht_boarding_location' => "탑승위치",
+    'yacht_postcode' => "우편번호",
+    'yacht_search' => "검색",
+    'yacht_mobile_capacity' => "정원",
+    'yacht_mobile_enter_capacity' => "인원을 입력해주세요",
+    'yacht_mobile_seats' => "인승",
+    'yacht_mobile_length' => "제원",
     'yacht_mobile_enter_length' => "제원을 입력해주세요",
-    'yacht_mobile_work_time'    => "운영시간",
-    'yacht_mobile_work_time_all_time'   => "종일 (선택)",
+    'yacht_mobile_work_time' => "운영시간",
+    'yacht_mobile_work_time_all_time' => "종일 (선택)",
     'yacht_mobile_regular_holidays' => "정기휴무",
-    'yacht_mobile_weekly'   => "매주",
+    'yacht_mobile_weekly' => "매주",
     'yacht_mobile_save' => "저장",
 
     'banner_management' => '배너 관리',
     'banner_link' => '링크',
-    'banner_image' =>  '이미지',
+    'banner_image' => '이미지',
     'banner_list' => '배너 목록',
     'banner_order' => '주문',
     'banner_event' => '행사',
@@ -175,15 +173,14 @@ return [
     'member_change_password' => '비밀번호 변경?',
     'member_change_password_title' => '암호',
 
-    'retype_password'=>'비밀번호 재 입력',
+    'retype_password' => '비밀번호 재 입력',
     'send_feedback' => '질문 보내기',
     'search' => '검색',
     'address' => '주소',
     'company_name' => '회사 이름',
     'terms_service' => '서비스 약관',
     'terms_privacy' => '개인 정보 보호 정책',
-    'agreement_policy'=>'이용 약관 및 개인 정보 보호 정책에 동의합니다.',
-
+    'agreement_policy' => '이용 약관 및 개인 정보 보호 정책에 동의합니다.',
 
 
     //admin mobile product
@@ -202,7 +199,6 @@ return [
     'product_yacht_details' => '세부',
     'product_yacht_details_placeholder' => '세부 내용',
     'product_admin_create_header' => '제품 / 수정 등록 ',
-    'product_management' => '제품 관리 ',
     'product_modified' => '수정',
     'product_delete' => 'Delete',
     'product_display_text' => '표시',
@@ -213,23 +209,61 @@ return [
     'register_vendor_complete' => '등록하면 활성화 알림을 받게됩니다.',
     'register_company' => '회사 등록',
 
-    'date_created'=> '만든 날짜',
-    'time'=> '시간',
-    'feedback'=> 'Feedback',
-    'reservation_payment'=> '결제 금액',
-    'reservation_total_amount'=> '총액',
-    'reservation_paid'=> '유료 여부',
-    'reservation_paid_yes'=> '유료',
-    'reservation_paid_not'=> '미지급',
+    'date_created' => '만든 날짜',
+    'time' => '시간',
+    'feedback' => 'Feedback',
+    'reservation_payment' => '결제 금액',
+    'reservation_total_amount' => '총액',
+    'reservation_paid' => '유료 여부',
+    'reservation_paid_yes' => '유료',
+    'reservation_paid_not' => '미지급',
 
-    'feedback_send_answer'=> '답변 보내기',
-    'text_cancel'=> '취소',
+    'feedback_send_answer' => '답변 보내기',
+    'text_cancel' => '취소',
 
 
-    'admin.mobile.yacht_created_successfully'  => '',
-    'admin.mobile.yacht_edited_successfully'  => '',
+    'admin.mobile.yacht_created_successfully' => '',
+    'admin.mobile.yacht_edited_successfully' => '',
 
     #profile
 
-    'profile.updated_successfully'  => 'Updated successfully'
+    'profile.updated_successfully' => 'Updated successfully',
+
+    #reservation mobile
+
+    'reservation_mobile_refunds' => '환불',
+    'reservation_mobile_booking_number' => '예약번호',
+    'reservation_is_the_refund_policy_by_payment_of_the_amount_of' => '은 환불규정에 의하여 결제금액의',
+    'reservation_refund' => '환불이 됩니다',
+    'reservation_refund_expected_amount' => '환불예상금액',
+    'reservation_refund_amount' => '환불금액',
+    'reservation_the_refund_amount_numeric_input_only' => '환불 금액 숫자만 입력',
+    'reservation_payment_amount' => '결재금액',
+    'reservation_cancel' => '취소',
+    'reservation_booking_management' => '예약관리',
+    'reservation_enter_search_terms' => '검색어를 입력하세요',
+    'reservation_booking_calendar' => '예약일정',
+    'reservation_bookings' => '예약접수',
+    'reservation_booking_confirmation' => '예약확인',
+    'reservation_completed' => '이용완료',
+    'reservation_tour' => '투어',
+    'reservation_cancelled' => '취소접수',
+    'reservation_date_of_use' => '이용일자',
+    'reservation_booking_time' => '예약시간',
+    'reservation_information_priority' => '정우선 / 대인',
+    'reservation_people' => '명',
+    'reservation_sofa' => '소인',
+    'reservation_adults' => '명',
+    'reservation_detail' => '상세보기',
+    'reservation_booking_information' => '예약정보',
+    'reservation_booking_date' => '예약일시',
+    'reservation_reservation' => '예약자',
+    'reservation_personnel' => '인원',
+    'reservation_for' => '대인',
+    'reservation_this_file' => '이용일시',
+    'reservation_points' => '포인트',
+    'reservation_status' => '상태',
+    'reservation_product_information'   => '상품정보',
+    'reservation_separated' => '구분',
+    'reservation_prize_amount'  => '상품금액',
 ];
