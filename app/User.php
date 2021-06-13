@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Favourite;
+use App\Models\Reservation;
 use App\Models\Vendor;
 
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -48,4 +49,11 @@ class User extends Authenticatable
         return $this->hasMany(Favourite::class, 'UserId');
     }
 
+    /**
+     * @return HasMany
+     */
+    public function reservations(): HasMany
+    {
+        return $this->hasMany(Reservation::class, "UserId", "id");
+    }
 }
