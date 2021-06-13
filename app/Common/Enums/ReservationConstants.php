@@ -10,9 +10,11 @@ namespace App\Common\Enums;
 class ReservationConstants
 {
 
+    const NEW = "new";
     const PAYED = "payed";
+    const CONFIRMED = "confirmed";
+    const COMPLETED = "completed";
     const CANCELED = "canceled";
-    const RESERVED = "reserved";
 
     /**
      * @return array
@@ -20,8 +22,10 @@ class ReservationConstants
     public static function statuses(): array
     {
         return [
+            self::NEW,
             self::PAYED,
-            self::RESERVED,
+            self::CONFIRMED,
+            self::COMPLETED,
             self::CANCELED,
         ];
     }
