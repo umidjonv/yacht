@@ -12,7 +12,7 @@
         <header id="header">
             <div class="jbg_wht flx_side" style="border-bottom:0px solid #ccc;">
                 <div class="flx_lft_m" style="width:65px; height:60px;">
-                    <div class=" pdg_l15" onclick="location.href='javascript:history.go(-1);'">
+                    <div class=" pdg_l15" onclick="location.href='{{route('client.mobile.index')}}'">
                         <img src="{{asset('mobile/client/images/icon/arrow_back.png')}}" height="20px" alt="" />
                     </div>
                 </div>
@@ -32,17 +32,25 @@
         <!-- // header -->
         <!-- rolling_banner -->
         <div class="inner-t2">
-            <div class="swiper-container swiper_loop w_100" style="height: 0; padding-top:100%;">
-                <div class="swiper-wrapper w_100" style="margin-top:-100%;">
+            <div class="swiper-container swiper_loop w_100" >
+                <div class="swiper-wrapper w_100" >
                     @php
                         $images = $yacht->images()->get();
                     @endphp
-                    @foreach($images  as $image)
+                    @if(count($images) != 0)
+                        @foreach($images  as $image)
+                            <div class="swiper-slide">
+                                <img src="{{url('/storage/yachts').'/'.$image->Name}}" width="100%" alt="">
+                            </div>
+
+                        @endforeach
+                    @else
                         <div class="swiper-slide">
-                            <img src="{{url('/storage/yachts').'/'.$image->Name}}" width="100%" alt="">
+                            <img src="{{ asset('/mobile/client/images/no_image.jpg') }}" width="100%" alt="">
                         </div>
 
-                    @endforeach
+                    @endif
+
                 </div>
                 <!-- Add Pagination -->
                 <div class="swiper-pagination"></div>
@@ -638,6 +646,12 @@
             $crDiv.hide();
             $sbDiv.show();
         });
+
+        const swiper = new Swiper('.swiper-container', {
+            autoHeight:true
+        });
+
+
 
         $(".full-open").click(function() {
             $(".full-photo").show();

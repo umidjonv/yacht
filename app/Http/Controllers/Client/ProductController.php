@@ -48,7 +48,6 @@ class ProductController extends Controller
 
     public function my()
     {
-        dd('mylist');
 
     }
 

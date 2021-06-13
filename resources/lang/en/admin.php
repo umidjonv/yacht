@@ -189,8 +189,6 @@ return [
     'product_redister_text' => 'Register',
 
 
-    //sent to translate
-
     'date_created' => 'Created date',
     'time' => 'Time',
     'feedback' => 'Feedback',
@@ -218,6 +216,9 @@ return [
     'reserve_schedule' => 'Reservation schedule',
 
     'no_data_list' => 'There is no data, choose another area',
+
+
+
 
 
 
