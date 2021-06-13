@@ -41,6 +41,12 @@ Route::namespace('Admin')->group(function(){
                     Route::post('/update/{id}', 'ProductMobileController@update')->name('update');
                     Route::post('/destroy/{id}', 'ProductMobileController@destroy')->name('destroy');
                 });
+                Route::group(["prefix"  => "reservation", "as" => "reservation."], function() {
+                    Route::get("", ["as" => "index", "uses" => "ReservationController@index"]);
+                    Route::get("show/{reservation}", ["as" => "show", "uses" => "ReservationController@show"]);
+                    Route::get("confirm/{reservation}", ["as" => "confirm", "uses" => "ReservationController@confirm"]);
+                    Route::get("cancel/{reservation}", ["as" => "cancel", "uses" => "ReservationController@cancel"]);
+                });
 
             });
 
